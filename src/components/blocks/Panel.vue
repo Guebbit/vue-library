@@ -22,8 +22,7 @@
         :thumbnail="backgroundThumbnail"
         :title="backgroundTitle"
         :alt="backgroundAlt"
-        :height="backgroundType === 'iframe' ? (panelRef?.clientWidth + 'px') : undefined"
-        :width="backgroundType === 'iframe' ? (panelRef?.clientHeight + 'px') : undefined"
+        :height="backgroundType === 'iframe' ? (panelRef?.clientHeight + 'px') : undefined"
       />
     </slot>
     <div class="panel-content">
@@ -305,6 +304,9 @@ $hero-panel-mobile-threshold: 600px !default;
 
   &.aspect-ratio-mode {
     overflow: hidden;
+    .panel-content{
+      //
+    }
     .panel-background {
       object-fit: initial;
       height: 0;

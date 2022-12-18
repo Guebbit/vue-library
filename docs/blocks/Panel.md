@@ -259,7 +259,10 @@ For having like vuetify <v-img /> instead of native <img />
 ## Iframe (regular)
 
 Iframes are very difficult to manage so the result can be suboptimal or very bad.
-<Badge type="danger" text="caution" />IMPORTANT: Use RATIO to adjust iframe size, ESPECIALLY on wallapaper mode
+
+::: danger
+IMPORTANT: Use RATIO to adjust iframe size, ESPECIALLY on wallapaper mode
+:::
 
 <Panel
     background="http://assets.guebbit.com/guebbit/video/normal.mp4"
@@ -310,19 +313,9 @@ Iframes are very difficult to manage so the result can be suboptimal or very bad
     </div>
 </Panel>
 
-```html{2,3,11,12}
+```html{2,3}
 <Panel
     background="PATH_TO_VIDEO"
-    backgroundType="iframe"
-    ratio="16:9"
->
-    <div class="content-example">
-      LOREM IPSUM SIT DOLOR AMET
-    </div>
-</Panel>
-
-<Panel
-    background="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID?playlist=YOUTUBE_VIDEO_ID&controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1"
     backgroundType="iframe"
     ratio="16:9"
 >
@@ -351,7 +344,7 @@ The BASIC Panel component
 | `strict`              | If true, {height} become fixed height           | `boolean`                                    | `false`     |
 | `hero`                | SHORTCUT: if height is not set it becomes 100vh | `boolean`                                    | `false`     |
 | `wallpaper`           | Size of panel will be based on panel-background | `boolean`                                    | `false`     |
-| `ratio`               | Background TAG fixed dimensions                 | `string` like 16/9                           | `undefined` |
+| `ratio`               | Background ratio (dynamic size)                 | `string` like 16/9                           | `undefined` |
 
 ## Slots
 

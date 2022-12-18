@@ -1,64 +1,99 @@
 <template>
-  <!-- TODO thumbnail & lazyload -->
-  <img
-    v-if="type === 'image'"
-    :src="media"
-    :alt="alt"
-    :title="title"
-    :height="height"
-    :width="width"
-  >
-  <div
-    v-else-if="type === 'color'"
-    :style="{
-      'background-color': media
-    }"
-    :height="height"
-    :width="width"
-  />
-  <div
-    v-else-if="type === 'css'"
-    :style="{
-      'background-image': 'url(\'' + media + '\')',
-    }"
-    :height="height"
-    :width="width"
-    :aria-label="title"
-    :aria-details="alt"
-  />
-  <div v-else-if="type === 'iframe'">
-    <iframe
-      ref="iframeRef"
-      :src="media"
-      frameborder="0"
-      allowfullscreen=""
-      autoplay=""
-      mute=""
-      loop=""
-      :alt="alt"
-      :title="title"
-      :height="height"
-      :width="width"
-    />
-  </div>
-  <video
-    v-else
-    preload="metadata"
-    playsinline=""
-    muted=""
-    loop=""
-    autoplay=""
-    :poster="thumbnail"
-    :alt="alt"
-    :title="title"
-    :height="height"
-    :width="width"
-  >
-    <source
-      :src="media"
-      :type="type"
-    >
-  </video>
+  <template v-if="type === 'image'">
+    <slot name="image">
+      <img
+        :src="media"
+        :alt="alt"
+        :title="title"
+        :style="{
+          height,
+          width
+        }"
+        v-bind="$attrs"
+      >
+    </slot>
+  </template>
+
+  <template v-else-if="type === 'color'">
+    <slot name="color">
+      <div
+        :style="{
+          'background-color': media,
+          height,
+          width
+        }"
+        v-bind="$attrs"
+      />
+    </slot>
+  </template>
+
+  <template v-else-if="type === 'css'">
+    <slot name="css">
+      <div
+        :style="{
+          'background-image': 'url(\'' + media + '\')',
+          'background-repeat': 'no-repeat',
+          'background-position': 'center',
+          'background-size': 'cover',
+          height,
+          width
+        }"
+        :aria-label="title"
+        :aria-details="alt"
+        v-bind="$attrs"
+      />
+    </slot>
+  </template>
+
+  <template v-else-if="type === 'iframe'">
+    <slot name="iframe">
+      <div
+        :style="{
+          height,
+          width
+        }"
+        v-bind="$attrs"
+        class="media-iframe-container"
+      >
+        <iframe
+          ref="iframeRef"
+          :src="media"
+          frameborder="0"
+          allowfullscreen=""
+          autoplay=""
+          mute=""
+          loop=""
+          :alt="alt"
+          :title="title"
+        />
+      </div>
+    </slot>
+  </template>
+
+  <template v-else>
+    <slot name="video">
+      <video
+        :style="{
+          height,
+          width
+        }"
+        preload="metadata"
+        playsinline=""
+        muted=""
+        loop=""
+        autoplay=""
+        :poster="thumbnail"
+        :alt="alt"
+        :title="title"
+        v-bind="$attrs"
+      >
+        <source
+          :src="media"
+          :type="type"
+        >
+      </video>
+    </slot>
+  </template>
 </template>
 
 <script setup lang="ts">
@@ -74,6 +109,17 @@ defineProps({
   },
 
   /**
+   * Background type
+   * Background can be an image, a video, an iframe or a color
+   * In case of VIDEO, the type is the codec (es: mp4)
+   * In case of CSS, it an image that will be used on background-image
+   */
+  type: {
+    type: String as PropType<"image" | "iframe" | "color" | "css" | string>,
+    default: () => "image",
+  },
+
+  /**
    * When height & width are fixed
    */
   height: {
@@ -86,21 +132,19 @@ defineProps({
   },
 
   /**
-   * Background type
-   * Background can be an image, a video, an iframe or a color
-   * In case of VIDEO, the type is the codec (es: mp4)
-   * In case of CSS, it an image that will be used on background-image
-   */
-  type: {
-    type: String as PropType<"image" | "iframe" | "color" | "css" | string>,
-    default: () => "image",
-  },
-
-  /**
-   * The thumbnail is used on image for lazyload (TODO)
+   * TODO The thumbnail is used on image for lazyload (TODO)
    * or in the video as poster
    */
   thumbnail: {
+    type: String,
+    required: false,
+  },
+
+  /**
+   * TODO ratio of media
+   * (if only 1 or less fixed width/height)
+   */
+  ratio: {
     type: String,
     required: false,
   },
@@ -126,6 +170,9 @@ defineProps({
 </script>
 
 <style scoped>
+.media-iframe-container{
+  position: relative;
+}
 iframe{
   position: absolute;
   left: 50%;

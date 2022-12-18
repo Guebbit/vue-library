@@ -31,6 +31,17 @@ module.exports = {
         collapsed: false,
         items: [
           {
+            text: 'Atoms',
+            collapsible: true,
+            collapsed: false,
+            items: [
+              {
+                text: 'Media',
+                link: '/atoms/media.md'
+              },
+            ]
+          },
+          {
             text: 'Panels',
             collapsible: true,
             collapsed: false,

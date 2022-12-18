@@ -1,0 +1,315 @@
+<template>
+  <div
+    ref="panelRef"
+    class="hero-panel"
+    :class="{
+      'shadow-active': shadow && shadow.length > 0,
+      'wallpaper-mode': wallpaper,
+      'aspect-ratio-mode': ratio,
+      'centered-mode': centered,
+      'bottom-mode': bottom,
+    }"
+    :style="styleHelper"
+  >
+    <slot name="backgroundShadow">
+      <div class="panel-shadow" />
+    </slot>
+    <slot name="background">
+      <Media
+        class="panel-background"
+        :media="background"
+        :type="backgroundType"
+        :thumbnail="backgroundThumbnail"
+        :title="backgroundTitle"
+        :alt="backgroundAlt"
+        :height="backgroundType === 'iframe' ? (panelRef?.clientWidth + 'px') : undefined"
+        :width="backgroundType === 'iframe' ? (panelRef?.clientHeight + 'px') : undefined"
+      />
+    </slot>
+    <div class="panel-content">
+      <div>
+        <slot />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { defineProps, computed, ref, type PropType } from "vue";
+import Media from "../atoms/Media.vue";
+
+const props = defineProps({
+
+  /**
+   * Height of panel
+   * Min-height default. Become "height" when strict = true
+   * Can be %, px, vh, etc...
+   */
+  height: {
+    type: String,
+    required: false,
+  },
+
+  /**
+   * Background of panel
+   */
+  background: {
+    type: String,
+    required: false,
+  },
+
+  /**
+   * Background type
+   * Background can be an image, a video, an iframe or a color
+   * In case of VIDEO, the type is the codec (es: mp4)
+   * In case of CSS, it an image that will be used on background-image
+   */
+  backgroundType: {
+    type: String as PropType<"image" | "iframe" | "color" | "css" | string>,
+    default: () => "image",
+  },
+
+  /**
+   * The thumbnail is used on image for lazyload (TODO)
+   * or in the video as poster
+   */
+  backgroundThumbnail: {
+    type: String,
+    required: false,
+  },
+
+  /**
+   * Background title TAG
+   * TODO with CSS use ARIA
+   */
+  backgroundTitle: {
+    type: String,
+    default: () => "",
+  },
+
+  /**
+   * Background title ALT
+   * TODO with CSS use ARIA
+   */
+  backgroundAlt: {
+    type: String,
+    default: () => "",
+  },
+
+  /**
+   * Shadow to apply between content and background,
+   * to enhance readability
+   */
+  shadow: {
+    type: String,
+    required: false
+  },
+
+  /**
+   * shadow opacity
+   */
+  shadowOpacity: {
+    type: Number,
+    default: () => 0.4,
+  },
+
+  /**
+   * Content is centered
+   * (default: top left)
+   */
+  centered: {
+    type: Boolean,
+    default: () => false,
+  },
+
+  /**
+   * Content is at the bottom
+   * (default: top)
+   */
+  bottom: {
+    type: Boolean,
+    default: () => false,
+  },
+
+  /**
+   * Works with {height}
+   * true = height
+   * false = min-height
+   */
+  strict: {
+    type: Boolean,
+    default: () => false,
+  },
+
+  /**
+   * SHORTCUT: height at 100vh
+   * (use {strict} separately)
+   */
+  hero: {
+    type: Boolean,
+    default: () => false,
+  },
+
+  /**
+   * Size of panel will be based on panel-background
+   */
+  wallpaper: {
+    type: Boolean,
+    default: () => false,
+  },
+
+  /**
+   * Background ratio (if needed)
+   * ex: 16:9, 16/9, 16-9 or 16.9
+   */
+  ratio: {
+    type: String,
+    required: false,
+  },
+});
+
+/**
+ * Ref of Panel and Iframe
+ *  - to get width and height and use them on unruly iframes
+ */
+const panelRef = ref();
+
+/**
+ * ratio translation
+ * TODO : / - .
+ */
+const trueRatio = computed(() =>  {
+  if (!props.ratio) {
+    return 1;
+  }
+  // split for every possible delimeter
+  const ratio = props.ratio.split(':').join(',').split('/').join(',').split('-').join(',').split('.').join(',').split(',');
+  return parseFloat(
+    (parseFloat(ratio[1]) / parseFloat(ratio[0])).toFixed(2)
+  );
+});
+
+/**
+ * Styles or CSS variables needed
+ */
+const styleHelper = computed(() =>  {
+  // all styles
+  const styles :Record<string, string | number> = {
+    '--hero-panel-aspect-ratio': trueRatio.value * 100 + '%'
+  };
+
+  // height
+  if(props.hero)
+    styles[props.strict ? "height" : "min-height"] = "100vh";
+  if(props.height)
+    styles[props.strict ? "height" : "min-height"] = props.height;
+
+  // shadow
+  if(props.shadow){
+    styles['--hero-panel-shadow-color'] = props.shadow;
+    styles['--hero-panel-shadow-opacity'] = props.shadowOpacity;
+  }
+
+  return styles;
+});
+</script>
+
+<style lang="scss">
+// TODO REMOVE overflow: hidden FROM &.aspect-ratio-mode  (for future mid-section or overflowing content)
+$hero-panel-mobile-threshold: 600px !default;
+
+.hero-panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+
+  .panel-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    & > * {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  .panel-background {
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+    -o-object-fit: cover;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: scroll;
+    background-size: cover;
+  }
+
+  .panel-shadow {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  &.shadow-active {
+    .panel-shadow {
+      display: block;
+      opacity: var(--hero-panel-shadow-opacity);
+      background: var(--hero-panel-shadow-color);
+    }
+  }
+
+  // centered
+  &.centered-mode{
+    align-items: center;
+    justify-content: center;
+    .panel-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  // bottom
+  &.bottom-mode {
+    align-items: flex-end;
+    .panel-content {
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  &.wallpaper-mode{
+    .panel-content{
+      position: absolute;
+      top: 0;
+    }
+    .panel-background{
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: none;
+    }
+  }
+
+  &.aspect-ratio-mode {
+    overflow: hidden;
+    .panel-background {
+      object-fit: initial;
+      height: 0;
+      padding-bottom: var(--hero-panel-aspect-ratio);
+    }
+  }
+}
+</style>

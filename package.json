@@ -1,6 +1,6 @@
 {
   "name": "@guebbit/vue-library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "tsc --noEmit && vue-cli-service build",

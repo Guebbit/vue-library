@@ -150,7 +150,7 @@ defineProps({
   },
 
   /**
-   * Background title TAG
+   * Title TAG
    * TODO with CSS use ARIA
    */
   title: {
@@ -159,7 +159,7 @@ defineProps({
   },
 
   /**
-   * Background title TAG
+   * Alt TAG
    * TODO with CSS use ARIA
    */
   alt: {
@@ -169,16 +169,16 @@ defineProps({
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .media-iframe-container{
   position: relative;
-}
-iframe{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
+  iframe{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

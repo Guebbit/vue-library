@@ -12,9 +12,10 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs --port 8080",
     "prepublish": "npm run lint && npm run build && npm run docs:build",
-    "publish": "npm publish --access public"
+    "publish:public": "npm publish --access public"
   },
   "dependencies": {
+    "@guebbit/scss-library": "^1.0.3",
     "core-js": "^3.8.3",
     "vue": "^3.2.13"
   },

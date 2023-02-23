@@ -4,7 +4,7 @@
     :class="{
       'book-custom-size': width || height,
       'book-custom-aspect-ratio': ratio,
-      'book-hoverable': hover,
+      'is-hoverable': hover,
     }"
     :style="{
       '--book-card-height': height ? trueHeight + 'px' : null,
@@ -343,7 +343,7 @@ const trueWidth = computed(() => {
   }
 
   &.active,
-  &.book-hoverable:hover {
+  &.is-hoverable:hover {
     & > div {
       transform: translateX(calc(2px * var(--book-card-rotation)))
         translateZ(calc(7px * var(--book-card-rotation)))

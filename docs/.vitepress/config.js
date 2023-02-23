@@ -69,6 +69,10 @@ module.exports = {
                 text: 'Credit Card',
                 link: '/cards/CreditCard.md'
               },
+              {
+                text: 'User Card Simple',
+                link: '/cards/UserCardSimple.md'
+              },
             ],
           },
         ]

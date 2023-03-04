@@ -1,34 +1,38 @@
 <template>
   <div
-      class="simple-user-card"
-      :style="{
+    class="simple-user-card"
+    :style="{
       '--simple-user-card-color': textColor,
       '--simple-user-card-background': backgroundColor
     }"
   >
     <slot name="background">
       <img
-          v-show="background"
-          class="card-background"
-          :src="background"
-      />
+        v-show="background"
+        class="card-background"
+        :src="background"
+      >
     </slot>
     <div class="card-content">
       <slot name="image">
         <img
-            v-show="image"
-            class="card-image"
-            :src="image"
-            :alt="title + ' ' + subtitle"
-        />
+          v-show="image"
+          class="card-image"
+          :src="image"
+          :alt="title + ' ' + subtitle"
+        >
       </slot>
-      <h4 class="card-title">{{ title }}</h4>
-      <p class="card-subtitle">{{ subtitle }}</p>
+      <h4 class="card-title">
+        {{ title }}
+      </h4>
+      <p class="card-subtitle">
+        {{ subtitle }}
+      </p>
       <slot>
         <ul class="card-info">
           <li
-              v-for="(label, number) in info"
-              :key="'card-info-' + label+number"
+            v-for="(label, number) in info"
+            :key="'card-info-' + label+number"
           >
             <span class="label">{{ label }}</span>
             <span class="value">{{ number }}</span>

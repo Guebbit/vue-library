@@ -11,7 +11,7 @@
         v-show="background"
         class="card-background"
         :src="background"
-      />
+      >
     </slot>
     <div class="card-content">
       <slot name="image">
@@ -20,10 +20,14 @@
           class="card-image"
           :src="image"
           :alt="title + ' ' + subtitle"
-        />
+        >
       </slot>
-      <h4 class="card-title">{{ title }}</h4>
-      <p class="card-subtitle">{{ subtitle }}</p>
+      <h4 class="card-title">
+        {{ title }}
+      </h4>
+      <p class="card-subtitle">
+        {{ subtitle }}
+      </p>
       <slot>
         <ul class="card-info">
           <li

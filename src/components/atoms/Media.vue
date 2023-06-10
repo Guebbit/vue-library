@@ -79,7 +79,7 @@
         }"
         preload="metadata"
         playsinline=""
-        muted=""
+        muted
         loop=""
         autoplay=""
         :poster="thumbnail"

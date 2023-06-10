@@ -1,6 +1,11 @@
 <template>
   <Panel
     class="action-panel"
+    :class="{
+      'action-panel-align-center': center,
+      'action-panel-align-right': right,
+      'action-panel-column': column
+    }"
     centered
   >
     <template #backgroundShadow>
@@ -37,39 +42,57 @@ import { defineProps } from "vue";
 import Panel from "./Panel.vue";
 
 defineProps({
-  // text
+  /**
+   * Title text
+   */
   title: {
     type: String,
     required: false,
   },
+
+  /**
+   * Content text
+   */
   text: {
     type: String,
     required: false,
   },
+
+  /**
+   * Title text
+   */
   buttonText: {
     type: String,
     required: false,
   },
 
-  // MODES
+  /**
+   * [MODE]
+   * Elements align
+   */
+  center: {
+    type: Boolean,
+    default: () => false,
+  },
+
+  /**
+   * [MODE]
+   * Elements align
+   */
+  right: {
+    type: Boolean,
+    default: () => false,
+  },
+
+  /**
+   * [MODE]
+   * Button aligned with the text
+   */
   column: {
     type: Boolean,
-    default: () => {
-      return false;
-    },
+    default: () => false,
   },
-  columnLeft: {
-    type: Boolean,
-    default: () => {
-      return false;
-    },
-  },
-  columnRight: {
-    type: Boolean,
-    default: () => {
-      return false;
-    },
-  }
+
 });
 </script>
 
@@ -110,15 +133,30 @@ $action-panel-mobile-threshold: 600px !default;
     }
   }
 
-  .panel-button {
-    margin: 1em;
-    // TODO
-  }
-
   &.shadow-active {
     .panel-title,
     .panel-text {
       text-shadow: 1px -1px 20px var(--hero-panel-shadow-color);
+    }
+  }
+
+
+  // TODO
+  &.action-panel-align-center{
+    .panel-content{
+      justify-content: center;
+    }
+  }
+  // TODO
+  &.action-panel-align-right{
+    .panel-content{
+      justify-content: flex-end;
+    }
+  }
+  // TODO
+  &.action-panel-column{
+    .panel-content{
+      //
     }
   }
 }

@@ -16,15 +16,45 @@ module.exports = {
         link: 'https://github.com/Guebbit/vue-library',
       },
       {
-        text: 'Dropdown Menu',
+        text: 'TODO websites',
         items: [
-          { text: 'Item A', link: '/item-1' },
-          { text: 'Item B', link: '/item-2' },
-          { text: 'Item C', link: '/item-3' }
+          {
+            text: 'Guebbit',
+            link: 'https://guebbit.com/'
+          },
+          {
+            text: 'Rogheneach',
+            link: 'https://rogheneach.com/'
+          },
+          {
+            text: 'Mangabeats',
+            link: 'http://mangabeats.guebbit.com/'
+          },
+          {
+            text: 'vrmetagames',
+            link: '#'
+          }
+        ]
+      },
+      {
+        text: 'Helper framework & libraries',
+        items: [
+          {
+            text: 'Vuetify',
+            link: 'https://vuetifyjs.com/en/'
+          },
         ]
       }
     ],
     sidebar: [
+      {
+        text: 'Workbench',
+        link: 'workbench.md'
+      },
+      {
+        text: 'Showcase',
+        link: 'showcase.md'
+      },
       {
         text: 'Blocks',
         collapsible: true,
@@ -37,7 +67,7 @@ module.exports = {
             items: [
               {
                 text: 'Media',
-                link: '/atoms/media.md'
+                link: '/atoms/Media.md'
               },
             ]
           },
@@ -48,11 +78,11 @@ module.exports = {
             items: [
               {
                 text: 'Panel (basic)',
-                link: '/blocks/panel.md'
+                link: '/blocks/Panel.md'
               },
               {
                 text: 'Action Panel',
-                link: '/blocks/actionPanel.md'
+                link: '/blocks/ActionPanel.md'
               }
             ]
           },

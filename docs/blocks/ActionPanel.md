@@ -1,58 +1,45 @@
 # Action Panel
 <Badge type="tip">Wrapper</Badge> <Badge type="info">Panel</Badge>
 
-::: warning
-Use **Panel** as its core. So it has every prop, event or slot of it.
+::: tip Organism Dependencies
+- [Panel](/blocks/Panel)
 :::
 
-## Complete
 
-Example complete with almost everything
-TODO button
+::: raw
+<div class="dev-section">
+    <!--@include: @/../public/components-use/blocks/ActionPanel.vue -->
+</div>
+:::
 
-<ActionPanel
-    background="http://placekitten.com/1000/1000"
-    shadow="#fff"
-    title="LOREM IPSUM SIT DOLOR AMET"
-    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    buttonText="button text"
-/>
+::: code-group
+<<< @/../public/components-use/blocks/ActionPanel.vue
+<<< @/../src/components/blocks/ActionPanel.vue
+:::
 
-```html
-<ActionPanel
-    background="http://placekitten.com/1000/1000"
-    shadow="#fff"
-    title="LOREM IPSUM SIT DOLOR AMET"
-    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    buttonText="button text"
-    @click:button="() => {}"
-/>
-```
+### Variant with slots (no differences)
 
-### (Using slots, no differences)
-
-```html
-<ActionPanel
-    shadow="#fff"
->
-    <template #background>
-        <img 
-            class="panel-background" 
-            src="http://placekitten.com/1000/1000" 
-        />
-    </template>
-    <h3 class="panel-title">LOREM IPSUM SIT DOLOR AMET</h3>
-    <p class="panel-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    </p>
-    <button class="panel-button">Button text</button>
-</ActionPanel>
-```
+::: code-group
+<<< @/../public/components-use/blocks/ActionPanel-slots.vue
+:::
 
 ## Column mode
 
-TODO (modalità a colonna e poi se la colonna sta a destra o sinistra, posizione botton e align testo)
+::: warning TODO
+(modalità a colonna e poi se la colonna sta a destra o sinistra, posizione bottom e align testo)
+:::
+
+::: raw
+<div class="dev-section">
+    <!--@include: @/../public/components-use/blocks/ActionPanel-column.vue -->
+</div>
+:::
+
+::: code-group
+<<< @/../public/components-use/blocks/ActionPanel-column.vue
+:::
+
+
 
 ## API
 
@@ -63,7 +50,6 @@ The BASIC Panel component
 | `title`       | Title of panel                             | `string`        | `empty` |
 | `text`        | Text of panel                              | `string`        | `empty` |
 | `buttonText`  | Text of button. If empty, button is hidden | `string`        | `empty` |
-| `column`      | Background image's thumbnail or video post | `boolean`       | `false` |
 | `columnLeft`  | Background TAG TITLE                       | `boolean`       | `false` |
 | `columnRight` | Background TAG ALT                         | `boolean`       | `false` |
 
@@ -75,6 +61,14 @@ The BASIC Panel component
 
 <style lang="scss">
 @import "../theme.scss";
+
+
+.action-panel{
+    button {
+        background: red;
+        padding: 0.5em 1em;
+    }
+}
 </style>
 
 <script setup>

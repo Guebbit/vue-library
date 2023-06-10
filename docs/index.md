@@ -1,10 +1,11 @@
----
-title: Introduction
----
+# Guebbit VUE Library
+MIT License, free to use
 
-# Guebbit Vue Library
+## LEGENDA
+- Organism Dependencies: Use listed components, evolution or variant. Often the component have every prop, event or slot of it.
 
-This is my personal Vue Library.
-Feel free to use or copy the code
-
-# Work in progress
+## COMPONENT CREATION GUIDE:
+- Create file vue: /components/{category}/{name}.scss
+- Create file md: /docs/components/{category}/{name}.md
+- Create file html: /public/components-use/{category}/{name}.html
+- Insert in config.js

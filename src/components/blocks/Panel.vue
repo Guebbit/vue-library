@@ -214,94 +214,14 @@ const styleHelper = computed(() =>  {
 </script>
 
 <style lang="scss">
-// TODO REMOVE overflow: hidden FROM &.aspect-ratio-mode  (for future mid-section or overflowing content)
 $hero-panel-mobile-threshold: 600px !default;
+$hero-panel-shadow-opacity: var(--hero-panel-shadow-opacity, 0.4) !default;
+$hero-panel-shadow-color: var(--hero-panel-shadow-color, #000) !default;
+@import "@guebbit/scss-library/components/molecules/panels/HeroPanel";
 
 .hero-panel {
-  position: relative;
-  z-index: 1;
-  display: flex;
-
-  .panel-content {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    & > * {
-      width: 100%;
-      margin: 0 auto;
-    }
-  }
-
-  .panel-background {
-    overflow: hidden;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    object-fit: cover;
-    -o-object-fit: cover;
-
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: scroll;
-    background-size: cover;
-  }
-
-  .panel-shadow {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-  }
-
-  &.shadow-active {
-    .panel-shadow {
-      display: block;
-      opacity: var(--hero-panel-shadow-opacity);
-      background: var(--hero-panel-shadow-color);
-    }
-  }
-
-  // centered
-  &.centered-mode{
-    align-items: center;
-    justify-content: center;
-    .panel-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-
-  // bottom
-  &.bottom-mode {
-    align-items: flex-end;
-    .panel-content {
-      display: flex;
-      align-items: flex-end;
-    }
-  }
-
-  &.wallpaper-mode{
-    .panel-content{
-      position: absolute;
-      top: 0;
-    }
-    .panel-background{
-      position: relative;
-      top: 0;
-      left: 0;
-      transform: none;
-    }
-  }
-
+  // TODO
+  // TODO?? REMOVE overflow: hidden FROM &.aspect-ratio-mode  (for future mid-section or overflowing content)
   &.aspect-ratio-mode {
     overflow: hidden;
     .panel-content{

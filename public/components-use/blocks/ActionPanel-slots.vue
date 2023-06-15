@@ -14,5 +14,9 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </p>
-  <button class="panel-button">Button text</button>
+  <template #actions>
+    <button class="panel-button">Button text</button>
+  </template>
 </ActionPanel>
+<script setup>
+</script>

@@ -11,7 +11,7 @@ export { default as ActionPanel } from "./components/blocks/ActionPanel.vue";
 // CARDS
 export { default as BookCard } from "./components/cards/BookCard.vue";
 export { default as CreditCard } from "./components/cards/CreditCard.vue";
-export { default as UserCardSimple } from "./components/cards/UserCardSimple.vue";
+export { default as UserCardSimple } from "./components/cards/StatsTeamCard.vue";
 
 // FORMS
 // ...

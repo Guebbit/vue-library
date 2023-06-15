@@ -87,5 +87,5 @@ $simple-user-card-background: var(--simple-user-card-background) !default;
 $simple-user-card-color: var(--simple-user-card-color) !default;
 $simple-user-card-title-color: var(--simple-user-card-color) !default;
 
-@import "@guebbit/scss-library/components/molecules/cards/SimpleUserCard";
+@import "@guebbit/scss-library/components/molecules/cards/SimpleCard";
 </style>

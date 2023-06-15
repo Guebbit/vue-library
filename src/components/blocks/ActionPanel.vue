@@ -2,12 +2,20 @@
   <Panel
     class="action-panel"
     :class="{
-      'action-panel-align-center': center,
+      'action-panel-align-left': left,
       'action-panel-align-right': right,
-      'action-panel-column': column
+      'action-panel-align-actions-center': buttonCenter,
+      'action-panel-align-actions-right': buttonRight,
     }"
+    :shadow="shadow"
     centered
   >
+    <!--
+    :style="{
+      '--hero-panel-shadow-color': shadow,
+      '--hero-panel-shadow-opacity': shadowOpacity,
+    }"
+    -->
     <template #backgroundShadow>
       <slot name="backgroundShadow" />
     </template>
@@ -16,21 +24,27 @@
     </template>
     <template #default>
       <slot>
-        <h3
-          class="panel-title"
-          v-html="title"
-        />
-        <p
-          class="panel-text"
-          v-html="text"
-        />
+        <div>
+          <h3
+            class="panel-title"
+            v-html="title"
+          />
+          <p
+            class="panel-text"
+            v-html="text"
+          />
+        </div>
       </slot>
-      <slot name="action">
-        <button
-          v-if="buttonText.length > 0"
-          class="panel-button"
-          v-html="buttonText"
-        />
+      <slot name="actions-wrapper">
+        <div class="card-actions">
+          <slot class="actions">
+            <button
+              v-if="buttonText.length > 0"
+              class="panel-button"
+              v-html="buttonText"
+            />
+          </slot>
+        </div>
       </slot>
     </template>
   </Panel>
@@ -38,7 +52,6 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-// WARNING: dependence required
 import Panel from "./Panel.vue";
 
 defineProps({
@@ -70,7 +83,7 @@ defineProps({
    * [MODE]
    * Elements align
    */
-  center: {
+  left: {
     type: Boolean,
     default: () => false,
   },
@@ -86,78 +99,36 @@ defineProps({
 
   /**
    * [MODE]
-   * Button aligned with the text
+   * Actions align
    */
-  column: {
+  buttonCenter: {
     type: Boolean,
     default: () => false,
   },
 
+  /**
+   * [MODE]
+   * Actions align
+   */
+  buttonRight: {
+    type: Boolean,
+    default: () => false,
+  },
+
+  /**
+   * [CSS variables]
+   * same as Panel.vue shadow,
+   * but add text-shadow to
+   */
+  shadow: {
+    type: String,
+    required: false
+  },
 });
 </script>
 
 <style lang="scss">
-$action-panel-mobile-threshold: 600px !default;
-
-.hero-panel.action-panel {
-  padding: 24px 48px;
-
-  .panel-content {
-    & > div {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-
-      @media (max-width: $action-panel-mobile-threshold) {
-        justify-content: center;
-      }
-    }
-  }
-
-  .panel-title,
-  .panel-text {
-    position: relative;
-  }
-
-  .panel-title {
-    line-height: 1.4;
-    font-size: 2.5em;
-    margin-bottom: 0;
-    text-transform: uppercase;
-    font-weight: 700;
-
-    @media (max-width: $action-panel-mobile-threshold) {
-      font-size: 2em;
-    }
-  }
-
-  &.shadow-active {
-    .panel-title,
-    .panel-text {
-      text-shadow: 1px -1px 20px var(--hero-panel-shadow-color);
-    }
-  }
-
-
-  // TODO
-  &.action-panel-align-center{
-    .panel-content{
-      justify-content: center;
-    }
-  }
-  // TODO
-  &.action-panel-align-right{
-    .panel-content{
-      justify-content: flex-end;
-    }
-  }
-  // TODO
-  &.action-panel-column{
-    .panel-content{
-      //
-    }
-  }
-}
+$action-panel-shadow-color: var(--hero-panel-shadow-opacity, #000) !default;
+@import "@guebbit/scss-library/components/molecules/panels/HeroPanel";
+@import "@guebbit/scss-library/components/molecules/panels/ActionPanel";
 </style>

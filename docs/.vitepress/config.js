@@ -10,6 +10,9 @@ module.exports = {
     // docsDir: 'docs',
     logo: "/logotype.svg",
     siteTitle: "VUE Library",
+    search: {
+      provider: 'local'
+    },
     nav: [
       {
         text: 'Github',
@@ -100,8 +103,12 @@ module.exports = {
                 link: '/cards/CreditCard.md'
               },
               {
-                text: 'User Card Simple',
-                link: '/cards/UserCardSimple.md'
+                text: 'Simple Card',
+                link: '/cards/SimpleCard.md'
+              },
+              {
+                text: 'Stats Team Card',
+                link: '/cards/StatsTeamCard.md'
               },
             ],
           },

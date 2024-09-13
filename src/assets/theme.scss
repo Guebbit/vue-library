@@ -1,0 +1,11 @@
+$primary-color: #00bcd4 !default;
+$secondary-color: #ff9800 !default;
+$primary-color--dark: #00bcd4 !default;
+$secondary-color--dark: #ff9800 !default;
+
+@forward "@guebbit/css-ui/src/theme" with (
+  $color: $primary-color,
+  $color--dark: $primary-color--dark,
+  $active-color: $secondary-color,
+  $active-color--dark: $secondary-color--dark,
+);

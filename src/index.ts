@@ -1,20 +1,11 @@
-// ATOMS
-export { default as Media } from "./components/atoms/Media.vue";
+export { default as Media } from './components/atoms/utilities/Media.vue';
+export { default as AspectRatio } from './components/atoms/utilities/AspectRatio.vue';
+export { default as SimpleButton } from './components/atoms/buttons/SimpleButton.vue';
 
-// BLOCKS
-export { default as Panel } from "./components/blocks/Panel.vue";
-export { default as ActionPanel } from "./components/blocks/ActionPanel.vue";
+export { default as BookCard } from './components/molecules/cards/BookCard.vue';
+export { default as CreditCard } from './components/molecules/cards/CreditCard.vue';
+export { default as SimpleCard } from './components/molecules/cards/SimpleCard.vue';
+export { default as ActionPanel } from './components/molecules/panels/ActionPanel.vue';
+export { default as Panel } from './components/molecules/panels/SimplePanel.vue';
 
-// BUTTONS
-// ...
-
-// CARDS
-export { default as BookCard } from "./components/cards/BookCard.vue";
-export { default as CreditCard } from "./components/cards/CreditCard.vue";
-export { default as UserCardSimple } from "./components/cards/StatsTeamCard.vue";
-
-// FORMS
-// ...
-
-// MODALS
-// ...
+export { default as StatsTeamCard } from './components/organisms/cards/StatsTeamCard.vue';

@@ -15,7 +15,8 @@
   ],
   "plugins": [
     "@typescript-eslint",
-    "filenames"
+    "filenames",
+    "html"
   ],
   "rules": {
     "no-console": "warn",
@@ -24,6 +25,14 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "vue/require-default-prop": "off",
     "vue/no-v-html": "off",
+    "html/attribute-hyphenation": [
+      "error",
+      {
+        "patterns": {
+          "class": "kebab-case"
+        }
+      }
+    ],
     "@typescript-eslint/naming-convention": [
       "error",
       {

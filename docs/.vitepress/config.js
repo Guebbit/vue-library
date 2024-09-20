@@ -83,6 +83,7 @@ export default {
           },
         ]
       },
+        /*
       {
         text: 'Molecules',
         collapsible: true,
@@ -142,6 +143,7 @@ export default {
           },
         ]
       },
+         */
     ],
   },
 }

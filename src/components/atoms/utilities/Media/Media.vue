@@ -97,7 +97,8 @@
 </template>
 
 <script setup lang="ts">
-import { type PropType } from 'vue'
+import "./Media.scss"
+import { type PropType } from 'vue';
 
 const props = defineProps({
   /**
@@ -265,14 +266,3 @@ function setVideoRef(el: HTMLVideoElement): undefined {
   })
 }
 </script>
-
-<style scoped lang="scss">
-iframe {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-}
-</style>

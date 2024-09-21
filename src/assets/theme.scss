@@ -1,3 +1,13 @@
+/**
+ * Main settings
+ */
+$css-ui-dark-theme-class: "theme--dark" !default;
+$css-ui-var-prefix: "" !default;
+$css-ui-root-prefix: "g-theme-" !default;
+
+/**
+ * Theme colors
+ */
 $primary-color: #00bcd4 !default;
 $secondary-color: #ff9800 !default;
 $primary-color--dark: #00bcd4 !default;

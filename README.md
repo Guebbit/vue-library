@@ -1,14 +1,61 @@
-Vue3
-https://blog.vuejs.org/posts/vue-3-2
-https://blog.vuejs.org/posts/vue-3-3
-https://blog.vuejs.org/posts/vue-3-4
-https://blog.stackademic.com/learn-these-new-features-in-vue-3-5-now-2909e24aa58d
-https://vuejs.org/guide/components/v-model.html
+# vue-library
 
-Typescript
-https://vuejs.org/guide/typescript/overview.html
-https://vuejs.org/guide/typescript/composition-api.html
+This template should help get you started developing with Vue 3 in Vite.
 
-Check
-https://lighthouse-metrics.com/lighthouse/checks/0a63a778-592d-4ae0-bf68-22c3cf8524a3
-https://medium.com/@blessingmba3/micro-frontends-with-vue-js-breaking-down-monolithic-structures-aac15f053047
+## Recommended IDE Setup
+
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+
+## Type Support for `.vue` Imports in TS
+
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:unit
+```
+
+### Run End-to-End Tests with [Nightwatch](https://nightwatchjs.org/)
+
+```sh
+# When using CI, the project must be built first.
+npm run build
+
+# Runs the end-to-end tests
+npm run test:e2e
+# Runs the tests only on Chrome
+npm run test:e2e -- --env chrome
+# Runs the tests of a specific file
+npm run test:e2e -- tests/e2e/example.ts
+# Runs the tests in debug mode
+npm run test:e2e -- --debug
+```
+    
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```

@@ -14,6 +14,9 @@ $primary-color--dark: #00bcd4 !default;
 $secondary-color--dark: #ff9800 !default;
 
 @forward "@guebbit/css-ui/src/theme" with (
+  $css-ui-dark-theme-class: $css-ui-dark-theme-class,
+  $css-ui-var-prefix: $css-ui-var-prefix,
+  $css-ui-root-prefix: $css-ui-root-prefix,
   $color: $primary-color,
   $color--dark: $primary-color--dark,
   $active-color: $secondary-color,

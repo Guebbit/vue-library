@@ -1,8 +1,17 @@
+import { defineConfig } from 'vitepress';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+
+
 /**
  * This can be used as an example
  * https://github.com/vuejs/vitepress/blob/master/docs/.vitepress/config.js
  */
-export default {
+export default defineConfig({
+  vite: {
+    plugins: [
+      vueJsx()
+    ],
+  },
   lang: 'en-US',
   title: 'Guebbit Vue Library',
   description: "Guebbit's personal VUE Library (MIT license, free to use)",
@@ -19,27 +28,6 @@ export default {
         link: 'https://github.com/Guebbit/vue-library',
       },
       {
-        text: 'TODO websites',
-        items: [
-          {
-            text: 'Guebbit',
-            link: 'https://guebbit.com/'
-          },
-          {
-            text: 'Rogheneach',
-            link: 'https://rogheneach.com/'
-          },
-          {
-            text: 'Mangabeats',
-            link: 'http://mangabeats.guebbit.com/'
-          },
-          {
-            text: 'vrmetagames',
-            link: '#'
-          }
-        ]
-      },
-      {
         text: 'Helper framework & libraries',
         items: [
           {
@@ -52,12 +40,12 @@ export default {
     sidebar: [
       {
         text: 'Atoms',
-        collapsible: true,
+        // collapsible: true,
         collapsed: true,
         items: [
           {
             text: 'Buttons',
-            collapsible: true,
+            // collapsible: true,
             collapsed: false,
             items: [
               {
@@ -68,7 +56,7 @@ export default {
           },
           {
             text: 'Utilities',
-            collapsible: true,
+            // collapsible: true
             collapsed: false,
             items: [
               {
@@ -146,4 +134,4 @@ export default {
          */
     ],
   },
-}
+});

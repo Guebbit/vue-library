@@ -3,19 +3,8 @@
 
 ## Instructions
 
-#### Component Import
-```html
+```ts
 import { SimpleButton } from "@guebbit/vue-library";
-```
-
-#### Theme Import
-
-```scss
-@use "../../../assets/theme" as theme;
-// @use "@guebbit/css-ui/src/atoms/buttons/SimpleButton" with (
-    $color: theme.$primary-color,
-    $active-color: theme.$secondary-color,
-);
 ```
 
 ## Code

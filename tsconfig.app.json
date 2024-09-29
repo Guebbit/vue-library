@@ -1,6 +1,14 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.tsx", "src/**/*.jsx", "src/**/*.ts", "src/**/*.js"],
+  "include": [
+    "env.d.ts",
+    "src/**/*.vue",
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "docs/**/*.md",
+    "docs/**/*.vue",
+    "docs/.vitepress/**/*.vue"
+  ],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "jsx": "preserve",

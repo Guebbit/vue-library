@@ -1,13 +1,15 @@
-import "./SimpleButton.scss";
+import "./SimpleButton.scss"
 
-import {
-    defineComponent,
-    useSlots,
-    computed,
-    type PropType
-} from "vue";
+import { defineComponent, computed, type PropType } from 'vue';
 
-type ISimpleButtonVariants = "" | "rounded" | "circular" | "pill" | "outlined" | "plain" | "flat";
+type ISimpleButtonVariants =
+  | ''
+  | 'rounded'
+  | 'circular'
+  | 'pill'
+  | 'outlined'
+  | 'plain'
+  | 'flat';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const SimpleButton = defineComponent({
@@ -18,8 +20,8 @@ export const SimpleButton = defineComponent({
          * Button size
          */
         size: {
-            type: String as PropType<"xs" | "sm" | "md" | "lg" | "xl">,
-            default: () => "md"
+            type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
+            default: () => 'md',
         },
 
         /**
@@ -27,7 +29,7 @@ export const SimpleButton = defineComponent({
          */
         variants: {
             type: Array as PropType<ISimpleButtonVariants[]>,
-            default: () => []
+            default: () => [],
         },
 
         /**
@@ -35,7 +37,7 @@ export const SimpleButton = defineComponent({
          */
         icon: {
             type: Boolean,
-            default: () => false
+            default: () => false,
         },
 
         /**
@@ -43,7 +45,7 @@ export const SimpleButton = defineComponent({
          */
         image: {
             type: String,
-            default: () => ""
+            default: () => '',
         },
 
         /**
@@ -51,7 +53,7 @@ export const SimpleButton = defineComponent({
          */
         imageAlt: {
             type: String,
-            default: () => ""
+            default: () => '',
         },
 
         /**
@@ -59,7 +61,7 @@ export const SimpleButton = defineComponent({
          */
         text: {
             type: String,
-            default: () => ""
+            default: () => '',
         },
 
         /**
@@ -67,7 +69,7 @@ export const SimpleButton = defineComponent({
          */
         animated: {
             type: Boolean,
-            default: () => true
+            default: () => true,
         },
 
         /**
@@ -75,7 +77,7 @@ export const SimpleButton = defineComponent({
          */
         active: {
             type: Boolean,
-            default: () => false
+            default: () => false,
         },
 
         /**
@@ -83,54 +85,53 @@ export const SimpleButton = defineComponent({
          */
         disabled: {
             type: Boolean,
-            default: () => false
+            default: () => false,
         },
     },
 
-    setup(props) {
-
-        /**
-         * icon
-         * default
-         */
-        const slots = useSlots();
-
+    setup(props, { attrs, slots }) {
         /**
          * If a size was set, the logic lies in the css class
          */
-        const sizeClass = computed(() => (props.size ? `button-${props.size}` : ""));
+        const sizeClass = computed(() =>
+          props.size ? `button-${props.size}` : ''
+        );
 
         /**
          * Aggregator of all the classes of component
          */
         const classes = [
-            "simple-button",
-            "animate-on-hover",
+            'simple-button',
+            'animate-on-hover',
             sizeClass.value,
             {
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                "button-icon-only": props.icon,
+                'button-icon-only': props.icon,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                "button-disabled": props.disabled,
+                'button-disabled': props.disabled,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                "animate-on-active animate-on-hover": props.animated,
+                'animate-on-active animate-on-hover': props.animated,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                "animate-active": props.active,
-            }
+                'animate-active': props.active,
+            },
         ];
 
         /**
          * Template
          */
         return () => (
-            <button class={classes}>
-                {slots.icon ? (
-                    slots.icon()
-                ) : (
-                    props.image && <img src={props.image} alt={props.imageAlt} class="button-image"/>
-                )}
-                {slots.default ? slots.default() : !props.icon ? props.text : ""}
-            </button>
+          <button class={classes}>
+              {slots.icon
+                ? slots.icon()
+                : props.image && (
+                <img
+                  src={props.image}
+                  alt={props.imageAlt}
+                  class="button-image"
+                />
+              )}
+              {slots.default ? slots.default() : !props.icon ? props.text : ''}
+          </button>
         );
     },
 });

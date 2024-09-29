@@ -62,7 +62,7 @@ export const SimpleButton = defineComponent({
         },
 
         /**
-         * TODO separare hover e active?
+         * TODO separare hover e active?pm
          */
         animated: {
             type: Boolean,

@@ -1,12 +1,10 @@
 <script setup lang="ts">
-// import SimpleButton from './components/atoms/buttons/SimpleButton/SimpleButton.tsx';
-// import { SimpleButton } from './components/atoms/buttons/SimpleButton/index.ts';
-import { SimpleButton } from '@/index'
+import { SimpleButton } from '@/index.ts'
 </script>
 
 <template>
   <main>
-    <SimpleButton>TEST</SimpleButton>
+    <SimpleButton>PROVAPROVA2222</SimpleButton>
   </main>
 </template>
 

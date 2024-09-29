@@ -1,3 +1,11 @@
+TEMP
+REMOVE app.vue & main.ts
+Spacchettare src/components/components.zip
+eliminare index.html e rinominare _index.html
+
+
+TODO GRAPHQL
+
 Vue3
 https://blog.vuejs.org/posts/vue-3-2
 https://blog.vuejs.org/posts/vue-3-3

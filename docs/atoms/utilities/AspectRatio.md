@@ -3,7 +3,7 @@
 
 ## Component Import
 
-```vue
+```html
 import { AspectRatio } from "@guebbit/vue-library";
 ```
 

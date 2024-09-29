@@ -76,7 +76,8 @@
     },
     {
       "files": [
-        "*.vue"
+        "*.vue",
+        "*.tsx"
       ],
       "rules": {
         "filenames/match-regex": [

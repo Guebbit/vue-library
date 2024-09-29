@@ -1,6 +1,6 @@
-export { default as Media } from './components/atoms/utilities/Media/Media.vue';
-export { default as AspectRatio } from './components/atoms/utilities/AspectRatio/AspectRatio.vue';
-export { default as SimpleButton } from './components/atoms/buttons/SimpleButton/SimpleButton.vue';
+// export { default as Media } from './components/atoms/utilities/Media/Media.vue';
+// export { default as AspectRatio } from './components/atoms/utilities/AspectRatio/AspectRatio.vue';
+export { SimpleButton } from './components/atoms/buttons/SimpleButton/';
 
 // export { default as BookCard } from './components/molecules/cards/BookCard.vue';
 // export { default as CreditCard } from './components/molecules/cards/CreditCard.vue';

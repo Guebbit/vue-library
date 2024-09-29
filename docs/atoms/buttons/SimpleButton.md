@@ -4,7 +4,7 @@
 ## Instructions
 
 #### Component Import
-```vue
+```html
 import { SimpleButton } from "@guebbit/vue-library";
 ```
 
@@ -21,17 +21,9 @@ import { SimpleButton } from "@guebbit/vue-library";
 ## Code
 
 <div class="dev-section">
-    <SimpleButton>
-      DEFAULT
-    </SimpleButton>
-    <SimpleButton :image="'https://placedog.net/100/100'">
+    <SimpleButton text="DEFAULT"/>
+    <SimpleButton image="https://placedog.net/100/100">
       IMAGE
-    </SimpleButton>
-    <SimpleButton>
-        <template #icon>
-            <img src="https://placedog.net/100/100" alt="Image" class="button-image" />
-        </template>
-        IMAGE
     </SimpleButton>
     <SimpleButton size="small">
       SMALL
@@ -60,34 +52,34 @@ import { SimpleButton } from "@guebbit/vue-library";
 </div>
 
 ::: code-group
-```vue [default]
+```html [default]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [image]
+```html [image]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [large]
+```html [large]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [small]
+```html [small]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [rounded]
+```html [rounded]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [circular]
+```html [circular]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [pill]
+```html [pill]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [flat]
+```html [flat]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [plain]
+```html [plain]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [outlined]
+```html [outlined]
 aaaaaaaaaaaaaaaaaaaa
 ```
 :::
@@ -136,32 +128,55 @@ aaaaaaaaaaaaaaaaaaaa
 </div>
 
 ::: code-group
-```vue [default]
+```html [default]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [image]
+```html [image]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [image-rounded]
+```html [image-rounded]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [outlined]
+```html [outlined]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [rounded]
+```html [rounded]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [circular]
+```html [circular]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [pill]
+```html [pill]
 aaaaaaaaaaaaaaaaaaaa
 ```
-```vue [plain]
+```html [plain]
 aaaaaaaaaaaaaaaaaaaa
 ```
 :::
 
+
+## Slots
+
+
+<div class="dev-section">
+    <SimpleButton>
+        <template #icon>
+            <img src="https://placedog.net/100/100" alt="Image" class="button-image" />
+        </template>
+        IMAGE
+    </SimpleButton>
+</div>
+
+::: code-group
+```html
+<SimpleButton>
+  <template #icon>
+    <img src="https://placedog.net/100/100" alt="Image" class="button-image" />
+  </template>
+  IMAGE
+</SimpleButton>
+```
+:::
 
 
 ## Social Buttons (TODO)

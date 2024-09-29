@@ -4,7 +4,7 @@
 // TODO ovunque
 ## Component Import
 
-```vue
+```html
 import { Media } from "@guebbit/vue-library";
 ```
 

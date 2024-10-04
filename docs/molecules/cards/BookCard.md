@@ -77,7 +77,7 @@
 
 
 <style lang="scss">
-@import "../../theme.scss";
+@use "../../theme.scss";
 </style>
 
 <script setup>

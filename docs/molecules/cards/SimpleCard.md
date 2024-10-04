@@ -340,7 +340,7 @@ Custom CSS and\or elements that, with a just a little, can heavily customize the
 | `$elevated-shadow`      | Box-shadow instruction                                                     | `css`           | `box-shadow`                  |
 
 <style lang="scss">
-@import "../../theme.scss";
+@use "../../theme.scss";
 </style>
 
 <script setup>

@@ -125,7 +125,7 @@ The BASIC Panel component
 | `default` | Content of which we want to have a fixed aspect ratio |
 
 <style lang="scss">
-@import "../../theme.scss";
+@use "../../theme.scss";
 </style>
 
 <script setup>

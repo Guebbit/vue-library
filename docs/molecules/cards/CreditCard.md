@@ -66,7 +66,7 @@ The BASIC Panel component
 | `default` | Logo of card (like paypal, mastercard, etc) |
 
 <style lang="scss">
-@import "../../theme.scss";
+@use "../../theme.scss";
 </style>
 
 <script setup>

@@ -115,7 +115,7 @@ Same as before, but all content within .panel-content, except .panel-actions, mu
 ##### Plus [SimplePanel](/molecules/panels/SimplePanel) variables
 
 <style lang="scss">
-@import "../../theme.scss";
+@use "../../theme.scss";
 </style>
 
 <script setup>

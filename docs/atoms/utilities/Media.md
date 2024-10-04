@@ -16,8 +16,8 @@ import { Media } from "@guebbit/vue-library";
         type="image"
         alt="alt text"
         title="title text"
-        width="200px"
-        height="200px"
+        :width="200"
+        :height="200"
     />
 </div>
 
@@ -27,8 +27,8 @@ import { Media } from "@guebbit/vue-library";
     type="image"
     alt="alt text"
     title="title text"
-    width="200px"
-    height="200px"
+    :width="200"
+    :height="200"
 />
 ```
 
@@ -53,13 +53,13 @@ Width and Height needed (if not present in other ways)
     <Media
         media="#00bcd4"
         type="color"
-        width="400px"
+        width="200px"
         height="200px"
     />
     <Media
         media="red"
         type="color"
-        width="400px"
+        width="200px"
         height="200px"
     />
 </div>
@@ -69,7 +69,7 @@ Width and Height needed (if not present in other ways)
 <Media
     media="#00bcd4"
     type="color"
-    width="400px"
+    width="200px"
     height="200px"
 />
 ```
@@ -77,7 +77,7 @@ Width and Height needed (if not present in other ways)
 <Media
     media="red"
     type="color"
-    width="400px"
+    width="200px"
     height="200px"
 />
 ```
@@ -160,18 +160,18 @@ Width and Height needed (if not present in other ways)
 ```
 :::
 
-
 ## Lazyload
 
 <div class="dev-section">
     <Media
-        media="http://placedog.net/400/200"
+        media="http://placedog.net/400/600"
         thumbnail="http://placedog.net/100/100"
         :lazy="true"
     />
     <Media
-        media="http://placedog.net/400/400"
+        media="http://placedog.net/400/600"
         thumbnail="http://placedog.net/100/100"
+        :lazy="true"
         type="css"
         width="400px"
         height="200px"
@@ -192,43 +192,41 @@ Width and Height needed (if not present in other ways)
 </div>
 
 ::: code-group
+
 ```html [image]
-<div class="dev-section">
-  <Media
-    media="http://placedog.net/800/800"
-    thumbnail="http://placedog.net/200/200"
-    :lazy="true"
-  />
-</div>
+<Media
+  media="http://placedog.net/800/800"
+  thumbnail="http://placedog.net/100/100"
+  :lazy="true"
+/>
 ```
+
 ```html [css image]
-<div class="dev-section">
-  <Media
-    media="http://placedog.net/400/400"
-    thumbnail="http://placedog.net/100/100"
-    type="css"
-    width="400px"
-    height="200px"
-  />
+<Media
+  media="http://placedog.net/400/400"
+  thumbnail="http://placedog.net/100/100"
+  type="css"
+  width="400px"
+  height="200px"
+/>
 ```
+
 ```html [video]
-<div class="dev-section">
-  <Media
-    media="http://placedog.net/800/800"
-    thumbnail="http://placedog.net/200/200"
-    :lazy="true"
-  />
-</div>
+<Media
+  media="http://placedog.net/800/800"
+  thumbnail="http://placedog.net/100/100"
+  :lazy="true"
+/>
 ```
+
 ```html [iframe]
-<div class="dev-section">
-    <Media
-        media="http://placedog.net/800/800"
-        thumbnail="http://placedog.net/200/200"
-        :lazy="true"
-    />
-</div>
+<Media
+  media="http://placedog.net/800/800"
+  thumbnail="http://placedog.net/100/100"
+  :lazy="true"
+/>
 ```
+
 :::
 
 ## Native lazyload
@@ -277,9 +275,9 @@ The BASIC Panel component
 | `video`     | Alternative video component  |
 
 <style lang="scss">
-@import "../../theme.scss";
+@use "../../theme.scss";
 </style>
 
 <script setup>
-import { Media } from "../../../src/";
+import { Media } from '../../../src/'
 </script>

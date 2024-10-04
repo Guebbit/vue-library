@@ -331,7 +331,7 @@ In this case, 56.25% is 16/9 aspect ratio
 | `--aspect-ratio`     | :x: Padding-bottom of .panel-background                                     | `color`         | `0`     |
 
 <style lang="scss">
-@import "../../theme.scss";
+@use "../../theme.scss";
 
 /*
 .content-example{

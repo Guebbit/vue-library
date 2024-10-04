@@ -12,7 +12,14 @@
     "lib": ["ESNext", "dom"],
     "types": ["nightwatch"]
   },
-  "include": ["../node_modules/@nightwatch/**/*", "../tests/e2e/**/*"],
+  "include": [
+    "../node_modules/@nightwatch/**/*",
+    "../tests/utils/*",
+    "../tests/e2e/**/*"
+  ],
+  "exclude": [
+    "**/_example.spec.ts"
+  ],
   "ts-node": {
     "transpileOnly": true
   },

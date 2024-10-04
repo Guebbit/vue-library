@@ -1,39 +1,46 @@
-import "./SimpleButton.scss"
+import "./SimpleButton.scss";
+import { defineComponent, computed } from 'vue';
 
-import { defineComponent, computed, type PropType } from 'vue';
+import useComponentSizes from '../../../../composables/componentSizes.ts'
+import useComponentVariants from '../../../../composables/componentVariants.ts'
 
-type ISimpleButtonVariants =
-  | ''
-  | 'rounded'
-  | 'circular'
-  | 'pill'
-  | 'outlined'
-  | 'plain'
-  | 'flat';
+/**
+ * Types
+ */
+export { EComponentSizes } from '../../../../composables/componentSizes.ts'
+
+export enum ESimpleButtonVariants {
+    ROUNDED = 'rounded',
+    CIRCULAR = 'circular',
+    PILL = 'pill',
+    OUTLINED = 'outlined',
+    PLAIN = 'plain',
+    FLAT = 'flat',
+    ICON = 'icon-only'
+}
+
+/**
+ * Outside setup only composable
+ */
+const {
+    prop: sizeProps
+} = useComponentSizes("button-");
+
+const {
+    prop: variantProps
+} = useComponentVariants<ESimpleButtonVariants>("button-");
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export const SimpleButton = defineComponent({
+export default defineComponent({
     name: 'SimpleButton',
 
     props: {
-        /**
-         * Button size
-         */
-        size: {
-            type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
-            default: () => 'md',
-        },
-
-        /**
-         * Button variant
-         */
-        variants: {
-            type: Array as PropType<ISimpleButtonVariants[]>,
-            default: () => [],
-        },
+        ...sizeProps,
+        ...variantProps,
 
         /**
          * Display only the icon without text
+         * (equivalent of icon-only variant)
          */
         icon: {
             type: Boolean,
@@ -41,7 +48,7 @@ export const SimpleButton = defineComponent({
         },
 
         /**
-         * Image (if not slot)
+         * Image src (if not slot)
          */
         image: {
             type: String,
@@ -49,7 +56,7 @@ export const SimpleButton = defineComponent({
         },
 
         /**
-         * Image (if not slot)
+         * Image alt (if not slot)
          */
         imageAlt: {
             type: String,
@@ -65,7 +72,7 @@ export const SimpleButton = defineComponent({
         },
 
         /**
-         * TODO separare hover e active?
+         * animate on hover and on active
          */
         animated: {
             type: Boolean,
@@ -73,7 +80,23 @@ export const SimpleButton = defineComponent({
         },
 
         /**
-         *
+         * Animate on hover only
+         */
+        animatedHover: {
+            type: Boolean,
+            default: () => false,
+        },
+
+        /**
+         * Animate on active only
+         */
+        animatedActive: {
+            type: Boolean,
+            default: () => false,
+        },
+
+        /**
+         * Button is active
          */
         active: {
             type: Boolean,
@@ -81,7 +104,7 @@ export const SimpleButton = defineComponent({
         },
 
         /**
-         *
+         * Button is disabled
          */
         disabled: {
             type: Boolean,
@@ -91,36 +114,42 @@ export const SimpleButton = defineComponent({
 
     setup(props, { attrs, slots }) {
         /**
-         * If a size was set, the logic lies in the css class
+         * Setup only composable
          */
-        const sizeClass = computed(() =>
-          props.size ? `button-${props.size}` : ''
-        );
+        const {
+            classes: sizeClass
+        } = useComponentSizes("button-", props);
+        const {
+            classes: variantClasses,
+        } = useComponentVariants<ESimpleButtonVariants>("button-", props);
 
         /**
          * Aggregator of all the classes of component
          */
-        const classes = [
+        const classes = computed(() => [
             'simple-button',
             'animate-on-hover',
             sizeClass.value,
+            variantClasses.value,
             {
                 // eslint-disable-next-line @typescript-eslint/naming-convention
                 'button-icon-only': props.icon,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                'button-disabled': props.disabled,
+                'animate-on-hover': props.animated || props.animatedHover,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                'animate-on-active animate-on-hover': props.animated,
+                'animate-on-active': props.animated || props.animatedActive,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
                 'animate-active': props.active,
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                'button-disabled': props.disabled,
             },
-        ];
+        ]);
 
         /**
          * Template
          */
         return () => (
-          <button class={classes}>
+          <button class={classes.value} {...attrs}>
               {slots.icon
                 ? slots.icon()
                 : props.image && (
@@ -130,7 +159,9 @@ export const SimpleButton = defineComponent({
                   class="button-image"
                 />
               )}
-              {slots.default ? slots.default() : !props.icon ? props.text : ''}
+              {slots.default ? slots.default() : (
+                !props.icon ? props.text : ''
+              )}
           </button>
         );
     },

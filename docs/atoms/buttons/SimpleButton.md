@@ -11,105 +11,325 @@ import { SimpleButton } from "@guebbit/vue-library";
 
 <div class="dev-section">
     <SimpleButton text="DEFAULT"/>
+    <SimpleButton>
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        DEFAULT
+    </SimpleButton>
+    <SimpleButton disabled>
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        DISABLED
+    </SimpleButton>
     <SimpleButton image="https://placedog.net/100/100">
       IMAGE
     </SimpleButton>
-    <SimpleButton size="small">
-      SMALL
-    </SimpleButton>
     <SimpleButton variant="rounded">
-      ROUNDED
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        ROUNDED
     </SimpleButton>
     <SimpleButton variant="circular">
-      CIRCULAR
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        CIRCULAR
     </SimpleButton>
     <SimpleButton variant="pill">
-      PILL
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        PILL
     </SimpleButton>
-    <SimpleButton variant="shadowless">
-      shadowless
+    <SimpleButton variant="flat">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        FLAT
     </SimpleButton>
     <SimpleButton variant="plain">
-      PLAIN
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        PLAIN
     </SimpleButton>
     <SimpleButton variant="outlined">
-      OUTLINED
-    </SimpleButton>
-    <SimpleButton variant="tonal">
-      TONAL
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        OUTLINED
     </SimpleButton>
 </div>
 
 ::: code-group
+
 ```html [default]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton text="DEFAULT" />
 ```
+
+```html [default2]
+<SimpleButton>
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+  DEFAULT
+</SimpleButton>
+```
+
+```html [disabled]
+<SimpleButton disabled>
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+  DISABLED
+</SimpleButton>
+```
+
 ```html [image]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton image="https://placedog.net/100/100">
+  IMAGE
+</SimpleButton>
 ```
-```html [large]
-aaaaaaaaaaaaaaaaaaaa
-```
-```html [small]
-aaaaaaaaaaaaaaaaaaaa
-```
+
 ```html [rounded]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton variant="rounded">
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+  ROUNDED
+</SimpleButton>
 ```
+
 ```html [circular]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton variant="circular">
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+  CIRCULAR
+</SimpleButton>
 ```
+
 ```html [pill]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton variant="pill">
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+  PILL
+</SimpleButton>
 ```
+
 ```html [flat]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton variant="flat">
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+  FLAT
+</SimpleButton>
 ```
+
 ```html [plain]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton variant="plain">
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+  PLAIN
+</SimpleButton>
 ```
+
 ```html [outlined]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton variant="outlined">
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+  OUTLINED
+</SimpleButton>
 ```
 :::
 
+
+## Sizes
+
+<div class="dev-section">
+    <SimpleButton size="xs">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        EXTRA SMALL
+    </SimpleButton>
+    <SimpleButton size="sm">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        SMALL
+    </SimpleButton>
+    <SimpleButton>
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        MEDIUM
+    </SimpleButton>
+    <SimpleButton size="lg">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        LARGE
+    </SimpleButton>
+    <SimpleButton size="xl">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        EXTRA LARGE
+    </SimpleButton>
+</div>
+
+::: code-group
+```html [XS]
+<SimpleButton size="xs">
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+    EXTRA SMALL
+</SimpleButton>
+```
+```html [SM]
+<SimpleButton size="sm">
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+    SMALL
+</SimpleButton>
+```
+```html [default]
+<SimpleButton>
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+    MEDIUM
+</SimpleButton>
+```
+```html [LG]
+<SimpleButton size="lg">
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+    LARGE
+</SimpleButton>
+```
+```html [XL]
+<SimpleButton size="xl">
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+    EXTRA LARGE
+</SimpleButton>
+```
+:::
+
+<div class="dev-section">
+    <SimpleButton size="xs" icon>
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+    </SimpleButton>
+    <SimpleButton size="sm" icon>
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+    </SimpleButton>
+    <SimpleButton icon>
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+    </SimpleButton>
+    <SimpleButton size="lg" icon>
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+    </SimpleButton>
+    <SimpleButton size="xl" icon>
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+    </SimpleButton>
+</div>
+
+::: code-group
+```html [XS]
+<SimpleButton size="xs" icon>
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+</SimpleButton>
+```
+```html [SM]
+<SimpleButton size="sm" icon>
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+</SimpleButton>
+```
+```html [default]
+<SimpleButton icon>
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+</SimpleButton>
+```
+```html [LG]
+<SimpleButton size="lg" icon>
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+</SimpleButton>
+```
+```html [XL]
+<SimpleButton size="xl" icon>
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+</SimpleButton>
+```
+:::
 
 ## Icons
 
 <div class="dev-section">
-    <SimpleButton iconOnly>
+    <SimpleButton icon>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton iconOnly :image="'https://placedog.net/100/100'"></SimpleButton>
-    <SimpleButton iconOnly variant="rounded" :image="'https://placedog.net/100/100'"></SimpleButton>
-    <SimpleButton iconOnly variant="outlined">
+    <SimpleButton disabled>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton iconOnly variant="rounded">
+    <SimpleButton icon :image="'https://placedog.net/100/100'"></SimpleButton>
+    <SimpleButton icon variant="rounded" :image="'https://placedog.net/100/100'"></SimpleButton>
+    <SimpleButton icon variant="outlined">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton iconOnly variant="circular">
+    <SimpleButton icon variant="rounded">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton iconOnly variant="pill">
+    <SimpleButton icon variant="circular">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton iconOnly variant="plain">
+    <SimpleButton icon variant="pill">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton iconOnly variant="tonal">
+    <SimpleButton icon variant="plain">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
@@ -117,35 +337,100 @@ aaaaaaaaaaaaaaaaaaaa
 </div>
 
 ::: code-group
+
 ```html [default]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton icon>
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+</SimpleButton>
 ```
+
+```html [disabled]
+<SimpleButton disabled>
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+</SimpleButton>
+```
+
 ```html [image]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton icon :image="'https://placedog.net/100/100'"></SimpleButton>
 ```
+
 ```html [image-rounded]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton icon variant="rounded" :image="'https://placedog.net/100/100'"></SimpleButton>
 ```
+
 ```html [outlined]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton icon variant="outlined">
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+</SimpleButton>
 ```
+
 ```html [rounded]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton icon variant="rounded">
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+</SimpleButton>
 ```
+
 ```html [circular]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton icon variant="circular">
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+</SimpleButton>
 ```
+
 ```html [pill]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton icon variant="pill">
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+</SimpleButton>
 ```
+
 ```html [plain]
-aaaaaaaaaaaaaaaaaaaa
+<SimpleButton icon variant="plain">
+  <svg class="button-icon" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+</SimpleButton>
 ```
 :::
 
+## Multiple
+
+<div class="dev-section">
+    <SimpleButton variant="outlined pill">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        Outlined Pill
+    </SimpleButton>
+    <SimpleButton variant="outlined circular disabled">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        Outlined Circular
+    </SimpleButton>
+    <SimpleButton variant="icon-only pill">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+    </SimpleButton>
+    <SimpleButton variant="icon-only outlined">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+    </SimpleButton>
+</div>
 
 ## Slots
-
 
 <div class="dev-section">
     <SimpleButton>
@@ -168,47 +453,135 @@ aaaaaaaaaaaaaaaaaaaa
 :::
 
 
-## Social Buttons (TODO)
+## Social buttons
+They are simple buttons but with the right colors they can be color coded
+TODO ROLLUP
 
-## Classes
+::: tip GLOBAL dependences
+- "create-colors" from @guebbit/css-toolkit
+:::
 
-| Class                | Description                      |
-|:---------------------|:---------------------------------|
-| `animate-active`     | Animation active                 |
-| `animate-on-active`  | Animation active on .active      |
-| `animate-on-hover`   | Animation active on hover        |
-| `button-small`       | Small size                       |
-| `button-rounded`     | Rounded border                   |
-| `button-circular`    | Circular border                  |
-| `button-pill`        | Pill border                      |
-| `button-outlined`    | Outlined mode                    |
-| `button-plain`       | Plain mode                       |
-| `button-tonal`       | Tonal mode                       |
-| `button-shadowless`  | Remove box-shadow                |
-| `button-icon-only`   | Single icon/image/character mode |
+```scss
+@use "@guebbit/css-toolkit" as guebbit;
+@include guebbit.create-colors(guebbit.$colors-collection, ("brand"));
+```
 
-## SCSS variables
+<div class="dev-section">
+    <SimpleButton class="brand-facebook-bg core-white-text">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        DEFAULT
+    </SimpleButton>
+    <SimpleButton disabled class="brand-facebook-bg core-white-text">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        DISABLED
+    </SimpleButton>
+    <SimpleButton variant="plain" class="brand-facebook-text">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        PLAIN
+    </SimpleButton>
+    <SimpleButton variant="outlined" class="brand-facebook-border brand-facebook-text">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        OUTLINED
+    </SimpleButton>
+    <SimpleButton icon class="brand-facebook-bg core-white-text">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+    </SimpleButton>
+    <SimpleButton icon variant="outlined" class="brand-facebook-text brand-facebook-border">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+    </SimpleButton>
+    <SimpleButton variant="outlined" class="highlight-rollup-horizontal highlight-rollup-reverse facebook-pseudo-bg brand-facebook-border brand-facebook-pseudo-bg brand-facebook-text core-white-hover-text brand-facebook-hover-bg">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        Outlined + Hover BG
+    </SimpleButton>
+</div>
 
-| Variable                  | Description                                                                         | Accepted Values | Default                           |
-|:--------------------------|:------------------------------------------------------------------------------------|:----------------|:----------------------------------|
-| `$color`                  | :x: MAIN color                                                                      | `color`         | `transparent`                     |
-| `$background`             | :zap: :first_quarter_moon_with_face: Background color                               | `color`         | `same as {$color}`                |
-| `$on-background`          | :zap: :first_quarter_moon_with_face: Text color                                     | `color`         | `same as {$on-color}`             |
-| `$shadow-color`           | :zap: :first_quarter_moon_with_face: Shadow color (on `var()` MUST be RGB)          | `color`         | `0,0,0 (#000)`                    | 
-| `$outlined-border-width`  | Border width                                                                        | `size`          | `2px`                             |
-| `$outlined-on-background` | :zap: :first_quarter_moon_with_face: Text color of outlined mode                    | `color`         | `same as {$color}`                |
-| `$border-color`           | :zap: :first_quarter_moon_with_face: Border color of outlined mode                  | `color`         | `same as {$color}`                |
-| `$tonal-background`       | :zap: :first_quarter_moon_with_face: Background of tonal mode                       | `color`         | `rgba of {$color} at 0.1`         |
-| `$tonal-on-background`    | :zap: :first_quarter_moon_with_face: Color of tonal mode                            | `color`         | `same as {$color}`                |
-| `$plain-color`            | :zap: :first_quarter_moon_with_face: *TEXT* color of plain mode (BG is transparent) | `color`         | `same as {$color}`                |
-| `$padding`                | Padding                                                                             | `size`          | `8px`                             |
-| `$duration`               | Transition durations                                                                | `time`          | `0.3s`                            |
-| `$border-radius`          | Border radius                                                                       | `size`          | `2px`                             |
+
+::: code-group
+```html [default]
+    <SimpleButton class="brand-facebook-bg core-white-text">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        DEFAULT
+    </SimpleButton>
+```
+```html [default]
+<SimpleButton disabled class="brand-facebook-bg core-white-text">
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+    DISABLED
+</SimpleButton>
+```
+```html [plain]
+    <SimpleButton variant="plain" class="brand-facebook-text">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        PLAIN
+    </SimpleButton>
+```
+```html [outlined]
+    <SimpleButton variant="outlined" class="brand-facebook-border brand-facebook-text">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        OUTLINED
+    </SimpleButton>
+```
+```html [default-icon]
+    <SimpleButton icon class="brand-facebook-bg core-white-text">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+    </SimpleButton>
+```
+```html [outlined-icon]
+    <SimpleButton icon variant="outlined" class="brand-facebook-text brand-facebook-border">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+    </SimpleButton>
+```
+```html [outlined+rollup]
+    <SimpleButton variant="outlined" class="highlight-rollup-horizontal highlight-rollup-reverse facebook-pseudo-bg brand-facebook-border brand-facebook-pseudo-bg brand-facebook-text core-white-hover-text brand-facebook-hover-bg">
+        <svg class="button-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+        </svg>
+        Outlined + Hover BG
+    </SimpleButton>
+```
+:::
+
+## PROPS
+TODO
+
+## SLOTS
+TODO
+
+## EVENTS
+TODO
 
 <style lang="scss">
-@import "../../theme.scss";
+@use "../../theme.scss";
+@use "@guebbit/css-toolkit" as guebbit;
+@include guebbit.create-colors(guebbit.$colors-collection, ("brand"));
 </style>
 
 <script setup>
-import { SimpleButton } from "../../../src/";
+import { SimpleButton } from '../../../src/'
 </script>

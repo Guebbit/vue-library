@@ -71,7 +71,6 @@ export default defineConfig({
           },
         ]
       },
-        /*
       {
         text: 'Molecules',
         collapsible: true,
@@ -131,7 +130,6 @@ export default defineConfig({
           },
         ]
       },
-         */
     ],
   },
 });

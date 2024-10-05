@@ -1,0 +1,1 @@
+export { default as SimplePanel } from "./SimplePanel.tsx";

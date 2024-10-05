@@ -1,0 +1,6 @@
+@use "../../../../assets/theme" as theme;
+@use "../../../../../node_modules/@guebbit/css-ui/src/molecules/panels/ActionPanel" with (
+    $css-ui-dark-theme-class: theme.$css-ui-dark-theme-class,
+    $css-ui-var-prefix: theme.$css-ui-var-prefix,
+    $css-ui-root-prefix: theme.$css-ui-root-prefix
+);

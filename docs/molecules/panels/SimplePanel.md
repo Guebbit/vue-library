@@ -14,13 +14,13 @@ import { Panel } from "@guebbit/vue-library";
 
 
 
-## PROPS
+## Props
 TODO
 
-## SLOTS
+## Slots
 TODO
 
-## EVENTS
+## Events
 TODO
 
 <style lang="scss">

@@ -2,6 +2,9 @@ import './AspectRatio.scss';
 import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 
+/**
+ * Component
+ */
 export default defineComponent({
     name: 'AspectRatio',
 

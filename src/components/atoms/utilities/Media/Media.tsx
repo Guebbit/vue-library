@@ -9,6 +9,9 @@ export enum EMediaTypes {
   CSS = 'css',
 }
 
+/**
+ * Component
+ */
 export default defineComponent({
   name: 'Media',
   props: {

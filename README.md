@@ -4,8 +4,18 @@ Spacchettare src/components/components.zip
 
 TODO
  - tests/utils/nightwatchCheckRules.ts: Why rules[i].styles needs !, typescript is not inferring correcly?
- - html too
- - sometimes nightwatch test fails for no reason.
+ - html, classes, etc have all the same problem
+ - sometimes nightwatch test fails for no reason (normal?).
+ - Nightwatch firefox and firefoxHeadless NOT working
+ - Incomplete SimpleCard
+   - better icons
+   - better image management
+   - add variants: greyscale, rounded, circular, etc
+   - todo alerts
+   - todo all other special cards
+ - BookCard shadow bug (in css-ui too)
+ - SimpleButton "basics" with base simple button + slots
+ - Standardize better elevation (and give it to SimpleButton)
 
 Vue3
 https://blog.vuejs.org/posts/vue-3-2

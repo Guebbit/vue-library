@@ -1,13 +1,11 @@
 import "./SimpleButton.scss";
 import { defineComponent, computed } from 'vue';
 
+import useComponentGenerics from '../../../../composables/componentGenerics.ts'
 import useComponentSizes from '../../../../composables/componentSizes.ts'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
 
-/**
- * Types
- */
-export { EComponentSizes } from '../../../../composables/componentSizes.ts'
+export type { EComponentSizes } from '../../../../composables/componentSizes.ts'
 
 export enum ESimpleButtonVariants {
     ROUNDED = 'rounded',
@@ -23,18 +21,23 @@ export enum ESimpleButtonVariants {
  * Outside setup only composable
  */
 const {
+    animationProps
+} = useComponentGenerics();
+const {
     prop: sizeProps
 } = useComponentSizes("button-");
-
 const {
     prop: variantProps
 } = useComponentVariants<ESimpleButtonVariants>("button-");
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
+/**
+ * Component
+ */
 export default defineComponent({
     name: 'SimpleButton',
 
     props: {
+        ...animationProps,
         ...sizeProps,
         ...variantProps,
 
@@ -72,38 +75,6 @@ export default defineComponent({
         },
 
         /**
-         * animate on hover and on active
-         */
-        animated: {
-            type: Boolean,
-            default: () => true,
-        },
-
-        /**
-         * Animate on hover only
-         */
-        animatedHover: {
-            type: Boolean,
-            default: () => false,
-        },
-
-        /**
-         * Animate on active only
-         */
-        animatedActive: {
-            type: Boolean,
-            default: () => false,
-        },
-
-        /**
-         * Button is active
-         */
-        active: {
-            type: Boolean,
-            default: () => false,
-        },
-
-        /**
          * Button is disabled
          */
         disabled: {
@@ -128,7 +99,6 @@ export default defineComponent({
          */
         const classes = computed(() => [
             'simple-button',
-            'animate-on-hover',
             sizeClass.value,
             variantClasses.value,
             {
@@ -149,7 +119,11 @@ export default defineComponent({
          * Template
          */
         return () => (
-          <button class={classes.value} {...attrs}>
+          <button
+            class={classes.value}
+            {...attrs}
+            disabled={props.disabled || props.variant?.includes("disabled")}
+          >
               {slots.icon
                 ? slots.icon()
                 : props.image && (

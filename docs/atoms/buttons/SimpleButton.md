@@ -9,7 +9,8 @@ import { SimpleButton } from "@guebbit/vue-library";
 
 ## Code
 
-<div class="dev-section">
+::: raw
+<div id="test-regulars" class="dev-section">
     <SimpleButton text="DEFAULT"/>
     <SimpleButton>
         <svg class="button-icon" viewBox="0 0 24 24">
@@ -63,6 +64,7 @@ import { SimpleButton } from "@guebbit/vue-library";
         OUTLINED
     </SimpleButton>
 </div>
+:::
 
 ::: code-group
 
@@ -152,7 +154,8 @@ import { SimpleButton } from "@guebbit/vue-library";
 
 ## Sizes
 
-<div class="dev-section">
+::: raw
+<div id="test-sizes" class="dev-section">
     <SimpleButton size="xs">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
@@ -184,6 +187,7 @@ import { SimpleButton } from "@guebbit/vue-library";
         EXTRA LARGE
     </SimpleButton>
 </div>
+:::
 
 ::: code-group
 ```html [XS]
@@ -228,7 +232,8 @@ import { SimpleButton } from "@guebbit/vue-library";
 ```
 :::
 
-<div class="dev-section">
+::: raw
+<div id="test-size-icons" class="dev-section">
     <SimpleButton size="xs" icon>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
@@ -255,6 +260,7 @@ import { SimpleButton } from "@guebbit/vue-library";
         </svg>
     </SimpleButton>
 </div>
+:::
 
 ::: code-group
 ```html [XS]
@@ -296,7 +302,8 @@ import { SimpleButton } from "@guebbit/vue-library";
 
 ## Icons
 
-<div class="dev-section">
+::: raw
+<div id="test-icons" class="dev-section">
     <SimpleButton icon>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
@@ -335,6 +342,7 @@ import { SimpleButton } from "@guebbit/vue-library";
         </svg>
     </SimpleButton>
 </div>
+:::
 
 ::: code-group
 
@@ -405,18 +413,19 @@ import { SimpleButton } from "@guebbit/vue-library";
 
 ## Multiple
 
-<div class="dev-section">
+::: raw
+<div id="test-multiples" class="dev-section">
     <SimpleButton variant="outlined pill">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         Outlined Pill
     </SimpleButton>
-    <SimpleButton variant="outlined circular disabled">
+    <SimpleButton variant="flat circular" disabled>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
-        Outlined Circular
+        Flat Circular Disabled
     </SimpleButton>
     <SimpleButton variant="icon-only pill">
         <svg class="button-icon" viewBox="0 0 24 24">
@@ -429,10 +438,45 @@ import { SimpleButton } from "@guebbit/vue-library";
         </svg>
     </SimpleButton>
 </div>
+:::
+
+::: code-group
+```html [outlined-pill]
+<SimpleButton variant="outlined pill">
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+    Outlined Pill
+</SimpleButton>
+```
+```html [flat-circular-disabled]
+<SimpleButton variant="flat circular disabled">
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+    Flat Circular Disabled
+</SimpleButton>
+```
+```html [icon-pill]
+<SimpleButton variant="icon-only pill">
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+</SimpleButton>
+```
+```html [icon-outlined]
+<SimpleButton variant="icon-only outlined">
+    <svg class="button-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+    </svg>
+</SimpleButton>
+```
+:::
 
 ## Slots
 
-<div class="dev-section">
+::: raw
+<div id="test-slots" class="dev-section">
     <SimpleButton>
         <template #icon>
             <img src="https://placedog.net/100/100" alt="Image" class="button-image" />
@@ -440,6 +484,7 @@ import { SimpleButton } from "@guebbit/vue-library";
         IMAGE
     </SimpleButton>
 </div>
+:::
 
 ::: code-group
 ```html
@@ -463,10 +508,11 @@ TODO ROLLUP
 
 ```scss
 @use "@guebbit/css-toolkit" as guebbit;
-@include guebbit.create-colors(guebbit.$colors-collection, ("brand"));
+@include guebbit.create-colors(guebbit.$colors-collection, ("core", "brand"));
 ```
 
-<div class="dev-section">
+::: raw
+<div id="test-socials" class="dev-section">
     <SimpleButton class="brand-facebook-bg core-white-text">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
@@ -508,7 +554,7 @@ TODO ROLLUP
         Outlined + Hover BG
     </SimpleButton>
 </div>
-
+:::
 
 ::: code-group
 ```html [default]
@@ -567,19 +613,19 @@ TODO ROLLUP
 ```
 :::
 
-## PROPS
+## Props
 TODO
 
-## SLOTS
+## Slots
 TODO
 
-## EVENTS
+## Events
 TODO
 
 <style lang="scss">
 @use "../../theme.scss";
 @use "@guebbit/css-toolkit" as guebbit;
-@include guebbit.create-colors(guebbit.$colors-collection, ("brand"));
+@include guebbit.create-colors(guebbit.$colors-collection, ("core", "brand"));
 </style>
 
 <script setup>

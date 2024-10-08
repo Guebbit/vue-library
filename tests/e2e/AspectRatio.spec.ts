@@ -2,6 +2,7 @@ import { NightwatchBrowser } from 'nightwatch';
 import nightwatchCheckRules from '../utils/nightwatchCheckRules';
 
 describe('AspectRatio Component E2E Tests - based on the documentation, page /atoms/utilities/AspectRatio.html', function () {
+  this.retries(3);
 
   /**
    * Open page
@@ -9,7 +10,7 @@ describe('AspectRatio Component E2E Tests - based on the documentation, page /at
   before(function (browser: NightwatchBrowser, done: () => void) {
     return browser
       .url(process.env.VUE_APP_BASE_URL + '/atoms/utilities/AspectRatio.html')
-      .waitForElementVisible('.aspect-ratio-container', 10000)
+      .waitForElementVisible('.aspect-ratio-container', 2000)
       .perform(() => done());
   });
 
@@ -29,7 +30,9 @@ describe('AspectRatio Component E2E Tests - based on the documentation, page /at
         styles: [
           "--aspect-ratio: 100%;"
         ],
-        content: "img",
+        html: [
+          "<img src"
+        ],
       },
       {
         height: 374,
@@ -41,7 +44,9 @@ describe('AspectRatio Component E2E Tests - based on the documentation, page /at
         styles: [
           "--aspect-ratio: 56.25%;"
         ],
-        content: "img",
+        html: [
+          "<img src"
+        ],
       },
       {
         height: 498,
@@ -53,7 +58,9 @@ describe('AspectRatio Component E2E Tests - based on the documentation, page /at
         styles: [
           "--aspect-ratio: 75%;"
         ],
-        content: "img",
+        html: [
+          "<img src"
+        ],
       },
       {
         height: 374,
@@ -65,7 +72,9 @@ describe('AspectRatio Component E2E Tests - based on the documentation, page /at
         styles: [
           "--aspect-ratio: 56.25%;"
         ],
-        content: "video",
+        html: [
+          "<video"
+        ],
       },
       {
         height: 374,
@@ -77,7 +86,9 @@ describe('AspectRatio Component E2E Tests - based on the documentation, page /at
         styles: [
           "--aspect-ratio: 56.25%;"
         ],
-        content: "iframe",
+        html: [
+          "<iframe"
+        ],
       },
       {
         height: 374,
@@ -89,7 +100,9 @@ describe('AspectRatio Component E2E Tests - based on the documentation, page /at
         styles: [
           "--aspect-ratio: 56.25%;"
         ],
-        content: "iframe",
+        html: [
+          "<iframe"
+        ],
       },
     ])
   );

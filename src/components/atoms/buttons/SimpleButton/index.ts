@@ -1,1 +1,1 @@
-export { default as SimpleButton, ESimpleButtonVariants, EComponentSizes } from "./SimpleButton.tsx";
+export { default as SimpleButton, ESimpleButtonVariants, type EComponentSizes } from "./SimpleButton.tsx";

@@ -1,128 +1,259 @@
-import './SimpleCard.scss';
-import { defineComponent } from "vue";
-import type { PropType } from "vue";
+import './SimpleCard.scss'
+import { computed, defineComponent } from 'vue'
+import type { PropType } from 'vue'
+import useComponentGenerics from '../../../../composables/componentGenerics.ts'
+import useComponentVariants from '../../../../composables/componentVariants.ts'
 
+export enum ESimpleCardVariants {
+    ROUNDED = 'rounded',
+    CIRCULAR = 'circular',
+    OUTLINED = 'outlined',
+    FLAT = 'flat',
+}
+
+export enum ESimpleCardImageAlignment {
+    LEFT = 'left',
+    RIGHT = 'right'
+}
+
+/**
+ * Outside setup only composable
+ */
+const {
+    animationProps
+} = useComponentGenerics()
+const {
+    prop: variantProps
+} = useComponentVariants<ESimpleCardVariants>('card-')
+
+/**
+ * Component
+ */
 export default defineComponent({
-    name: "SimpleCard",
+    name: 'SimplePanel',
 
     props: {
+        ...animationProps,
+        ...variantProps,
+
+        /**
+         * Card background (if not slot)
+         */
         background: {
             type: String,
-            required: false,
+            required: false
         },
+
+        /**
+         * Card image (if not slot)
+         */
         image: {
             type: String,
-            required: false,
+            required: false
         },
+
+        /**
+         * Card ALT image (if not slot)
+         */
+        imageAlt: {
+            type: String,
+            required: false
+        },
+
+        /**
+         * Card ALT image (if not slot)
+         */
+        imageAlignment: {
+            type: String as PropType<ESimpleCardImageAlignment | undefined>,
+            required: false,
+            validator: (value?: string) => {
+                if(!value)
+                    return true;
+                return Object.values(ESimpleCardImageAlignment).includes(value as ESimpleCardImageAlignment);
+            }
+        },
+
+        /**
+         * Content title (if not slot)
+         */
         title: {
             type: String,
-            required: false,
+            required: false
         },
+
+        /**
+         * Tag of title (if not slot)
+         */
+        titleTag: {
+            type: String,
+            default: () => "h3"
+        },
+
+        /**
+         * Content subtitle (if not slot)
+         */
         subtitle: {
             type: String,
-            required: false,
+            required: false
         },
-        info: {
-            type: Object as PropType<Record<string, string | number>>,
-            default: () => ({}),
-        },
-        textColor: {
+
+        /**
+         * Tag of subtitle (if not slot)
+         */
+        subtitleTag: {
             type: String,
-            required: false,
+            default: () => "span"
         },
-        backgroundColor: {
+
+        /**
+         * Content text (if not slot)
+         */
+        text: {
             type: String,
-            required: false,
+            default: () => ''
+        },
+
+        /**
+         * Tag of text (if not slot)
+         */
+        textTag: {
+            type: String,
+            default: () => 'p'
+        },
+
+        /**
+         * A card cannot be "disabled" in a way a button is.
+         * But a "disabled" design can be useful
+         */
+        disabled: {
+            type: Boolean,
+            default: () => false
         },
     },
 
-    setup(props, { slots }) {
-        return () => (
-            <>
-                <div class="simple-card grayscale-active grayscale-reverse-on-hover shadow-on-hover">
-                    <img class="card-image" src="http://placedog.net/1000/600" />
-                    <div class="highlight-belt bend-bottom">
-                        <b>Lorem Ipsum</b>
-                    </div>
-                    <div class="card-content">
-                        <h2 class="card-title">Title of lorem ipsum</h2>
-                        <h5 class="card-subtitle">Subtitle of lorem ipsum</h5>
-                        <br />
-                        <div class="card-actions card-actions-center">
-                            {[
-                                "Lorem Ipsum",
-                                "Lorem Ipsum",
-                                "Lorem Ipsum",
-                                "Lorem Ipsum",
-                            ].map((text, index) => (
-                                <span
-                                    key={index}
-                                    class="simple-text-icon icon-highlight column-mode"
-                                >
-                  <svg class="icon card-icon" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10" />
-                  </svg>
-                                    {index === 2 ? (
-                                        <div class="icon">
-                                            <img src="https://placedog.net/50/50" />
-                                        </div>
-                                    ) : (
-                                        ""
-                                    )}
-                                    {text}
-                </span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+    setup(props, { slots, attrs, emit }) {
+        /**
+         * Setup only composable
+         */
+        const {
+            classes: variantClasses
+        } = useComponentVariants<ESimpleCardVariants>('card-', props);
 
-                <div
-                    class="simple-user-card"
-                    style={{
-                        "--simple-user-card-color": props.textColor,
-                        "--simple-user-card-background": props.backgroundColor,
-                    }}
+        /**
+         * Aggregator of all the classes of component
+         */
+        const classes = computed(() => [
+            'simple-card',
+            variantClasses.value,
+            props.imageAlignment ? `card-image-${props.imageAlignment}` : '',
+            {
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                'animate-on-hover': props.animated || props.animatedHover,
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                'animate-on-active': props.animated || props.animatedActive,
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                'animate-active': props.active,
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                'button-disabled': props.disabled
+            }
+        ]);
+
+        /**
+         *
+         */
+        const cardSubtitle = (
+            slots.subtitle || props.subtitle ?
+                <component
+                    is={props.subtitleTag}
+                    class="card-subtitle"
                 >
-                    {slots.background ? (
-                        slots.background()
-                    ) : (
-                        <img
-                            v-show={props.background}
-                            class="card-background"
-                            src={props.background}
-                        />
-                    )}
-
-                    <div class="card-content">
-                        {slots.image ? (
-                            slots.image()
-                        ) : (
-                            <img
-                                v-show={props.image}
-                                class="card-image"
-                                src={props.image}
-                                alt={`${props.title} ${props.subtitle}`}
-                            />
-                        )}
-
-                        <h4 class="card-title">{props.title}</h4>
-                        <p class="card-subtitle">{props.subtitle}</p>
-
-                        {slots.default ? (
-                            slots.default()
-                        ) : (
-                            <ul class="card-info">
-                                {Object.entries(props.info).map(([label, number]) => (
-                                    <li key={`card-info-${label}${number}`}>
-                                        <span class="label">{label}</span>
-                                        <span class="value">{number}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                </div>
-            </>
+                    {slots.subtitle ? slots.subtitle() : props.subtitle}
+                </component>
+                : null
         );
-    },
-});
+
+        /**
+         * WARNING: If there is no title, there is no subtitle
+         */
+        const cardTitle =
+            slots.title || props.title ?
+                <component
+                    is={props.titleTag}
+                    class="card-title"
+                >
+                    {slots.title ? slots.title() : props.title}
+                    {cardSubtitle}
+                </component>
+                : null
+
+        /**
+         *
+         */
+        const cardHeader =
+            slots.header || slots.headerActions || cardTitle ?
+                <div class="card-header">
+                    {slots.headerActions ? <div class="card-actions">{slots.headerActions()}</div> : null}
+                    {slots.header ? slots.header() : cardTitle}
+                </div>
+                : null
+
+        /**
+         *
+         */
+        const cardImage =
+            props.image ?
+                <img
+                    class="card-image"
+                    alt={props.imageAlt}
+                    src={props.image}
+                />
+                : null;
+
+        /**
+         *
+         */
+        const cardBackground =
+            props.background ?
+                <img class="card-background" src={props.background} />
+                : null
+
+        /**
+         *
+         */
+        const cardContent =
+            <div class="card-content">
+                {slots.content ? slots.content() : (
+                    <component is={props.textTag}>{props.text}</component>
+                )}
+            </div>
+
+        /**
+         * card-actions-center
+         * card-actions-end
+         * card-actions-vertical
+         */
+        const cardFooter =
+            slots.footer || slots.footerActions ?
+                <div class="card-footer">
+                    {slots.footer ? slots.footer() : null}
+                    {slots.footerActions ? <div class="card-actions">{slots.footerActions()}</div> : null }
+                </div>
+                : null
+
+        return () => (
+            <div
+                class={classes.value}
+                {...attrs}
+            >
+                {cardHeader}
+                {slots.background ? slots.background() : cardBackground}
+                {slots.image ? slots.image() : cardImage}
+                {slots.default ? slots.default() : (
+                    slots.content ? <div class="card-content">{slots.content()}</div> : cardContent
+                )}
+                {slots.actions ? <div class="card-actions card-actions-absolute">{slots.actions()}</div> : null}
+                {cardFooter}
+            </div>
+        )
+    }
+})

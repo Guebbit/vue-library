@@ -1,6 +1,6 @@
 export { Media, EMediaTypes } from './components/atoms/utilities/Media/';
 export { AspectRatio } from './components/atoms/utilities/AspectRatio/';
-export { SimpleButton, SimpleButton as Button, ESimpleButtonVariants, EComponentSizes } from './components/atoms/buttons/SimpleButton/';
+export { SimpleButton, SimpleButton as Button, ESimpleButtonVariants, type EComponentSizes } from './components/atoms/buttons/SimpleButton/';
 
 export { BookCard } from './components/molecules/cards/BookCard/';
 export { CreditCard } from './components/molecules/cards/CreditCard/';

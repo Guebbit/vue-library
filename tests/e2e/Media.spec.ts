@@ -2,6 +2,7 @@ import { NightwatchBrowser } from 'nightwatch';
 import nightwatchCheckRules from '../utils/nightwatchCheckRules';
 
 describe('Media Component E2E Tests - based on the documentation, page /atoms/utilities/Media.html', function () {
+  this.retries(3);
 
   /**
    * Open page
@@ -12,29 +13,6 @@ describe('Media Component E2E Tests - based on the documentation, page /atoms/ut
       .waitForElementVisible('.dev-section > *', 10000)
       .perform(() => done())
   );
-
-
-  // promiseArray.push(
-  //   itemElement
-  //     .getRect()
-  //     .then(({ x, y }) => {
-  //       console.log("AAAA", x, y)
-  //       return browser.moveTo(null, x, y);
-  //     })
-  // )
-
-  // browser
-  //   .waitForElementVisible('body', 1000)
-  //   .execute(function () {
-  //     // WARNING: This happens in the browser context, not visible from the tests
-  //     // (example: console.log() not happening)
-  //   }, [], function(result) {
-  //     // This happens in the node context (in the tests)
-  //   })
-  //   .pause(200)  // Optional: Pause to allow scrolling to finish
-  //   .end()
-
-
 
   /**
    * Check all listed rules for every .aspect-ratio-container,

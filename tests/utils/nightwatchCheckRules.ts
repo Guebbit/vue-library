@@ -6,12 +6,42 @@ export interface INightwatchCheckRules {
   width?: number;
   x?: number;
   y?: number;
-  css?: Record<string, string>; 
+  attributes?: string[];
+  css?: Record<string, string>;
+  classes?: string[];
   styles?: string[];
   tagName?: string;
-  content?: string;
   html?: string[];
 }
+
+/* EXAMPLE?
+try {
+  browser.assert.attributeContains('.simple-button', 'class', 'button-rounded');
+} catch (error) {
+  browser.assert.fail("Failed to check button-rounded class: " + error.message);
+}
+ */
+
+// TODO solution lazyload ideas
+// promiseArray.push(
+//   itemElement
+//     .getRect()
+//     .then(({ x, y }) => {
+//       console.log("AAAA", x, y)
+//       return browser.moveTo(null, x, y);
+//     })
+// )
+
+// browser
+//   .waitForElementVisible('body', 1000)
+//   .execute(function () {
+//     // WARNING: This happens in the browser context, not visible from the tests
+//     // (example: console.log() not happening)
+//   }, [], function(result) {
+//     // This happens in the node context (in the tests)
+//   })
+//   .pause(200)  // Optional: Pause to allow scrolling to finish
+//   .end()
 
 /**
  *
@@ -24,42 +54,8 @@ export default async function(
   selector: string,
   ruleArray: INightwatchCheckRules[] | Record<number, INightwatchCheckRules>
 ) {
-
-    // browser.document.source()
-    //   .then((result) => {
-    //     console.log('All page in a string', result);
-    //   })
-
-    // browser
-    //   .element
-    //   .findAll(selector)
-    //   .then((results) =>
-    //     results.forEach((item, index) => {
-    //       console.log("Rule", index, {...ruleArray[index]});
-    //       const itemElement = element(item);
-    //       itemElement.getRect()
-    //         .then(({ height, width, x, y }) => {
-    //           console.log("getRect", { height, width, x, y })
-    //         })
-    //       itemElement
-    //         .getAttribute('style')
-    //         .then((value) =>
-    //           console.log("getAttribute style", value)
-    //         )
-    //       itemElement
-    //         .getCssValue('padding-bottom')
-    //         .then((value) =>
-    //           console.log("getCssValue padding-bottom", value)
-    //         )
-    //       itemElement
-    //         .getTagName()
-    //         .then((value) =>
-    //           console.log("getTagName", value)
-    //         )
-    //     })
-    //   );
-
   return browser
+    .waitForElementVisible(selector, 2000)
     .element
     .findAll(selector)
     .then((items) => {
@@ -74,34 +70,37 @@ export default async function(
 
         const itemElement = element(items[i]);
 
+        // TODO SOLVE LAZYLOAD PROBLEM
+        // if(ruleArray[i].height || ruleArray[i].width || ruleArray[i].x || ruleArray[i].y)
+        //   promiseArray.push(
+        //     itemElement
+        //       .getRect()
+        //       // scroll down in case of lazyload or other triggers
+        //       .then(({ x, y }) =>
+        //         browser.moveTo(null, Math.ceil(x), Math.ceil(y))
+        //           .pause(1000)
+        //       )
+        //       // actual check
+        //       .then(() =>
+        //         itemElement
+        //           .getRect()
+        //           .then(({ height, width, x, y }) => {
+        //             if(ruleArray[i].height)
+        //               browser.assert.equal(height, ruleArray[i].height, i + ": Correct size: height");
+        //             if(ruleArray[i].width)
+        //               browser.assert.equal(width, ruleArray[i].width, i + ": Correct size: width");
+        //             if(ruleArray[i].x)
+        //               browser.assert.equal(x, ruleArray[i].x, i + ": Correct position: x");
+        //             if(ruleArray[i].y)
+        //               browser.assert.equal(y, ruleArray[i].y, i + ": Correct position: y");
+        //           })
+        //       )
+        //   )
+
         /**
          * size and position
          */
         if(ruleArray[i].height || ruleArray[i].width || ruleArray[i].x || ruleArray[i].y)
-          // promiseArray.push(
-          //   itemElement
-          //     .getRect()
-          //     // scroll down in case of lazyload or other triggers
-          //     .then(({ x, y }) =>
-          //       browser.moveTo(null, Math.ceil(x), Math.ceil(y))
-          //         .pause(1000)
-          //     )
-          //     // actual check
-          //     .then(() =>
-          //       itemElement
-          //         .getRect()
-          //         .then(({ height, width, x, y }) => {
-          //           if(ruleArray[i].height)
-          //             browser.assert.equal(height, ruleArray[i].height, i + ": Correct size: height");
-          //           if(ruleArray[i].width)
-          //             browser.assert.equal(width, ruleArray[i].width, i + ": Correct size: width");
-          //           if(ruleArray[i].x)
-          //             browser.assert.equal(x, ruleArray[i].x, i + ": Correct position: x");
-          //           if(ruleArray[i].y)
-          //             browser.assert.equal(y, ruleArray[i].y, i + ": Correct position: y");
-          //         })
-          //     )
-          // ) // TODO SOLVE LAZYLOAD PROBLEM
           itemElement
             .getRect()
             .then(({ height, width, x, y }) => {
@@ -114,6 +113,19 @@ export default async function(
               if(ruleArray[i].y)
                 browser.assert.equal(y, ruleArray[i].y, i + ": Correct position: y");
             })
+
+        /**
+         * Array of attributes. Check that the element has all of them
+         */
+        if (ruleArray[i].attributes && Array.isArray(ruleArray[i].attributes) && ruleArray[i].attributes!.length > 0)
+          for(let k = ruleArray[i].attributes!.length; k--; )
+            promiseArray.push(
+              itemElement
+                .getAttribute(ruleArray[i].attributes![k])
+                .then((value) =>
+                  browser.assert.ok(value !== null, i + ": Attribute " + ruleArray[i].attributes![k] + " is present")
+                )
+            )
 
         /**
          * Dictionary of css instructions. Check if they are all true
@@ -130,6 +142,22 @@ export default async function(
               )
 
         /**
+         * Array of classes. Check that the element has all of them
+         */
+        if (ruleArray[i].classes && Array.isArray(ruleArray[i].classes) && ruleArray[i].classes!.length > 0)
+          promiseArray.push(
+            itemElement
+              .getAttribute('class')
+              .then((value) => {
+                for(let k = ruleArray[i].classes!.length; k--; )
+                  if(value?.includes(ruleArray[i].classes![k] || ""))
+                    browser.assert.ok(true, i + ": Correct class " + k);
+                  else
+                    browser.assert.fail((ruleArray[i].classes![k] || "") + " => class is not in => " + (value ?? ""));
+              })
+          )
+
+        /**
          * Array of styles. Check that the element style include them all
          */
         if (ruleArray[i].styles && Array.isArray(ruleArray[i].styles) && ruleArray[i].styles!.length > 0)
@@ -138,7 +166,10 @@ export default async function(
               .getAttribute('style')
               .then((value) => {
                 for(let k = ruleArray[i].styles!.length; k--; )
-                  browser.assert.ok((value ?? "").includes(ruleArray[i].styles![k] || ""), i + ": Correct style " + k);
+                  if(value?.includes(ruleArray[i].styles![k] || ""))
+                    browser.assert.ok(true, i + ": Correct style " + k);
+                  else
+                    browser.assert.fail((ruleArray[i].styles![k] || "") + " => style is not in => " + (value ?? ""));
               })
           )
 
@@ -155,19 +186,6 @@ export default async function(
           )
 
         /**
-         * Check tag name of first child
-         * TODO do better?
-         */
-        if(ruleArray[i].content)
-          promiseArray.push(
-            itemElement.findElement(ruleArray[i].content!)
-              .then((childElement) => childElement.getTagName())
-              .then((value) =>
-                browser.assert.equal(value, ruleArray[i].content, i + ": Correct content")
-              )
-          )
-        
-        /**
          * Array of strings. Check that the element HTML include them all
          */
         if (ruleArray[i].html && Array.isArray(ruleArray[i].html) && ruleArray[i].html!.length > 0)
@@ -176,7 +194,10 @@ export default async function(
               .getAttribute('outerHTML')
               .then((value) => {
                 for(let k = ruleArray[i].html!.length; k--; )
-                  browser.assert.ok((value ?? "").includes(ruleArray[i].html![k] || ""), i + ": Correct outerHTML " + k);
+                  if(value?.includes(ruleArray[i].html![k] || ""))
+                    browser.assert.ok(true, i + ": Correct outerHTML " + k);
+                  else
+                    browser.assert.fail((ruleArray[i].html![k] || "") + " => is not in => " + (value ?? ""));
               })
           )
       }

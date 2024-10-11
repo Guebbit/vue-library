@@ -22,7 +22,7 @@ const {
 } = useComponentGenerics();
 const {
     prop: variantProps
-} = useComponentVariants<ESimpleCardVariants>("card-");
+} = useComponentVariants<ESimpleCardVariants>( {}, "card-");
 
 export default defineComponent({
     name: "SimplePanel",
@@ -87,7 +87,7 @@ export default defineComponent({
          */
         const {
             classes: variantClasses,
-        } = useComponentVariants<ESimpleCardVariants>("card-", props);
+        } = useComponentVariants<ESimpleCardVariants>({ props }, "card-");
 
         /**
          * Aggregator of all the classes of component

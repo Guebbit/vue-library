@@ -1,7 +1,6 @@
 import { defineConfig } from 'vitepress'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
-
 /**
  * This can be used as an example
  * https://github.com/vuejs/vitepress/blob/master/docs/.vitepress/config.js
@@ -16,7 +15,6 @@ export default defineConfig({
     title: 'Guebbit Vue Library',
     description: 'Guebbit\'s personal VUE Library (MIT license, free to use)',
     themeConfig: {
-        // docsDir: 'docs',
         logo: '/logotype.svg',
         siteTitle: 'VUE Library',
         search: {
@@ -59,6 +57,10 @@ export default defineConfig({
                             {
                                 text: 'AspectRatio',
                                 link: '/atoms/utilities/AspectRatio.md'
+                            },
+                            {
+                                text: 'Icon',
+                                link: '/atoms/utilities/Icon.md'
                             },
                             {
                                 text: 'Media',

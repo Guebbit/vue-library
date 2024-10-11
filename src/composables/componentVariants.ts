@@ -1,18 +1,26 @@
 import { computed } from 'vue'
 
+export interface IVariantsSettings {
+  props?: {
+    variant?: string
+  },
+  settings?: Record<string, unknown>
+}
+
 /**
  *
- * @param prefix
  * @param props
+ * @param defaults
+ * @param prefix
  */
-export default <T extends string>(prefix = "", props: { variant?: string } = {}) => {
+export default <T extends string>({ props, settings }: IVariantsSettings = {}, prefix = "") => {
   /**
    * Can be multiple, strings separated by space
    */
   const prop = {
     variant: {
       type: String,
-      required: false
+      ...settings || {}
     }
   };
 
@@ -20,7 +28,7 @@ export default <T extends string>(prefix = "", props: { variant?: string } = {})
    * Variants transformed into an array
    */
   const data = computed(() =>
-    (props.variant ? props.variant.split(' ') : [])
+    (props?.variant ? (props.variant || "").split(' ') : [])
       .map((variant) => `${prefix}${variant}`) as T[]
   );
 

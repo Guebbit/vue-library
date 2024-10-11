@@ -15,26 +15,41 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
   });
 
   it('Check REGULAR button characteristics', async (browser: NightwatchBrowser) =>
+      nightwatchCheckRules(browser, '#test-basics .simple-button', [
+        {
+          css: {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            "background-color": "rgba(0, 188, 212, 1)",
+          },
+          html: [
+            "DEFAULT"
+          ],
+        },
+        {
+          css: {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            "background-color": "rgba(0, 188, 212, 1)",
+          },
+          html: [
+            "<svg class=\"button-icon\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg> ",
+            "DEFAULT"
+          ],
+        },
+        {
+          css: {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            "background-color": "rgba(0, 188, 212, 1)",
+          },
+          html: [
+            "<svg class=\"button-icon\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg> ",
+            "DEFAULT"
+          ],
+        },
+      ])
+  );
+
+  it('Check REGULAR button characteristics', async (browser: NightwatchBrowser) =>
     nightwatchCheckRules(browser, '#test-regulars .simple-button', [
-      {
-        css: {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          "background-color": "rgba(0, 188, 212, 1)",
-        },
-        html: [
-          "DEFAULT"
-        ],
-      },
-      {
-        css: {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          "background-color": "rgba(0, 188, 212, 1)",
-        },
-        html: [
-          "<svg class=\"button-icon\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg> ",
-          "DEFAULT"
-        ],
-      },
       {
         attributes: [
           "disabled"
@@ -84,6 +99,12 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         ],
       },
       {
+        css: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "background-color": "rgba(0, 188, 212, 1)",  // transparent is computed like this
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "box-shadow": "none",
+        },
         classes: [
           "button-flat"
         ],
@@ -95,6 +116,29 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         },
         classes: [
           "button-plain"
+        ],
+      },
+      {
+        css: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "background-color": "rgba(0, 0, 0, 0)",  // transparent is computed like this
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "box-shadow": "none",
+        },
+        classes: [
+          "button-plain",
+          "button-flat"
+        ],
+      },
+      {
+        css: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "background-color": "rgba(0, 188, 212, 1)",  // transparent is computed like this
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "box-shadow": "rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px",
+        },
+        classes: [
+          "button-elevated"
         ],
       },
       {
@@ -115,15 +159,15 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
       // eslint-disable-next-line @typescript-eslint/naming-convention
       0: {
         height: 24,
-        width: 76,
+        width: 80,
         html: [
           "EXTRA SMALL"
         ],
       },
       // eslint-disable-next-line @typescript-eslint/naming-convention
       4: {
-        height: 64,
-        width: 313,
+        height: 76,
+        width: 325,
         html: [
           "EXTRA LARGE"
         ],
@@ -132,13 +176,13 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
     await nightwatchCheckRules(browser, '#test-size-icons .simple-button', {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       0: {
-        height: 24,
-        width: 24,
+        height: 20,
+        width: 20,
       },
       // eslint-disable-next-line @typescript-eslint/naming-convention
       4: {
-        height: 72,
-        width: 72,
+        height: 60,
+        width: 60,
       },
     });
   });
@@ -146,12 +190,24 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
   it('Check ICONS button characteristics', async (browser: NightwatchBrowser) =>
     nightwatchCheckRules(browser, '#test-icons .simple-button', [
       {
-        css: {
+        height: 33,
+        width: 33,
+        css:{
           // eslint-disable-next-line @typescript-eslint/naming-convention
           "background-color": "rgba(0, 188, 212, 1)",
         },
       },
       {
+        height: 33,
+        width: 33,
+        css:{
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "background-color": "rgba(0, 188, 212, 1)",
+        },
+      },
+      {
+        height: 33,
+        width: 33,
         attributes: [
           "disabled"
         ],
@@ -160,34 +216,15 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         },
       },
       {
+        height: 33,
+        width: 33,
         html: [
           "<img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\">"
         ],
       },
       {
-        css: {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          "background-color": "rgba(0, 188, 212, 1)",
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          "border-radius": "28%"
-        },
-        classes: [
-          "button-rounded"
-        ],
-        html: [
-          "<img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\">"
-        ],
-      },
-      {
-        css: {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          "background-color": "rgba(0, 0, 0, 0)",  // transparent is computed like this
-        },
-        classes: [
-          "button-outlined"
-        ],
-      },
-      {
+        height: 33,
+        width: 33,
         css: {
           // eslint-disable-next-line @typescript-eslint/naming-convention
           "background-color": "rgba(0, 188, 212, 1)",
@@ -199,6 +236,8 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         ],
       },
       {
+        height: 33,
+        width: 33,
         css: {
           // eslint-disable-next-line @typescript-eslint/naming-convention
           "background-color": "rgba(0, 188, 212, 1)",
@@ -210,6 +249,40 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         ],
       },
       {
+        height: 33,
+        width: 33,
+        css: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "background-color": "rgba(0, 188, 212, 1)",
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "border-radius": "28%"
+        },
+        html: [
+          "<img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\">"
+        ],
+        classes: [
+          "button-rounded"
+        ],
+      },
+      {
+        height: 33,
+        width: 33,
+        css: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "background-color": "rgba(0, 188, 212, 1)",
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "border-radius": "50%"
+        },
+        html: [
+          "<img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\">"
+        ],
+        classes: [
+          "button-circular"
+        ],
+      },
+      {
+        height: 33,
+        width: 33,
         css: {
           // eslint-disable-next-line @typescript-eslint/naming-convention
           "background-color": "rgba(0, 188, 212, 1)",
@@ -220,6 +293,21 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         ],
       },
       {
+        height: 33,
+        width: 33,
+        css: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "background-color": "rgba(0, 188, 212, 1)",  // transparent is computed like this
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "box-shadow": "none",
+        },
+        classes: [
+          "button-flat"
+        ],
+      },
+      {
+        height: 33,
+        width: 33,
         css: {
           // eslint-disable-next-line @typescript-eslint/naming-convention
           "background-color": "rgba(0, 0, 0, 0)",  // transparent is computed like this
@@ -229,6 +317,35 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         ],
       },
       {
+        height: 33,
+        width: 33,
+        css: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "background-color": "rgba(0, 0, 0, 0)",  // transparent is computed like this
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "box-shadow": "none",
+        },
+        classes: [
+          "button-plain",
+          "button-flat"
+        ],
+      },
+      {
+        height: 33,
+        width: 33,
+        css: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "background-color": "rgba(0, 188, 212, 1)",  // transparent is computed like this
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          "box-shadow": "rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px",
+        },
+        classes: [
+          "button-elevated"
+        ],
+      },
+      {
+        height: 37,
+        width: 37,
         css: {
           // eslint-disable-next-line @typescript-eslint/naming-convention
           "background-color": "rgba(0, 0, 0, 0)",  // transparent is computed like this
@@ -291,28 +408,6 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         classes: [
           "button-icon-only",
           "button-outlined",
-        ],
-      },
-    ])
-  );
-
-  it('Check SLOTS button characteristics', async (browser: NightwatchBrowser) =>
-    nightwatchCheckRules(browser, '#test-slots .simple-button', [
-      {
-        css: {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          "background-color": "rgba(0, 188, 212, 1)",
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          "border-color": "rgb(0, 188, 212)",
-        },
-        classes: [
-          "simple-button",
-          "animate-on-hover",
-          "animate-on-active",
-        ],
-        html: [
-          "<img src=\"https://placedog.net/100/100\" alt=\"Image\" class=\"button-image\">",
-          "IMAGE"
         ],
       },
     ])

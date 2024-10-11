@@ -1,21 +1,35 @@
-TEMP
-Spacchettare src/components/components.zip
+# Guebbit VUE Library
+Extension of @guebbit/css-ui library
+
+## Implement global theme css
+
+```scss
+@use "@guebbit/vue-library/src/assets/theme" as theme;
+
+:root{
+    @include theme.theme-generic;
+    @include theme.theme-dark-builder;
+}
+.#{theme.$css-ui-dark-theme-class}{
+    :root{
+        @include theme.theme-dark-builder;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    :root{
+        @include theme.theme-dark-builder;
+    }
+}
+
+```
+
 
 
 TODO
- - tests/utils/nightwatchCheckRules.ts: Why rules[i].styles needs !, typescript is not inferring correcly?
- - html, classes, etc have all the same problem
+ - tests/utils/nightwatchCheckRules.ts: Why rules[i].styles needs !, typescript is not inferring correcly? (html, classes, etc have all the same problem)
  - sometimes nightwatch test fails for no reason (normal?).
  - Nightwatch firefox and firefoxHeadless NOT working
- - Incomplete SimpleCard
-   - better icons
-   - better image management
-   - add variants: greyscale, rounded, circular, etc
-   - todo alerts
-   - todo all other special cards
- - BookCard shadow bug (in css-ui too)
- - SimpleButton "basics" with base simple button + slots
- - Standardize better elevation (and give it to SimpleButton)
+ - SimpleButton social rollup
 
 Vue3
 https://blog.vuejs.org/posts/vue-3-2

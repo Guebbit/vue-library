@@ -1,6 +1,6 @@
 import './AspectRatio.scss';
-import { defineComponent } from 'vue';
-import type { PropType } from 'vue';
+import { defineComponent, computed } from 'vue';
+import translateAspectRatio from "../../../../utils/translateAspectRatio.ts";
 
 /**
  * Component
@@ -11,17 +11,25 @@ export default defineComponent({
     props: {
         /**
          * Wanted ratio
+         * Can be a number (like 56.25%) or a string (like '16/9')
          */
         ratio: {
-            type: Number as PropType<number>,
-            default: 100,
+            type: [Number, String],
         },
     },
 
     setup(props, { slots }) {
+        const calculatedAspectRatio = computed(() => translateAspectRatio(props.ratio));
+
+        if(!calculatedAspectRatio.value)
+            return () => slots.default?.()
+
         return () => (
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          <div class="aspect-ratio-container" style={{ '--aspect-ratio': `${props.ratio}%` }}>
+          <div
+              class="aspect-ratio-container"
+              // eslint-disable-next-line @typescript-eslint/naming-convention
+              style={{ '--aspect-ratio': calculatedAspectRatio.value }}
+          >
               {slots.default?.()}
           </div>
         );

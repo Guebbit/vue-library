@@ -1,6 +1,15 @@
-export default () => {
+import { computed } from 'vue'
+import type { PropType } from 'vue'
+
+/**
+ *
+ * @param props
+ * @param prefix
+ */
+export default (props = {}, prefix = "") => {
+
   /**
-   * Can be multiple, strings separated by space
+   *
    */
   const animationProps = {
     /**
@@ -36,7 +45,48 @@ export default () => {
     },
   };
 
+  /**
+   *
+   */
+  const themeProps = {
+    /**
+     * Shorthand of theme prop
+     */
+    color: {
+      type: String,
+      default: () => "",
+    },
+
+    /**
+     * Button is active
+     */
+    theme: {
+      type: Object as PropType<Record<string, string>>,
+      default: () => {
+        return {}
+      },
+    },
+  }
+
+  /**
+   * Array of pairs: variable name and value, to transform into an array of instructions (no duplicates)
+   */
+  const themeVars = computed(() => {
+  // :theme="{ background: red }"
+  //   if(props.theme)
+  //     console.log("AAAAAAAAAAAAAAAA", props.theme)
+    return {};
+  })
+
+  /**
+   * css var(--name) that user can implement
+   */
+  const themeStyle = computed(() => "") // themeVars.value.join(" ")
+
   return {
-    animationProps
+    animationProps,
+    themeProps,
+    themeVars,
+    themeStyle
   }
 }

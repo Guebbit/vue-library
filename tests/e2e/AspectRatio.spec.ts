@@ -20,6 +20,7 @@ describe('AspectRatio Component E2E Tests - based on the documentation, page /at
    */
   it('Check ALL padding-bottom, height, width, styles and content', async (browser : NightwatchBrowser) =>
     nightwatchCheckRules(browser, '.aspect-ratio-container', [
+      // { default one has not .aspect-ratio-container so it doesn't appear }
       {
         height: 664,
         width: 664,

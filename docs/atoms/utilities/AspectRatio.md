@@ -15,7 +15,12 @@ import { AspectRatio } from "@guebbit/vue-library";
             media="http://placedog.net/400/400" 
         />
     </AspectRatio>
-    <AspectRatio :ratio="56.25">
+    <AspectRatio :ratio="100">
+        <Media
+            media="http://placedog.net/400/400" 
+        />
+    </AspectRatio>
+    <AspectRatio ratio="16/9">
         <Media
             media="http://placedog.net/400/400" 
         />
@@ -28,22 +33,44 @@ import { AspectRatio } from "@guebbit/vue-library";
 </div>
 
 ::: code-group
-```html [100 (default)]
+```html [none (image untouched)]
 <AspectRatio>
     <Media
         media="http://placedog.net/400/400"
     />
 </AspectRatio>
 ```
-```html [16/9]
-<AspectRatio :ratio="56.25">
+```html [1/1 100%]
+<AspectRatio :ratio="100">
+    <Media
+        media="http://placedog.net/400/400"
+    />
+</AspectRatio>
+<AspectRatio ratio="1/1">
     <Media
         media="http://placedog.net/400/400"
     />
 </AspectRatio>
 ```
-```html [4/3]
+```html [16/9 56.25%]
+<AspectRatio :ratio="56.25">
+    <Media
+        media="http://placedog.net/400/400"
+    />
+</AspectRatio>
+<AspectRatio ratio="16/9">
+    <Media
+        media="http://placedog.net/400/400"
+    />
+</AspectRatio>
+```
+```html [4/3 75%]
 <AspectRatio :ratio="75">
+    <Media
+        media="http://placedog.net/400/400"
+    />
+</AspectRatio>
+<AspectRatio ratio="4/3">
     <Media
         media="http://placedog.net/400/400"
     />

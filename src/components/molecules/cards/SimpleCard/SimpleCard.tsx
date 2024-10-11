@@ -3,15 +3,20 @@ import { computed, defineComponent } from 'vue'
 import type { PropType } from 'vue'
 import useComponentGenerics from '../../../../composables/componentGenerics.ts'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
+import CardHeader from './SimpleCardHeader.tsx';
+import CardFooter from './SimpleCardFooter.tsx';
+import CardMedia from './SimpleCardMedia.tsx';
+import CardActions from './SimpleCardActions.tsx';
 
 export enum ESimpleCardVariants {
     ROUNDED = 'rounded',
     CIRCULAR = 'circular',
     OUTLINED = 'outlined',
     FLAT = 'flat',
+    OVERLAY = 'overlay',
 }
 
-export enum ESimpleCardImageAlignment {
+export enum ESimpleCardMediaAlignment {
     LEFT = 'left',
     RIGHT = 'right'
 }
@@ -20,27 +25,37 @@ export enum ESimpleCardImageAlignment {
  * Outside setup only composable
  */
 const {
-    animationProps
-} = useComponentGenerics()
+    animationProps,
+    themeProps
+} = useComponentGenerics();
 const {
     prop: variantProps
-} = useComponentVariants<ESimpleCardVariants>('card-')
+} = useComponentVariants<ESimpleCardVariants>({});
 
 /**
  * Component
  */
 export default defineComponent({
-    name: 'SimplePanel',
+    name: 'SimpleCard',
 
     props: {
         ...animationProps,
         ...variantProps,
+        ...themeProps,
 
         /**
          * Card background (if not slot)
          */
         background: {
             type: String,
+            required: false
+        },
+
+        /**
+         * Background ratio
+         */
+        backgroundRatio: {
+            type: [Number, String],
             required: false
         },
 
@@ -61,15 +76,23 @@ export default defineComponent({
         },
 
         /**
+         * Image ratio
+         */
+        imageRatio: {
+            type: [Number, String],
+            required: false
+        },
+
+        /**
          * Card ALT image (if not slot)
          */
         imageAlignment: {
-            type: String as PropType<ESimpleCardImageAlignment | undefined>,
+            type: String as PropType<ESimpleCardMediaAlignment | undefined>,
             required: false,
             validator: (value?: string) => {
                 if(!value)
                     return true;
-                return Object.values(ESimpleCardImageAlignment).includes(value as ESimpleCardImageAlignment);
+                return Object.values(ESimpleCardMediaAlignment).includes(value as ESimpleCardMediaAlignment);
             }
         },
 
@@ -137,7 +160,10 @@ export default defineComponent({
          */
         const {
             classes: variantClasses
-        } = useComponentVariants<ESimpleCardVariants>('card-', props);
+        } = useComponentVariants<ESimpleCardVariants>({ props }, "card-");
+        const {
+            themeVars
+        } = useComponentGenerics();
 
         /**
          * Aggregator of all the classes of component
@@ -145,7 +171,7 @@ export default defineComponent({
         const classes = computed(() => [
             'simple-card',
             variantClasses.value,
-            props.imageAlignment ? `card-image-${props.imageAlignment}` : '',
+            props.imageAlignment ? `card-media-${props.imageAlignment}` : '',
             {
                 // eslint-disable-next-line @typescript-eslint/naming-convention
                 'animate-on-hover': props.animated || props.animatedHover,
@@ -158,101 +184,110 @@ export default defineComponent({
             }
         ]);
 
-        /**
-         *
-         */
-        const cardSubtitle = (
-            slots.subtitle || props.subtitle ?
-                <component
-                    is={props.subtitleTag}
-                    class="card-subtitle"
-                >
-                    {slots.subtitle ? slots.subtitle() : props.subtitle}
-                </component>
-                : null
-        );
-
-        /**
-         * WARNING: If there is no title, there is no subtitle
-         */
-        const cardTitle =
-            slots.title || props.title ?
-                <component
-                    is={props.titleTag}
-                    class="card-title"
-                >
-                    {slots.title ? slots.title() : props.title}
-                    {cardSubtitle}
-                </component>
-                : null
-
-        /**
-         *
-         */
-        const cardHeader =
-            slots.header || slots.headerActions || cardTitle ?
-                <div class="card-header">
-                    {slots.headerActions ? <div class="card-actions">{slots.headerActions()}</div> : null}
-                    {slots.header ? slots.header() : cardTitle}
-                </div>
-                : null
-
-        /**
-         *
-         */
         const cardImage =
             props.image ?
-                <img
-                    class="card-image"
+                <CardMedia
+                    class="card-media"
+                    media={props.image}
+                    ratio={props.imageRatio}
                     alt={props.imageAlt}
-                    src={props.image}
                 />
-                : null;
+                : null
 
-        /**
-         *
-         */
         const cardBackground =
             props.background ?
-                <img class="card-background" src={props.background} />
+                <CardMedia
+                    class="card-background"
+                    media={props.background}
+                    ratio={props.backgroundRatio}
+                />
                 : null
 
         /**
          *
          */
         const cardContent =
-            <div class="card-content">
-                {slots.content ? slots.content() : (
-                    <component is={props.textTag}>{props.text}</component>
-                )}
-            </div>
+            slots.content || props.text ?
+                <div class="card-content">
+                    {slots.content ? slots.content() : (
+                        <component is={props.textTag}>{props.text}</component>
+                    )}
+                </div> : null
 
         /**
-         * card-actions-center
-         * card-actions-end
-         * card-actions-vertical
+         *
          */
-        const cardFooter =
-            slots.footer || slots.footerActions ?
-                <div class="card-footer">
-                    {slots.footer ? slots.footer() : null}
-                    {slots.footerActions ? <div class="card-actions">{slots.footerActions()}</div> : null }
-                </div>
-                : null
+        const slotImage =
+            slots.image
+            && (() => {
+                // if icon slot was used, add the button-icon class to the node inserted by the user (if present)
+                const iconVNode = slots.image?.()[0]
+                if (iconVNode) {
+                    iconVNode.props = {
+                        ...iconVNode.props,
+                        class: `${iconVNode.props?.class || ''} card-media` // Append your class here
+                    }
+                    return iconVNode
+                }
+                return slots.image()
+            })();
 
+        /**
+         *
+         */
+        const slotBackground =
+            slots.background
+            && (() => {
+                // if icon slot was used, add the button-icon class to the node inserted by the user (if present)
+                const iconVNode = slots.background?.()[0]
+                if (iconVNode) {
+                    iconVNode.props = {
+                        ...iconVNode.props,
+                        class: `${iconVNode.props?.class || ''} card-background` // Append your class here
+                    }
+                    return iconVNode
+                }
+                return slots.background()
+            })();
+
+        /**
+         *
+         */
         return () => (
             <div
                 class={classes.value}
+                style={{ ...attrs.style || {}, ...themeVars.value }}
                 {...attrs}
             >
-                {cardHeader}
-                {slots.background ? slots.background() : cardBackground}
-                {slots.image ? slots.image() : cardImage}
-                {slots.default ? slots.default() : (
-                    slots.content ? <div class="card-content">{slots.content()}</div> : cardContent
-                )}
-                {slots.actions ? <div class="card-actions card-actions-absolute">{slots.actions()}</div> : null}
-                {cardFooter}
+                {slotBackground ? slotBackground : cardBackground}
+                {slotImage ? slotImage : cardImage}
+                <CardHeader
+                    title={props.title}
+                    titleTag={props.titleTag}
+                    sub={props.subtitle}
+                    subTag={props.subtitleTag}
+                    v-slots={{
+                        actions: slots.headerActions,
+                        default: slots.header,
+                        sub: slots.subtitle,
+                        title: slots.title,
+                    }}
+                />
+                {slots.default ? slots.default() : null}
+                {cardContent}
+                {slots.actions ?
+                    <CardActions
+                        variant="absolute"
+                        v-slots={{
+                            default: slots.actions,
+                        }}
+                    /> : null}
+                <CardFooter
+                    v-slots={{
+                        default: slots.footer,
+                        actions: slots.footerActions,
+                    }}
+                />
             </div>
         )
     }

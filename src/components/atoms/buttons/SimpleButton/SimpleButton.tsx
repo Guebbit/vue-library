@@ -1,11 +1,11 @@
-import "./SimpleButton.scss";
-import { defineComponent, computed } from 'vue';
+import './SimpleButton.scss'
+import { defineComponent, computed } from 'vue'
 
 import useComponentGenerics from '../../../../composables/componentGenerics.ts'
 import useComponentSizes from '../../../../composables/componentSizes.ts'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
 
-export type { EComponentSizes } from '../../../../composables/componentSizes.ts'
+export { EComponentSizes } from '../../../../composables/componentSizes.ts'
 
 export enum ESimpleButtonVariants {
     ROUNDED = 'rounded',
@@ -22,13 +22,13 @@ export enum ESimpleButtonVariants {
  */
 const {
     animationProps
-} = useComponentGenerics();
+} = useComponentGenerics()
 const {
     prop: sizeProps
-} = useComponentSizes("button-");
+} = useComponentSizes('button-')
 const {
     prop: variantProps
-} = useComponentVariants<ESimpleButtonVariants>("button-");
+} = useComponentVariants<ESimpleButtonVariants>({}, 'button-')
 
 /**
  * Component
@@ -47,7 +47,7 @@ export default defineComponent({
          */
         icon: {
             type: Boolean,
-            default: () => false,
+            default: () => false
         },
 
         /**
@@ -55,7 +55,7 @@ export default defineComponent({
          */
         image: {
             type: String,
-            default: () => '',
+            default: () => ''
         },
 
         /**
@@ -63,7 +63,7 @@ export default defineComponent({
          */
         imageAlt: {
             type: String,
-            default: () => '',
+            default: () => ''
         },
 
         /**
@@ -71,7 +71,7 @@ export default defineComponent({
          */
         text: {
             type: String,
-            default: () => '',
+            default: () => ''
         },
 
         /**
@@ -79,8 +79,8 @@ export default defineComponent({
          */
         disabled: {
             type: Boolean,
-            default: () => false,
-        },
+            default: () => false
+        }
     },
 
     setup(props, { attrs, slots }) {
@@ -89,10 +89,10 @@ export default defineComponent({
          */
         const {
             classes: sizeClass
-        } = useComponentSizes("button-", props);
+        } = useComponentSizes('button-', props)
         const {
-            classes: variantClasses,
-        } = useComponentVariants<ESimpleButtonVariants>("button-", props);
+            classes: variantClasses
+        } = useComponentVariants<ESimpleButtonVariants>({ props }, 'button-')
 
         /**
          * Aggregator of all the classes of component
@@ -101,42 +101,73 @@ export default defineComponent({
             'simple-button',
             sizeClass.value,
             variantClasses.value,
-            {
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                'button-icon-only': props.icon,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                'animate-on-hover': props.animated || props.animatedHover,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                'animate-on-active': props.animated || props.animatedActive,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                'animate-active': props.active,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                'button-disabled': props.disabled,
-            },
+            props.icon ? 'button-icon-only' : '',
+            (props.animated || props.animatedHover) ? 'animate-on-hover' : '',
+            (props.animated || props.animatedActive) ? 'animate-on-active' : '',
+            props.active ? 'animate-active' : '',
+            props.disabled ? 'button-disabled' : ''
         ]);
+
+        /**
+         *
+         */
+        const slotIcon =
+            slots.icon
+                && (() => {
+                    // if icon slot was used, add the button-icon class to the node inserted by the user (if present)
+                    const iconVNode = slots.icon?.()[0]
+                    if (iconVNode) {
+                        iconVNode.props = {
+                            ...iconVNode.props,
+                            class: `${iconVNode.props?.class || ''} button-icon` // Append your class here
+                        }
+                        return iconVNode
+                    }
+                    return slots.icon()
+                })();
+
+        /**
+         *
+         */
+        const slotContent =
+            slots.default && (() => {
+                // variant
+                if(classes.value.includes("button-icon-only")){
+                    // if it's icon only (by prop or by variant or by class)
+                    const iconVNode = slots.default?.()[0]
+                    if (iconVNode){
+                        iconVNode.props = {
+                            ...iconVNode.props,
+                            class: `${iconVNode.props?.class || ''} button-icon` // Append your class here
+                        }
+                        return iconVNode
+                    }
+                }
+                // regular
+                return slots.default();
+            })();
 
         /**
          * Template
          */
         return () => (
-          <button
-            class={classes.value}
-            {...attrs}
-            disabled={props.disabled || props.variant?.includes("disabled")}
-          >
-              {slots.icon
-                ? slots.icon()
-                : props.image && (
-                <img
-                  src={props.image}
-                  alt={props.imageAlt}
-                  class="button-image"
-                />
-              )}
-              {slots.default ? slots.default() : (
-                !props.icon ? props.text : ''
-              )}
-          </button>
-        );
-    },
-});
+            <button
+                class={classes.value}
+                {...attrs}
+                disabled={props.disabled || props.variant?.includes('disabled')}
+            >
+                {
+                    slotIcon ?
+                        slotIcon : props.image && (
+                            <img
+                                src={props.image}
+                                alt={props.imageAlt}
+                                class="button-image"
+                            />
+                        )
+                }
+                { slotContent ? slotContent : !props.icon ? props.text : '' }
+            </button>
+        )
+    }
+})

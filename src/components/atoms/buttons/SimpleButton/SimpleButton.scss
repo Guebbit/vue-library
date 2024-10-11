@@ -1,6 +1,6 @@
-@use "../../../../assets/theme" as theme;
+@use "../../../../vars" as vars;
 @use "../../../../../node_modules/@guebbit/css-ui/src/atoms/buttons/SimpleButton" with (
-    $css-ui-dark-theme-class: theme.$css-ui-dark-theme-class,
-    $css-ui-var-prefix: theme.$css-ui-var-prefix,
-    $css-ui-root-prefix: theme.$css-ui-root-prefix
+    $css-ui-dark-theme-class: vars.$css-ui-dark-theme-class,
+    $css-ui-var-prefix: vars.$css-ui-var-prefix,
+    $css-ui-root-prefix: vars.$css-ui-root-prefix
 );

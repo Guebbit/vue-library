@@ -127,13 +127,9 @@ export default defineComponent({
         })
 
         /**
-         * Since template ref can't be functions, I use Vue ref
-         * WARNING: EMediaTypes.COLOR doesn't have a lazyload and doesn't require a REF
+         *
          */
-        const imageRef = ref<HTMLImageElement | null>(null)
-        const cssRef = ref<HTMLElement | null>(null)
-        const iframeRef = ref<HTMLIFrameElement | null>(null)
-        const videoRef = ref<HTMLVideoElement | null>(null)
+        const mediaRef = ref<HTMLElement | null>(null)
 
         /**
          * Generic function to apply observer
@@ -158,120 +154,110 @@ export default defineComponent({
          * WARNING: EMediaTypes.COLOR doesn't have a lazyload
          */
         onMounted(() => {
-            if (props.lazy && imageRef.value)
-                return _observerHelper<HTMLImageElement>(imageRef.value, (target) => {
-                    target.src = props.media
-                    target.classList.add(props.loadedClass)
-                })
-
-            if (props.lazy && cssRef.value)
-                return _observerHelper<HTMLElement>(cssRef.value, (target) => {
-                    target.style.backgroundImage = `url('${props.media}')`
-                    target.classList.add(props.loadedClass)
-                })
-
-            if (props.lazy && iframeRef.value)
-                return _observerHelper<HTMLIFrameElement>(iframeRef.value, (target) => {
-                    target.src = props.media
-                    target.classList.add(props.loadedClass)
-                })
-
-            if (props.lazy && videoRef.value)
-                return _observerHelper<HTMLVideoElement>(videoRef.value, (video) => {
-                    const source = video.firstElementChild as HTMLSourceElement | null
-                    if (!source || (video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2))
-                        return
-                    source.src = props.media
-                    video.onloadeddata = function() {
+            if(!props.lazy || mediaRef.value)
+                return;
+            switch (props.type) {
+                case EMediaTypes.IMAGE:
+                    return _observerHelper<HTMLImageElement>(mediaRef.value, (target) => {
+                        target.src = props.media
+                        target.classList.add(props.loadedClass)
+                    })
+                case EMediaTypes.CSS:
+                    return _observerHelper<HTMLElement>(mediaRef.value, (target) => {
+                        target.style.backgroundImage = `url('${props.media}')`
+                        target.classList.add(props.loadedClass)
+                    })
+                case EMediaTypes.IFRAME:
+                    return _observerHelper<HTMLIFrameElement>(mediaRef.value, (target) => {
+                        target.src = props.media
+                        target.classList.add(props.loadedClass)
+                    })
+                case EMediaTypes.COLOR:
+                    return;
+                default:
+                    // generic string can only be video
+                    return _observerHelper<HTMLVideoElement>(mediaRef.value, (video) => {
+                        const source = video.firstElementChild as HTMLSourceElement | null
+                        if (!source || (video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2))
+                            return
+                        source.src = props.media
+                        video.onloadeddata = function() {
+                            video.classList.add(props.loadedClass)
+                        }
+                        video.load()
                         video.classList.add(props.loadedClass)
-                    }
-                    video.load()
-                    video.classList.add(props.loadedClass)
-                })
+                    })
+            };
         })
 
-        /**
-         * image endering
-         */
-        const mediaImage =
-            props.type === EMediaTypes.IMAGE && <img
-                ref={imageRef}
-                src={props.lazy ? props.thumbnail : props.media}
-                alt={props.alt}
-                title={props.title}
-                style={styles.value}
-                {...attrs}
-            />
-
-        const mediaCss =
-            props.type === EMediaTypes.COLOR && <div
-                style={{
-                    ...styles.value,
-                    backgroundColor: props.media
-                }}
-                {...attrs}
-            />
-
-        const mediaBackgroundImage =
-            props.type === EMediaTypes.CSS &&
-            <div
-                ref={cssRef}
-                style={{
-                    ...styles.value,
-                    backgroundImage: props.lazy && props.thumbnail ? `url('${props.thumbnail}')` : `url('${props.media}')`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover'
-                }}
-                aria-label={props.title}
-                aria-details={props.alt}
-                {...attrs}
-            />
-
-        const mediaIframe =
-            props.type === EMediaTypes.IFRAME &&
-            <div style={{ position: 'relative', height: props.height, width: props.width }} {...attrs}>
-                <iframe
-                    ref={iframeRef}
-                    src={props.lazy ? undefined : props.media}
-                    allowfullscreen
-                    title={props.title}
-                />
-            </div>
-
-        const mediaVideo =
-            !!props.type &&
-            <video
-                ref={videoRef}
-                style={styles.value}
-                preload="metadata"
-                playsinline
-                muted
-                loop
-                autoplay
-                poster={props.thumbnail}
-                title={props.title}
-                {...attrs}
-            >
-                <source src={props.lazy ? undefined : props.media} type={props.type} />
-            </video>
-
-        if (props.type === EMediaTypes.IMAGE)
-            return () => mediaImage
-
-        // NO ref and NO lazy for it
-        else if (props.type === EMediaTypes.COLOR)
-            return () => mediaCss
-
-        else if (props.type === EMediaTypes.CSS)
-            return () => mediaBackgroundImage
-
-        else if (props.type === EMediaTypes.IFRAME)
-            return () => mediaIframe
-
-            // since there are a lot of types that can go in "<source>" (the codecs),
-        // string is accepted as props.type and it indicates the video
-        else
-            return () => mediaVideo
+        // Render media based on type
+        return () => {
+            switch (props.type) {
+                case EMediaTypes.IMAGE:
+                    return <img
+                        ref={mediaRef}
+                        src={props.lazy ? props.thumbnail : props.media}
+                        alt={props.alt}
+                        title={props.title}
+                        style={styles.value}
+                        {...attrs}
+                    />
+                case EMediaTypes.COLOR:
+                    return <div
+                        style={{
+                            ...styles.value,
+                            backgroundColor: props.media
+                        }}
+                        {...attrs}
+                    />
+                case EMediaTypes.CSS:
+                    return <div
+                        ref={mediaRef}
+                        style={{
+                            ...styles.value,
+                            backgroundImage: props.lazy && props.thumbnail ? `url('${props.thumbnail}')` : `url('${props.media}')`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'center',
+                            backgroundSize: 'cover'
+                        }}
+                        aria-label={props.title}
+                        aria-details={props.alt}
+                        {...attrs}
+                    />
+                case EMediaTypes.IFRAME:
+                    return <div
+                        style={{
+                            position: 'relative',
+                            height: props.height,
+                            width: props.width
+                        }}
+                        {...attrs}
+                    >
+                        <iframe
+                            ref={mediaRef}
+                            src={props.lazy ? undefined : props.media}
+                            allowfullscreen
+                            title={props.title}
+                        />
+                    </div>
+                default:
+                    // since there are a lot of types that can go in "<source>" (the codecs),
+                    // string is accepted as props.type and it indicates the video
+                    return <video
+                        ref={mediaRef}
+                        style={styles.value}
+                        preload="metadata"
+                        playsinline
+                        muted
+                        loop
+                        autoplay
+                        poster={props.thumbnail}
+                        title={props.title}
+                        {...attrs}
+                    >
+                        <source src={props.lazy ? undefined : props.media} type={props.type} />
+                    </video>
+            }
+        }
     }
 })

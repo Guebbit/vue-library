@@ -17,7 +17,7 @@ export default <T extends string>({ props, settings }: IVariantsSettings = {}, p
   /**
    * Can be multiple, strings separated by space
    */
-  const prop = {
+  const variantsProps = {
     variant: {
       type: String,
       ...settings || {}
@@ -38,7 +38,7 @@ export default <T extends string>({ props, settings }: IVariantsSettings = {}, p
   const classes = computed(() => data.value.join(" "));
 
   return {
-    prop,
+    props: variantsProps,
     data,
     classes
   }

@@ -37,6 +37,10 @@ export default defineConfig({
         ],
         sidebar: [
             {
+                text: 'Workbench',
+                link: '/workbench.md'
+            },
+            {
                 text: 'Atoms',
                 collapsed: true,
                 items: [

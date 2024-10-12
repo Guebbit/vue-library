@@ -1,12 +1,20 @@
-import { computed } from 'vue'
-import type { PropType } from 'vue'
+export interface IGenericProps {
+  // props?: {
+  //   animated?: boolean,
+  //   animatedHover?: boolean,
+  //   animatedActive?: boolean,
+  //   active?: boolean,
+  // },
+  settings?: Record<string, unknown>
+}
 
 /**
  *
- * @param props
- * @param prefix
+ * @param settings
  */
-export default (props = {}, prefix = "") => {
+
+export default ({ settings }: IGenericProps = {}) => {
+
 
   /**
    *
@@ -18,6 +26,7 @@ export default (props = {}, prefix = "") => {
     animated: {
       type: Boolean,
       default: () => true,
+      ...settings?.animated || {}
     },
 
     /**
@@ -26,6 +35,7 @@ export default (props = {}, prefix = "") => {
     animatedHover: {
       type: Boolean,
       default: () => false,
+      ...settings?.animatedHover || {}
     },
 
     /**
@@ -34,6 +44,7 @@ export default (props = {}, prefix = "") => {
     animatedActive: {
       type: Boolean,
       default: () => false,
+      ...settings?.animatedActive || {}
     },
 
     /**
@@ -42,51 +53,11 @@ export default (props = {}, prefix = "") => {
     active: {
       type: Boolean,
       default: () => false,
+      ...settings?.active || {}
     },
   };
 
-  /**
-   *
-   */
-  const themeProps = {
-    /**
-     * Shorthand of theme prop
-     */
-    color: {
-      type: String,
-      default: () => "",
-    },
-
-    /**
-     * Button is active
-     */
-    theme: {
-      type: Object as PropType<Record<string, string>>,
-      default: () => {
-        return {}
-      },
-    },
-  }
-
-  /**
-   * Array of pairs: variable name and value, to transform into an array of instructions (no duplicates)
-   */
-  const themeVars = computed(() => {
-  // :theme="{ background: red }"
-  //   if(props.theme)
-  //     console.log("AAAAAAAAAAAAAAAA", props.theme)
-    return {};
-  })
-
-  /**
-   * css var(--name) that user can implement
-   */
-  const themeStyle = computed(() => "") // themeVars.value.join(" ")
-
   return {
-    animationProps,
-    themeProps,
-    themeVars,
-    themeStyle
+    animationProps
   }
 }

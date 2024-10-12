@@ -6,7 +6,7 @@ import useComponentSizes from '../../../../composables/componentSizes.ts'
  * Outside setup only composable
  */
 const {
-    prop: sizeProps
+    props: sizeProps
 } = useComponentSizes()
 
 /**

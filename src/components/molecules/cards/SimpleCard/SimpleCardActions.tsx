@@ -12,7 +12,7 @@ export enum ESimpleCardActionsVariants {
  * Outside setup only composable
  */
 const {
-    prop: variantProps
+    props: variantsProps
 } = useComponentVariants<ESimpleCardActionsVariants>({
     settings: {
         default: () => ESimpleCardActionsVariants.START
@@ -25,21 +25,21 @@ const {
 export default defineComponent({
     name: 'SimpleCardActions',
     props: {
-        ...variantProps,
+        ...variantsProps,
     },
     setup(props, { slots }) {
         /**
          * Setup only composable
          */
         const {
-            classes: variantClasses
+            classes: variantsClasses
         } = useComponentVariants<ESimpleCardActionsVariants>({ props }, 'card-actions-');
 
         /**
          * Template
          */
         return () => (
-            <div class={['card-actions', variantClasses.value]}>{slots.default?.()}</div>
+            <div class={['card-actions', variantsClasses.value]}>{slots.default?.()}</div>
         )
     },
 })

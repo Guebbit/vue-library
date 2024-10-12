@@ -24,10 +24,10 @@ const {
     animationProps
 } = useComponentGenerics()
 const {
-    prop: sizeProps
+    props: sizeProps
 } = useComponentSizes('button-')
 const {
-    prop: variantProps
+    props: variantsProps
 } = useComponentVariants<ESimpleButtonVariants>({}, 'button-')
 
 /**
@@ -39,7 +39,7 @@ export default defineComponent({
     props: {
         ...animationProps,
         ...sizeProps,
-        ...variantProps,
+        ...variantsProps,
 
         /**
          * Display only the icon without text
@@ -91,7 +91,7 @@ export default defineComponent({
             classes: sizeClass
         } = useComponentSizes('button-', props)
         const {
-            classes: variantClasses
+            classes: variantsClasses
         } = useComponentVariants<ESimpleButtonVariants>({ props }, 'button-')
 
         /**
@@ -100,7 +100,7 @@ export default defineComponent({
         const classes = computed(() => [
             'simple-button',
             sizeClass.value,
-            variantClasses.value,
+            variantsClasses.value,
             props.icon ? 'button-icon-only' : '',
             (props.animated || props.animatedHover) ? 'animate-on-hover' : '',
             (props.animated || props.animatedActive) ? 'animate-on-active' : '',

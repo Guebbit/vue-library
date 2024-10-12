@@ -2,16 +2,6 @@
 
 <Badge type="tip">Molecules</Badge> <Badge type="info">Card</Badge>
 
-
-TODO guarda qua per il discorso theme (provideTheme):
-https://github.com/vuetifyjs/vuetify/blob/ae33530ac17226ca942849bea364ee441ae1dd9f/packages/vuetify/src/composables/theme.ts#L367
-
-global theme rimane ma lo inserisco tramite una funzione su richiesta (anche da css only)
-
-visto che devo cmq listare tutte le css var, tanto vale creare un compoosable per la gestione
-toglie\mette global theme?
-e inserisce per forza le varie cose poi modificabili da component 
-
 ## Instructions
 
 ```ts

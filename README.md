@@ -1,35 +1,141 @@
 # Guebbit VUE Library
 Extension of @guebbit/css-ui library
 
+
+# SCSS theming
+
 ## Implement global theme css
 
+- $css-ui-dark-theme-class: In case you want to toggle the dark theme via css class
+- $css-ui-var-prefix: In case you want to add a prefix to avoid name conflicts
+- $css-ui-root-prefix: Same as $css-ui-var-prefix but for global theme
+
 ```scss
-@use "@guebbit/vue-library/src/assets/theme" as theme;
+@use "@guebbit/css-ui/src/theme" as ui with (
+  $css-ui-dark-theme-class: "theme--dark",
+  $css-ui-var-prefix: "my-prefix-",
+  $css-ui-root-prefix: "g-theme-",
+);
+```
+
+Example to setup your personalized color scheme through CSS
+
+```scss
+$primary-color: #00bcd4 !default;
+$secondary-color: #ff9800 !default;
+$primary-color--dark: #00bcd4 !default;
+$secondary-color--dark: #ff9800 !default;
+
+@use "@guebbit/css-ui/src/theme" as ui with (
+  $css-ui-dark-theme-class: "theme--dark",
+  $css-ui-var-prefix: "my-prefix-",
+  $css-ui-root-prefix: "g-theme-",
+  $color: $primary-color,
+  $color--dark: $primary-color--dark,
+  $active-color: $secondary-color,
+  $active-color--dark: $secondary-color--dark,
+);
 
 :root{
-    @include theme.theme-generic;
-    @include theme.theme-dark-builder;
+  @include ui.theme-generic;
+  @include ui.theme-dark-builder;
 }
-.#{theme.$css-ui-dark-theme-class}{
+.#{ui.$css-ui-dark-theme-class}{
+  :root{
+    @include ui.theme-dark-builder;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root{
+    @include ui.theme-dark-builder;
+  }
+}
+```
+
+You can use css-toolkit through here since it's a dependency.
+You can easily create new colors (css vars + various classes and helpers)
+or import default colors from the library
+
+```scss
+@use "@guebbit/css-toolkit" as guebbit;
+
+/**
+ * Create specific colors (css vars and various classes),
+ * unrelated to the componets but of global use
+ * (optional)
+ */
+@include guebbit.create-colors(guebbit.$colors-collection);
+@include guebbit.create-colors((
+        "primary": guebbit.create-collection($primary-color),
+        "secondary": guebbit.create-collection($secondary-color),
+        "primary--dark": guebbit.create-collection($primary-color--dark),
+        "secondary--dark": guebbit.create-collection($secondary-color--dark)
+));
+```
+
+Full example of a theme.scss for your repo.
+
+```scss
+@use "@guebbit/css-toolkit" as guebbit;
+@forward "@guebbit/css-toolkit";
+
+
+/**
+ * "Install" (via CSS) theme colors and settings
+ * for all components of this library
+ */
+@forward "../src/vars";
+@use "../src/vars" as theme;
+@use "@guebbit/css-ui/src/theme" as ui with (
+  $css-ui-dark-theme-class: theme.$css-ui-dark-theme-class,
+  $css-ui-var-prefix: theme.$css-ui-var-prefix,
+  $css-ui-root-prefix: theme.$css-ui-root-prefix,
+  $color: theme.$primary-color,
+  $color--dark: theme.$primary-color--dark,
+  $active-color: theme.$secondary-color,
+  $active-color--dark: theme.$secondary-color--dark,
+);
+
+/**
+ * Implement theme (insert in the css)
+ */
+:root{
+    @include ui.theme-generic;
+    @include ui.theme-dark-builder;
+}
+.#{ui.$css-ui-dark-theme-class}{
     :root{
-        @include theme.theme-dark-builder;
+        @include ui.theme-dark-builder;
     }
 }
 @media (prefers-color-scheme: dark) {
     :root{
-        @include theme.theme-dark-builder;
+        @include ui.theme-dark-builder;
     }
 }
 
+/**
+ * Create specific colors (css vars and various classes),
+ * unrelated to the componets but of global use
+ */
+@include guebbit.create-colors(guebbit.$colors-collection);
+@include guebbit.create-colors((
+    "primary": guebbit.create-collection(theme.$primary-color),
+    "secondary": guebbit.create-collection(theme.$secondary-color),
+    "primary--dark": guebbit.create-collection(theme.$primary-color--dark),
+    "secondary--dark": guebbit.create-collection(theme.$secondary-color--dark)
+));
+
 ```
+--------------------------
 
+# TODO
 
-
-TODO
  - tests/utils/nightwatchCheckRules.ts: Why rules[i].styles needs !, typescript is not inferring correcly? (html, classes, etc have all the same problem)
  - sometimes nightwatch test fails for no reason (normal?).
  - Nightwatch firefox and firefoxHeadless NOT working
  - SimpleButton social rollup
+ - simple-card root card-actions (like card-actions-absolute) need padding 
 
 Vue3
 https://blog.vuejs.org/posts/vue-3-2

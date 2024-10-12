@@ -3,6 +3,7 @@ import { computed, defineComponent } from 'vue'
 import type { PropType } from 'vue'
 import useComponentGenerics from '../../../../composables/componentGenerics.ts'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
+import useComponentThemes from '../../../../composables/componentThemes.ts'
 import CardHeader from './SimpleCardHeader.tsx';
 import CardFooter from './SimpleCardFooter.tsx';
 import CardMedia from './SimpleCardMedia.tsx';
@@ -25,12 +26,15 @@ export enum ESimpleCardMediaAlignment {
  * Outside setup only composable
  */
 const {
-    animationProps,
-    themeProps
+    animationProps
 } = useComponentGenerics();
 const {
-    prop: variantProps
-} = useComponentVariants<ESimpleCardVariants>({});
+    props: variantsProps
+} = useComponentVariants<ESimpleCardVariants>();
+const {
+    props: themeProps
+} = useComponentThemes();
+
 
 /**
  * Component
@@ -40,7 +44,7 @@ export default defineComponent({
 
     props: {
         ...animationProps,
-        ...variantProps,
+        ...variantsProps,
         ...themeProps,
 
         /**
@@ -159,18 +163,18 @@ export default defineComponent({
          * Setup only composable
          */
         const {
-            classes: variantClasses
+            classes: variantsClasses
         } = useComponentVariants<ESimpleCardVariants>({ props }, "card-");
         const {
-            themeVars
-        } = useComponentGenerics();
+            styles: themeStyles
+        } = useComponentThemes({ props }, "simple-card-");
 
         /**
          * Aggregator of all the classes of component
          */
         const classes = computed(() => [
             'simple-card',
-            variantClasses.value,
+            variantsClasses.value,
             props.imageAlignment ? `card-media-${props.imageAlignment}` : '',
             {
                 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -207,11 +211,18 @@ export default defineComponent({
          *
          */
         const cardContent =
-            slots.content || props.text ?
+            slots.content || slots.actions || props.text ?
                 <div class="card-content">
-                    {slots.content ? slots.content() : (
+                    {slots.content ? slots.content() : props.text ? (
                         <component is={props.textTag}>{props.text}</component>
-                    )}
+                    ) : null}
+                    {slots.actions ?
+                        <CardActions
+                            variant="absolute"
+                            v-slots={{
+                                default: slots.actions,
+                            }}
+                        /> : null}
                 </div> : null
 
         /**
@@ -256,7 +267,7 @@ export default defineComponent({
         return () => (
             <div
                 class={classes.value}
-                style={{ ...attrs.style || {}, ...themeVars.value }}
+                style={{ ...attrs.style || {}, ...themeStyles.value }}
                 {...attrs}
             >
                 {slotBackground ? slotBackground : cardBackground}
@@ -275,13 +286,6 @@ export default defineComponent({
                 />
                 {slots.default ? slots.default() : null}
                 {cardContent}
-                {slots.actions ?
-                    <CardActions
-                        variant="absolute"
-                        v-slots={{
-                            default: slots.actions,
-                        }}
-                    /> : null}
                 <CardFooter
                     v-slots={{
                         default: slots.footer,

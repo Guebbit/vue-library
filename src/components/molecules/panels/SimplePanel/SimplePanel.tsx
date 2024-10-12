@@ -21,7 +21,7 @@ const {
     animationProps
 } = useComponentGenerics();
 const {
-    prop: variantProps
+    props: variantsProps
 } = useComponentVariants<ESimpleCardVariants>( {}, "card-");
 
 export default defineComponent({
@@ -29,7 +29,7 @@ export default defineComponent({
 
     props:{
         ...animationProps,
-        ...variantProps,
+        ...variantsProps,
 
         /**
          * Card background (if not slot)
@@ -86,7 +86,7 @@ export default defineComponent({
          * Setup only composable
          */
         const {
-            classes: variantClasses,
+            classes: variantsClasses,
         } = useComponentVariants<ESimpleCardVariants>({ props }, "card-");
 
         /**
@@ -94,7 +94,7 @@ export default defineComponent({
          */
         const classes = computed(() => [
             'simple-card',
-            variantClasses.value,
+            variantsClasses.value,
             {
                 // eslint-disable-next-line @typescript-eslint/naming-convention
                 'animate-on-hover': props.animated || props.animatedHover,

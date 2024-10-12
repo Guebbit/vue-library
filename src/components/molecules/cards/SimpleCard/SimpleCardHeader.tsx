@@ -12,13 +12,13 @@ export enum ESimpleCardHeaderVariants {
  * Outside setup only composable
  */
 const {
-    prop: variantProps
+    props: variantsProps
 } = useComponentVariants<ESimpleCardHeaderVariants>()
 
 export default defineComponent({
     name: 'SimpleCardHeader',
     props: {
-        ...variantProps,
+        ...variantsProps,
 
         title: {
             type: String,
@@ -42,7 +42,7 @@ export default defineComponent({
          * Setup only composable
          */
         const {
-            classes: variantClasses
+            classes: variantsClasses
         } = useComponentVariants<ESimpleCardActionsVariants>({ props }, 'card-section-');
 
         /**
@@ -78,7 +78,7 @@ export default defineComponent({
          */
         return () => (
             slots.default || slots.actions || cardTitle ?
-                <div class={["card-header", variantClasses.value]}>
+                <div class={["card-header", variantsClasses.value]}>
                     {slots.actions ? <CardActions>{slots.actions()}</CardActions> : null}
                     {cardTitle}
                 </div>

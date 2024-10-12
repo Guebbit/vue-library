@@ -2,39 +2,46 @@
 @forward "@guebbit/css-toolkit";
 
 /**
- * "Install" theme colors and settings
- * for all components of this library
+ * Theme colors
  */
-@forward "../src/vars";
-@use "../src/vars" as theme;
+$primary-color: #00bcd4 !default;
+$secondary-color: #ff9800 !default;
+$primary-color--dark: #00bcd4 !default;
+$secondary-color--dark: #ff9800 !default;
 
-@use "@guebbit/css-ui/src/theme" as ui with (
-  $css-ui-dark-theme-class: theme.$css-ui-dark-theme-class,
-  $css-ui-var-prefix: theme.$css-ui-var-prefix,
-  $css-ui-root-prefix: theme.$css-ui-root-prefix,
-  $color: theme.$primary-color,
-  $color--dark: theme.$primary-color--dark,
-  $active-color: theme.$secondary-color,
-  $active-color--dark: theme.$secondary-color--dark,
-);
-
-/**
- * Implement theme (insert in the css)
- */
-:root{
-    @include ui.theme-generic;
-    @include ui.theme-dark-builder;
-}
-.#{ui.$css-ui-dark-theme-class}{
-    :root{
-        @include ui.theme-dark-builder;
-    }
-}
-@media (prefers-color-scheme: dark) {
-    :root{
-        @include ui.theme-dark-builder;
-    }
-}
+///**
+// * "Install" theme colors and settings
+// * for all components of this library
+// */
+//@forward "../src/vars";
+//@use "../src/vars" as theme;
+//@use "@guebbit/css-ui/src/theme" as ui with (
+//  $css-ui-dark-theme-class: theme.$css-ui-dark-theme-class,
+//  $css-ui-var-prefix: theme.$css-ui-var-prefix,
+//  $css-ui-root-prefix: theme.$css-ui-root-prefix,
+//  $color: $primary-color,
+//  $color--dark: $primary-color--dark,
+//  $active-color: $secondary-color,
+//  $active-color--dark: $secondary-color--dark,
+//);
+//
+///**
+// * Implement theme (insert in the css)
+// */
+//:root{
+//    @include ui.theme-generic;
+//    @include ui.theme-dark-builder;
+//}
+//.#{ui.$css-ui-dark-theme-class}{
+//    :root{
+//        @include ui.theme-dark-builder;
+//    }
+//}
+//@media (prefers-color-scheme: dark) {
+//    :root{
+//        @include ui.theme-dark-builder;
+//    }
+//}
 
 /**
  * Create specific colors (css vars and various classes),
@@ -42,8 +49,8 @@
  */
 @include guebbit.create-colors(guebbit.$colors-collection);
 @include guebbit.create-colors((
-    "primary": guebbit.create-collection(theme.$primary-color),
-    "secondary": guebbit.create-collection(theme.$secondary-color),
-    "primary--dark": guebbit.create-collection(theme.$primary-color--dark),
-    "secondary--dark": guebbit.create-collection(theme.$secondary-color--dark)
+    "primary": guebbit.create-collection($primary-color),
+    "secondary": guebbit.create-collection($secondary-color),
+    "primary--dark": guebbit.create-collection($primary-color--dark),
+    "secondary--dark": guebbit.create-collection($secondary-color--dark)
 ));

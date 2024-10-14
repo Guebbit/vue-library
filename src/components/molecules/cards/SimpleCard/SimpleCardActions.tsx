@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, type VNode } from 'vue'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
 
 export enum ESimpleCardActionsVariants {
@@ -33,13 +33,33 @@ export default defineComponent({
          */
         const {
             classes: variantsClasses
-        } = useComponentVariants<ESimpleCardActionsVariants>({ props }, 'card-actions-');
+        } = useComponentVariants<ESimpleCardActionsVariants>({ props }, 'card-section-');
 
         /**
          * Template
          */
-        return () => (
-            <div class={['card-actions', variantsClasses.value]}>{slots.default?.()}</div>
-        )
+        const translatedSlot = (() => {
+            if(!slots.default)
+                return null;
+            const transformedVNodesArray: VNode[] = [];
+            const foundVNodesArray = slots.default() || [];
+            for (let i = 0, len = foundVNodesArray.length; i < len; i++)
+                if(foundVNodesArray[i]){
+                    foundVNodesArray[i].props = {
+                        ...foundVNodesArray[i].props,
+                        class: `${foundVNodesArray[i].props?.class || ''} card-icon`
+                    }
+                    transformedVNodesArray.push(foundVNodesArray[i])
+                }
+            if(transformedVNodesArray.length > 0)
+                return transformedVNodesArray;
+            return slots.default()
+        })()
+
+        /**
+         * Template
+         */
+        return () =>
+            slots.default && <div class={['card-actions', variantsClasses.value]}>{translatedSlot}</div>
     },
 })

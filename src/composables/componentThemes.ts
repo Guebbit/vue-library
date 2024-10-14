@@ -1,5 +1,6 @@
 import { computed } from 'vue'
-import type { PropType, CSSProperties } from 'vue'
+import type { PropType, CSSProperties } from 'vue';
+import useThemeGenerator from './themeGenerator.ts'
 
 export interface IThemeProps {
   props?: {
@@ -10,22 +11,25 @@ export interface IThemeProps {
 }
 
 /**
+ * TODO da ripensare.
+ *  Come applicare sia il tema light che il tema dark?
+ *  Come applicare il css come avviene per il theme.scss di css-ui?
  *
  * @param props
  * @param settings
  * @param prefix
  */
-
 export default ({ props, settings }: IThemeProps = {}, prefix = "") => {
+  const {
+    themes: themeGlobal
+  } = useThemeGenerator();
 
   /**
    *
    */
   const themeProps = {
     /**
-     * TODO inject\provide a theme file like it happens on vuetify (provideTheme, injectTheme)
-     *  { themename: Record<string,string> } questo sceglierà tale tema da sostituire con quello fornito nella prop.theme
-     * Shorthand of theme prop
+     * Use a theme already defined in themeGlobal
      */
     color: {
       type: String,
@@ -34,7 +38,7 @@ export default ({ props, settings }: IThemeProps = {}, prefix = "") => {
     },
 
     /**
-     * Button is active
+     * How to setup custom var(--cssvar) instructions
      */
     theme: {
       type: Object as PropType<Record<string, string>>,
@@ -45,16 +49,29 @@ export default ({ props, settings }: IThemeProps = {}, prefix = "") => {
     },
   }
 
+
   /**
    * Object StyleValue compliant
    */
   const styles = computed(() =>
-    Object.fromEntries(
-        Object.entries(props.theme || {})
-            .map(([key, value]) => [`--${prefix}${key}`, value])
-    ) as CSSProperties
+      Object.fromEntries([
+        // TODO TEMPORARY (come gestire g-theme-?) ---------------------------------------
+        ...Object.entries(props?.color && themeGlobal?.[props?.color]?.globals || {})
+            .map(([key, value]) => [`--g-theme-${key}`, value]),
+        // TODO --------------------------------------------------------------------------
+        ...Object.entries({
+          ...props?.color && themeGlobal?.[props?.color]?.colors || {},
+          ...props?.theme || {},
+        })
+            .map(([key, value]) => {
+              // if value is array of strings,
+              // then the first is the value and the second a prefix
+              if(Array.isArray(value))
+                return [`--${value[1]}${key}`, value[0]];
+              return [`--${prefix}${key}`, value];
+            })
+      ]) as CSSProperties
   )
-
 
   /**
    * css var(--name) that user can implement
@@ -68,6 +85,6 @@ export default ({ props, settings }: IThemeProps = {}, prefix = "") => {
   return {
     props: themeProps,
     styles,
-    // styleString
+    styleString
   }
 }

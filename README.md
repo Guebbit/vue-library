@@ -135,7 +135,7 @@ Full example of a theme.scss for your repo.
  - sometimes nightwatch test fails for no reason (normal?).
  - Nightwatch firefox and firefoxHeadless NOT working
  - SimpleButton social rollup
- - simple-card root card-actions (like card-actions-absolute) need padding 
+ - Icon.tsx todo?
 
 Vue3
 https://blog.vuejs.org/posts/vue-3-2

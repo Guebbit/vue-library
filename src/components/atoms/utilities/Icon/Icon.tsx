@@ -27,17 +27,19 @@ export default defineComponent({
             classes: sizeClass
         } = useComponentSizes('simple-icon-', props);
 
+        /**
+         * TODO function?
+         */
         return () =>
             slots.default
             && (() => {
                 if(!sizeClass.value)
                     return slots.default()
-                // if icon slot was used, add the button-icon class to the node inserted by the user (if present)
                 const iconVNode = slots.default?.()[0]
                 if (iconVNode) {
                     iconVNode.props = {
                         ...iconVNode.props,
-                        class: `${iconVNode.props?.class || ''} ${sizeClass.value}` // Append your class here
+                        class: `${iconVNode.props?.class || ''} ${sizeClass.value}`
                     }
                     return iconVNode
                 }

@@ -11,7 +11,7 @@ import { BookCard } from "@guebbit/vue-library";
 <BookCard 
     title="Lorem Ipsum Sit Dolor"
     author="Lorem Ipsum Author"
-    image="https://placedog.net/400/600"
+    media="https://placedog.net/400/600"
     background="https://placedog.net/100/600"
 />
 -->

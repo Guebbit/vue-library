@@ -41,6 +41,10 @@ export default defineConfig({
                 link: '/workbench.md'
             },
             {
+                text: 'Theme',
+                link: '/theme.md'
+            },
+            {
                 text: 'Atoms',
                 collapsed: true,
                 items: [
@@ -93,6 +97,10 @@ export default defineConfig({
                             {
                                 text: 'Simple Card',
                                 link: '/molecules/cards/SimpleCard.md'
+                            },
+                            {
+                                text: 'Simple Card (variants)',
+                                link: '/molecules/cards/SimpleCard-custom.md'
                             }
                         ]
                     },

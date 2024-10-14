@@ -46,7 +46,7 @@ export default defineComponent({
         } = useComponentVariants<ESimpleCardActionsVariants>({ props }, 'card-section-');
 
         /**
-         *
+         * TODO make component
          */
         const cardSub = (
             slots.sub || props.sub ?
@@ -60,10 +60,11 @@ export default defineComponent({
         );
 
         /**
+         * TODO make component
          * WARNING: If there is no title, there is no subtitle
          */
         const cardTitle =
-            slots.title || props.title ?
+            slots.title || props.title || cardSub ?
                 <component
                     is={props.titleTag}
                     class="card-title"
@@ -73,16 +74,18 @@ export default defineComponent({
                 </component>
                 : null
 
-        /**
-         * Template
-         */
-        return () => (
+        return () =>
             slots.default || slots.actions || cardTitle ?
                 <div class={["card-header", variantsClasses.value]}>
-                    {slots.actions ? <CardActions>{slots.actions()}</CardActions> : null}
+                    {slots.default ? slots.default() : null}
+                    <CardActions
+                        v-slots={{
+                            default: slots.actions,
+                        }}
+                    />
                     {cardTitle}
                 </div>
                 : null
-        )
+
     },
 })

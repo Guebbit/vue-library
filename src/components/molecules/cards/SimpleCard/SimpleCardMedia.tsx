@@ -13,6 +13,14 @@ export default defineComponent({
             type: [Number, String],
             required: false
         },
+
+        /**
+         * If it's a background
+         */
+        background: {
+            type: Boolean,
+            default: () => false
+        },
     },
 
     setup(props, { attrs }) {
@@ -21,10 +29,7 @@ export default defineComponent({
                 <Media
                     {...props}
                     {...attrs}
-                    // class={[
-                    //     attrs.class,
-                    //     'card-media'
-                    // ]}
+                    class={attrs.class ? attrs.class : (props.background ? 'card-background' : 'card-media')}
                 />
         return () =>
             <AspectRatio
@@ -34,10 +39,7 @@ export default defineComponent({
                     // eslint-disable-next-line @typescript-eslint/naming-convention
                     "--image-aspect-ratio": "var(--aspect-ratio)",
                 }}
-                // class={[
-                //     attrs.class,
-                //     'card-media'
-                // ]}
+                class={attrs.class ? attrs.class : (props.background ? 'card-background' : 'card-media')}
             >
                 <Media {...props} />
             </AspectRatio>

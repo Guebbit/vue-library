@@ -18,7 +18,7 @@ export default (prefix = "", props: Record<'size', EComponentSizes> = { size: EC
   /**
    * Prop for component size
    */
-  const prop = {
+  const sizeProps = {
     size: {
       type: String as PropType<EComponentSizes>,
       default: () => EComponentSizes.MD,
@@ -33,7 +33,7 @@ export default (prefix = "", props: Record<'size', EComponentSizes> = { size: EC
   );
 
   return {
-    prop,
+    props: sizeProps,
     classes
   }
 };

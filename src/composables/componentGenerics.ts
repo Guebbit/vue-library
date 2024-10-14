@@ -1,10 +1,12 @@
+import { computed } from 'vue'
+
 export interface IGenericProps {
-  // props?: {
-  //   animated?: boolean,
-  //   animatedHover?: boolean,
-  //   animatedActive?: boolean,
-  //   active?: boolean,
-  // },
+  props?: {
+    animated?: boolean,
+    animatedHover?: boolean,
+    animatedActive?: boolean,
+    active?: boolean,
+  },
   settings?: Record<string, unknown>
 }
 
@@ -13,8 +15,7 @@ export interface IGenericProps {
  * @param settings
  */
 
-export default ({ settings }: IGenericProps = {}) => {
-
+export default ({ props, settings }: IGenericProps = {}) => {
 
   /**
    *
@@ -57,7 +58,17 @@ export default ({ settings }: IGenericProps = {}) => {
     },
   };
 
+  /**
+   *
+   */
+  const animationClasses = computed(() => [
+    (props?.animated || props?.animatedHover) ? 'animate-on-hover' : '',
+    (props?.animated || props?.animatedActive) ? 'animate-on-active' : '',
+    props?.active ? 'animate-active' : '',
+  ]);
+
   return {
-    animationProps
+    animationProps,
+    animationClasses
   }
 }

@@ -1,9 +1,18 @@
 import './SimpleButton.scss'
 import { defineComponent, computed } from 'vue'
 
+
+// TODO qualcosa non va con i theme?
 import useComponentGenerics from '../../../../composables/componentGenerics.ts'
 import useComponentSizes from '../../../../composables/componentSizes.ts'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
+// TODO e qualcosa non va qui
+// import {
+//     composableComponentGenerics as useComponentGenerics,
+//     composableComponentVariants as useComponentVariants,
+//     // composableComponentSizes as useComponentSizes,
+//     // composableComponentThemes as useComponentThemes, // TODO what is the problem??
+// } from '../../../../index.ts'
 
 export { EComponentSizes } from '../../../../composables/componentSizes.ts'
 
@@ -88,6 +97,9 @@ export default defineComponent({
          * Setup only composable
          */
         const {
+            animationClasses
+        } = useComponentGenerics({ props })
+        const {
             classes: sizeClass
         } = useComponentSizes('button-', props)
         const {
@@ -98,28 +110,25 @@ export default defineComponent({
          * Aggregator of all the classes of component
          */
         const classes = computed(() => [
+            ...animationClasses.value,
             'simple-button',
             sizeClass.value,
             variantsClasses.value,
             props.icon ? 'button-icon-only' : '',
-            (props.animated || props.animatedHover) ? 'animate-on-hover' : '',
-            (props.animated || props.animatedActive) ? 'animate-on-active' : '',
-            props.active ? 'animate-active' : '',
             props.disabled ? 'button-disabled' : ''
         ]);
 
         /**
-         *
+         * TODO function?
          */
         const slotIcon =
             slots.icon
                 && (() => {
-                    // if icon slot was used, add the button-icon class to the node inserted by the user (if present)
                     const iconVNode = slots.icon?.()[0]
                     if (iconVNode) {
                         iconVNode.props = {
                             ...iconVNode.props,
-                            class: `${iconVNode.props?.class || ''} button-icon` // Append your class here
+                            class: `${iconVNode.props?.class || ''} button-icon`
                         }
                         return iconVNode
                     }

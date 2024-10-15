@@ -37,10 +37,6 @@ export default defineConfig({
         ],
         sidebar: [
             {
-                text: 'Workbench',
-                link: '/workbench.md'
-            },
-            {
                 text: 'Theme',
                 link: '/theme.md'
             },

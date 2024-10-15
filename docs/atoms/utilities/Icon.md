@@ -1,5 +1,9 @@
 # Aspect Ratio
 <Badge type="tip">Atom</Badge> <Badge type="tip">Basic</Badge>
+::: danger
+WORK IN PROGRESS
+Don't know if I'll really make this component
+:::
 
 ## Component Import
 
@@ -63,20 +67,6 @@ import { Icon } from "@guebbit/vue-library";
     </svg>
 </Icon>
 ```
-
-## API
-
-The BASIC Panel component
-
-| Prop           | Description                                        | Accepted Values                              | Default  |
-|:---------------|:---------------------------------------------------|:---------------------------------------------|:---------|
-| `ratio`        | Fixed ratio of media (percentage)                  | `number`                                     | `empty`  |
-
-## Slots
-
-| Slot      | Description                                           |
-|:----------|:------------------------------------------------------|
-| `default` | Content of which we want to have a fixed aspect ratio |
 
 <style lang="scss">
 @use "../../theme.scss";

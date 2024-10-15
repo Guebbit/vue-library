@@ -1,13 +1,10 @@
 import './SimpleCard.scss'
 import { computed, defineComponent } from 'vue'
 import type { VNode, PropType } from 'vue'
-import {
-    composableComponentGenerics as useComponentGenerics,
-    composableComponentVariants as useComponentVariants,
-    // composableComponentThemes as useComponentThemes, // TODO what is the problem??
-} from '../../../../index.ts'
-import useComponentThemes from '../../../../composables/componentThemes.ts'
 
+import useComponentGenerics from '../../../../composables/componentGenerics.ts';
+import useComponentVariants from '../../../../composables/componentVariants.ts';
+import useComponentThemes from '../../../../composables/componentThemes.ts';
 import CardHeader from './SimpleCardHeader.tsx';
 import CardContent from './SimpleCardContent.tsx';
 import CardFooter from './SimpleCardFooter.tsx';

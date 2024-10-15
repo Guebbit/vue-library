@@ -8,6 +8,7 @@
   "type": "module",
   "scripts": {
     "dev": "npm run docs:dev",
+    "dev:wb": "vite --config vite.workbench.config.ts",
     "build": "run-p type-check-only \"build-only {@}\" --",
     "build-only": "vite build",
     "type-check-only": "vue-tsc --build --force",

@@ -13,14 +13,14 @@ import { SimpleButton } from "@guebbit/vue-library";
 
 ::: raw
 <div id="test-slots" class="dev-section">
-    <SimpleButton text="DEFAULT"/>
-    <SimpleButton>
+    <SimpleButton :color="pageTheme" text="DEFAULT"/>
+    <SimpleButton :color="pageTheme">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         DEFAULT
     </SimpleButton>
-    <SimpleButton>
+    <SimpleButton :color="pageTheme">
         <template #icon>
             <svg class="button-icon" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
@@ -47,58 +47,58 @@ import { SimpleButton } from "@guebbit/vue-library";
 
 ::: raw
 <div id="test-regulars" class="dev-section">
-    <SimpleButton disabled>
+    <SimpleButton :color="pageTheme" disabled>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         DISABLED
     </SimpleButton>
-    <SimpleButton media="https://placedog.net/100/100">
+    <SimpleButton :color="pageTheme" media="https://placedog.net/100/100">
         IMAGE
     </SimpleButton>
-    <SimpleButton variant="rounded">
+    <SimpleButton :color="pageTheme" variant="rounded">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         ROUNDED
     </SimpleButton>
-    <SimpleButton variant="circular">
+    <SimpleButton :color="pageTheme" variant="circular">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         CIRCULAR
     </SimpleButton>
-    <SimpleButton variant="pill">
+    <SimpleButton :color="pageTheme" variant="pill">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         PILL
     </SimpleButton>
-    <SimpleButton variant="flat">
+    <SimpleButton :color="pageTheme" variant="flat">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         FLAT
     </SimpleButton>
-    <SimpleButton variant="plain">
+    <SimpleButton :color="pageTheme" variant="plain">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         PLAIN
     </SimpleButton>
-    <SimpleButton variant="plain flat">
+    <SimpleButton :color="pageTheme" variant="plain flat">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         PLAIN & FLAT
     </SimpleButton>
-    <SimpleButton variant="elevated">
+    <SimpleButton :color="pageTheme" variant="elevated">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         ELEVATED
     </SimpleButton>
-    <SimpleButton variant="outlined">
+    <SimpleButton :color="pageTheme" variant="outlined">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
@@ -215,31 +215,31 @@ import { SimpleButton } from "@guebbit/vue-library";
 
 ::: raw
 <div id="test-sizes" class="dev-section">
-    <SimpleButton size="xs">
+    <SimpleButton :color="pageTheme" size="xs">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         EXTRA SMALL
     </SimpleButton>
-    <SimpleButton size="sm">
+    <SimpleButton :color="pageTheme" size="sm">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         SMALL
     </SimpleButton>
-    <SimpleButton>
+    <SimpleButton :color="pageTheme">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         MEDIUM
     </SimpleButton>
-    <SimpleButton size="lg">
+    <SimpleButton :color="pageTheme" size="lg">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         LARGE
     </SimpleButton>
-    <SimpleButton size="xl">
+    <SimpleButton :color="pageTheme" size="xl">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
@@ -293,27 +293,27 @@ import { SimpleButton } from "@guebbit/vue-library";
 
 ::: raw
 <div id="test-size-icons" class="dev-section">
-    <SimpleButton size="xs" icon>
+    <SimpleButton :color="pageTheme" size="xs" icon>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton size="sm" icon>
+    <SimpleButton :color="pageTheme" size="sm" icon>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton icon>
+    <SimpleButton :color="pageTheme" icon>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton size="lg" icon>
+    <SimpleButton :color="pageTheme" size="lg" icon>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton size="xl" icon>
+    <SimpleButton :color="pageTheme" size="xl" icon>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
@@ -363,62 +363,62 @@ import { SimpleButton } from "@guebbit/vue-library";
 
 ::: raw
 <div id="test-icons" class="dev-section">
-    <SimpleButton icon>
+    <SimpleButton :color="pageTheme" icon>
         <template v-slot:icon>
             <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
             </svg>
         </template>
     </SimpleButton>
-    <SimpleButton icon>
+    <SimpleButton :color="pageTheme" icon>
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton icon disabled>
+    <SimpleButton :color="pageTheme" icon disabled>
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton icon :media="'https://placedog.net/100/100'"></SimpleButton>
-    <SimpleButton icon variant="rounded">
+    <SimpleButton :color="pageTheme" icon :media="'https://placedog.net/100/100'"></SimpleButton>
+    <SimpleButton :color="pageTheme" icon variant="rounded">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton icon variant="circular">
+    <SimpleButton :color="pageTheme" icon variant="circular">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton icon variant="rounded" :media="'https://placedog.net/100/100'"></SimpleButton>
-    <SimpleButton icon variant="circular" :media="'https://placedog.net/100/100'"></SimpleButton>
-    <SimpleButton icon variant="pill">
+    <SimpleButton :color="pageTheme" icon variant="rounded" :media="'https://placedog.net/100/100'"></SimpleButton>
+    <SimpleButton :color="pageTheme" icon variant="circular" :media="'https://placedog.net/100/100'"></SimpleButton>
+    <SimpleButton :color="pageTheme" icon variant="pill">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton icon variant="flat">
+    <SimpleButton :color="pageTheme" icon variant="flat">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton icon variant="plain">
+    <SimpleButton :color="pageTheme" icon variant="plain">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton icon variant="plain flat">
+    <SimpleButton :color="pageTheme" icon variant="plain flat">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton icon variant="elevated">
+    <SimpleButton :color="pageTheme" icon variant="elevated">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton icon variant="outlined">
+    <SimpleButton :color="pageTheme" icon variant="outlined">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
@@ -533,7 +533,7 @@ import { SimpleButton } from "@guebbit/vue-library";
 
 ::: raw
 <div id="test-multiples" class="dev-section">
-    <SimpleButton variant="outlined pill">
+    <SimpleButton :color="pageTheme" variant="outlined pill">
         <template v-slot:icon>
             <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
@@ -541,18 +541,18 @@ import { SimpleButton } from "@guebbit/vue-library";
         </template>
         Outlined Pill
     </SimpleButton>
-    <SimpleButton variant="flat circular" disabled>
+    <SimpleButton :color="pageTheme" variant="flat circular" disabled>
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         Flat Circular Disabled
     </SimpleButton>
-    <SimpleButton variant="icon-only pill">
+    <SimpleButton :color="pageTheme" variant="icon-only pill">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton variant="icon-only outlined">
+    <SimpleButton :color="pageTheme" variant="icon-only outlined">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
@@ -611,41 +611,41 @@ TODO ROLLUP
 
 ::: raw
 <div id="test-socials" class="dev-section">
-    <SimpleButton class="brand-facebook-bg core-white-text">
+    <SimpleButton :color="pageTheme" class="brand-facebook-bg core-white-text">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         DEFAULT
     </SimpleButton>
-    <SimpleButton disabled class="brand-facebook-bg core-white-text">
+    <SimpleButton :color="pageTheme" disabled class="brand-facebook-bg core-white-text">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         DISABLED
     </SimpleButton>
-    <SimpleButton variant="plain" class="brand-facebook-text">
+    <SimpleButton :color="pageTheme" variant="plain" class="brand-facebook-text">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         PLAIN
     </SimpleButton>
-    <SimpleButton variant="outlined" class="brand-facebook-border brand-facebook-text">
+    <SimpleButton :color="pageTheme" variant="outlined" class="brand-facebook-border brand-facebook-text">
         <svg class="button-icon" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
         OUTLINED
     </SimpleButton>
-    <SimpleButton icon class="brand-facebook-bg core-white-text">
+    <SimpleButton :color="pageTheme" icon class="brand-facebook-bg core-white-text">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton icon variant="outlined" class="brand-facebook-text brand-facebook-border">
+    <SimpleButton :color="pageTheme" icon variant="outlined" class="brand-facebook-text brand-facebook-border">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton variant="outlined" class="highlight-rollup-horizontal highlight-rollup-reverse facebook-pseudo-bg brand-facebook-border brand-facebook-pseudo-bg brand-facebook-text core-white-hover-text brand-facebook-hover-bg">
+    <SimpleButton :color="pageTheme" variant="outlined" class="highlight-rollup-horizontal highlight-rollup-reverse facebook-pseudo-bg brand-facebook-border brand-facebook-pseudo-bg brand-facebook-text core-white-hover-text brand-facebook-hover-bg">
         <template v-slot:icon>
             <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />

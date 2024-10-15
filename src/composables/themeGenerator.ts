@@ -1,5 +1,5 @@
-import { inject, provide, computed } from 'vue'
-import type { InjectionKey } from 'vue';
+import { inject, provide, computed, ref } from 'vue'
+import type { InjectionKey, Ref } from 'vue';
 
 export interface IThemeGlobal {
     /**
@@ -31,6 +31,10 @@ export interface IThemeGlobal {
 }
 
 /**
+ * Use:
+ * https://www.npmjs.com/package/color
+ * https://github.com/Qix-/color
+ *
  * Ideas:
  * https://vuetifyjs.com/en/features/theme/#javascript
  * https://github.com/vuetifyjs/vuetify/blob/ae33530ac17226ca942849bea364ee441ae1dd9f/packages/vuetify/src/composables/theme.ts#L211
@@ -40,27 +44,27 @@ export default () => {
     /**
      * Access to all themes that can be provided elsewhere
      */
-    const themeSymbol: InjectionKey<Record<string, IThemeGlobal>> = Symbol.for('guebbit:themes');
-
-    /**
-     * Global theme object
-     */
-    const themes = inject(themeSymbol, {});
+    const themeSymbol: InjectionKey<Ref<Record<string, IThemeGlobal>>> = Symbol.for('guebbit:themes');
 
     /**
      * Access to all themes that can be provided elsewhere
      */
-    const currentSymbol: InjectionKey<keyof typeof themes> = Symbol.for('guebbit:current-theme');
+    const currentSymbol: InjectionKey<Ref<keyof Record<string, IThemeGlobal>>> = Symbol.for('guebbit:current-theme');
+
+    /**
+     * Global theme object
+     */
+    const themes = inject<Ref<Record<string, IThemeGlobal>>>(themeSymbol, ref({}));
 
     /**
      * Name of theme currently in use
      */
-    const currentName = inject(currentSymbol, "");
+    const currentName = inject<Ref<string>>(currentSymbol, ref(""));
 
     /**
      * Theme in use
      */
-    const current = computed(() => currentName && themes[currentName]);
+    const current = computed(() => themes.value[currentName.value]);
 
     /**
      * Add a new theme (overwrite if exist)
@@ -69,10 +73,8 @@ export default () => {
      * @param name
      * @param themeData
      */
-    const add = (name = "", themeData: IThemeGlobal = {}) => {
-        themes[name] = themeData;
-        provide(themeSymbol, themes);
-    };
+    const add = (name = "", themeData: IThemeGlobal = {}) =>
+        themes.value[name] = themeData;
 
     /**
      * Edit a new theme (create if not exist)
@@ -80,21 +82,23 @@ export default () => {
      * @param name
      * @param themeData
      */
-    const edit = (name = "", themeData: IThemeGlobal = {}) => {
-        themes[name] = { ...themes[name], ...themeData };
-        provide(themeSymbol, themes);
-    };
+    const edit = (name = "", themeData: IThemeGlobal = {}) =>
+        themes.value[name] = {
+            ...themes.value[name],
+            ...themeData
+        }
 
     /**
      * Set all themes, replacing the old theme tree
      * @param themeDictionary
      */
-    const set = (themeDictionary: Record<string, IThemeGlobal>) => provide(themeSymbol, themeDictionary)
+    const set = (themeDictionary: Record<string, IThemeGlobal>) =>
+        themes.value = { ...themeDictionary }
     
     /**
      * List of available themes
      */
-    const list = computed(() => Object.keys(themes))
+    const list = computed(() => Object.keys(themes.value))
 
     /**
      *

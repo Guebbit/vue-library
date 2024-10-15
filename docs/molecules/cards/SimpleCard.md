@@ -50,25 +50,7 @@ TODO
 
 <script setup>
 import { SimpleCard, SimpleCardHeader, SimpleCardContent, SimpleCardFooter, SimpleCardActions, SimpleCardMedia, SimpleButton } from '../../../src/';
-import { composableThemeGenerator as useThemeGenerator } from '../../../src'; 
 
-// TODO da applicare meglio
-const {
-    add
-} = useThemeGenerator();
-
-add("primary", {
-    "globals": {
-        "color": "0 188 212",
-        "on-color": "255 255 255",
-        "shadow-color": "0 255 0",
-        "active-color": "255 152 0",
-        "active-on-color": "0 0 0",
-        "active-shadow-color": "255 0 255",
-    }
-});
-
-const pageTheme = "primary";
-
+const pageTheme = "";
 const exampleText = 'Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor'
 </script>

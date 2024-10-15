@@ -1,7 +1,4 @@
 # Theme
-::: danger
-WORK IN PROGRESS
-:::
 
 ## Instructions
 
@@ -12,10 +9,15 @@ const {
 } = useThemeGenerator();
 
 add("primary", {
+    "globals": {
+        "color": "0 188 212",
+        "on-color": "255 255 255",
+    },
     "colors": {
-        "header": "#000",
-        "background": "#0ff",
-        "shadow-color": "0 255 0 / 0.2",
+        "shadow-color": "0 255 0",
+        "active-color": "255 152 0",
+        "active-on-color": "0 0 0",
+        "active-shadow-color": "255 0 255",
     }
 });
 ```
@@ -24,12 +26,17 @@ Create all themes from createTheme plugin (previous themes will be overwrited, y
 ```js
 import createTheme from '../src/plugins/createTheme.ts' ;
 
-createTheme({
+app.use(createTheme, {
     "primary": {
+        "globals": {
+            "color": "0 188 212",
+            "on-color": "255 255 255",
+        },
         "colors": {
-            "header": "#000",
-            "background": "#0ff",
-            "shadow-color": "0 255 0 / 0.2",
+            "shadow-color": "0 255 0",
+            "active-color": "255 152 0",
+            "active-on-color": "0 0 0",
+            "active-shadow-color": "255 0 255",
         }
     }
 });
@@ -44,7 +51,7 @@ it is based on the global css vars (like g-theme-xxx)
 ::: raw
 <div class="dev-section">
     <SimpleCard
-        color="primary"
+        color="test"
         title="Title of Lorem Ipsum"
         subtitle="Subtitle of Lorem Ipsum"
         text="Lorem Ipsum sit dolor Lorem Ipsum Lorem Ipsum sit dolor Lorem Ipsum"
@@ -55,7 +62,7 @@ it is based on the global css vars (like g-theme-xxx)
 ::: code-group
 ```html
 <SimpleCard
-    color="primary"
+    color="test"
     title="Title of Lorem Ipsum"
     subtitle="Subtitle of Lorem Ipsum"
     text="Lorem Ipsum sit dolor Lorem Ipsum Lorem Ipsum sit dolor Lorem Ipsum"
@@ -70,8 +77,9 @@ Theme is just to apply css vars, it always win on color, but you shouldn't use i
 ::: raw
 <div class="dev-section">
     <SimpleCard
-        color="primary"
+        color="test"
         :theme="{
+            'header': '#000',
             'background': '#f0f',
         }"
         title="Title of Lorem Ipsum"
@@ -84,8 +92,9 @@ Theme is just to apply css vars, it always win on color, but you shouldn't use i
 ::: code-group
 ```html
 <SimpleCard
-    color="primary"
+    color="test"
     :theme="{
+        'header': '#000',
         'background': '#f0f',
     }"
     title="Title of Lorem Ipsum"
@@ -107,11 +116,13 @@ const {
     add
 } = useThemeGenerator();
 
-add("primary", {
+add("test", {
     "colors": {
-        "header": "#000",
-        "background": "#0ff",
-        "shadow-color": "0 255 0 / 0.2",
+        "color": "0 100 0",
+        "on-color": "100 0 100",
+        "active-color": "0 255 0",
+        "active-on-color": "255 0 255",
+        "shadow-color": "255 255 0",
     }
 });
 </script>

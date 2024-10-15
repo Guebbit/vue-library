@@ -59,7 +59,7 @@ Custom CSS (or SCSS) variables to change style
         </template>
     </SimpleCard>
     <SimpleCard>
-        <div class="card-container">
+        <div class="card-container card-has-overlay">
             <div class="card-overlay"></div>
             <SimpleCardMedia
                 media="https://placedog.net/700/700"
@@ -72,7 +72,7 @@ Custom CSS (or SCSS) variables to change style
             video
             type="video/mp4"
         />
-        <div class="card-container">
+        <div class="card-container card-has-overlay">
             <div class="card-overlay"></div>
             <SimpleCardMedia
                 media="https://placedog.net/800/400"
@@ -98,6 +98,7 @@ Custom CSS (or SCSS) variables to change style
         </div>
     </SimpleCard>
 </div>
+:::
 
 ::: code-group
 ```html [border and icons mixed colors]
@@ -163,7 +164,7 @@ Custom CSS (or SCSS) variables to change style
 ```
 ```html [Mix of various media and combinations]
 <SimpleCard>
-    <div class="card-container">
+    <div class="card-container card-has-overlay">
         <div class="card-overlay"></div>
         <SimpleCardMedia
             media="https://placedog.net/700/700"
@@ -176,7 +177,7 @@ Custom CSS (or SCSS) variables to change style
         video
         type="video/mp4"
     />
-    <div class="card-container">
+    <div class="card-container card-has-overlay">
         <div class="card-overlay"></div>
         <SimpleCardMedia
             media="https://placedog.net/800/400"

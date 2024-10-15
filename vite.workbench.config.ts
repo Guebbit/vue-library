@@ -1,5 +1,3 @@
-import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -8,11 +6,14 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  root: 'public',
-  plugins: [
-    vue(),
-    vueJsx(),
-    nightwatchPlugin(),
-    vueDevTools(),
-  ],
+    plugins: [
+        vue(),
+        vueJsx(),
+        nightwatchPlugin(),
+        vueDevTools(),
+    ],
+    root: 'workbench',
+    server: {
+        port: 8080,
+    },
 })

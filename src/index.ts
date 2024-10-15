@@ -2,17 +2,19 @@
  * Atoms
  */
 export {
+    AspectRatio
+} from './components/atoms/utilities/AspectRatio/'
+export {
+    Icon
+} from './components/atoms/utilities/Icon/'
+export {
     Media,
     EMediaTypes
 } from './components/atoms/utilities/Media/'
 export {
-    AspectRatio
-} from './components/atoms/utilities/AspectRatio/'
-export {
     SimpleButton,
     SimpleButton as Button,
     ESimpleButtonVariants,
-    EComponentSizes
 } from './components/atoms/buttons/SimpleButton/'
 
 /**
@@ -60,7 +62,7 @@ export { StatsTeamCard } from './components/organisms/cards/StatsTeamCard/'
  * composables
  */
 export { default as composableComponentGenerics, type IGenericProps } from './composables/componentGenerics.ts';
-export { default as composableComponentSizes } from './composables/componentSizes.ts';
+export { default as composableComponentSizes, type EComponentSizes } from './composables/componentSizes.ts';
 export { default as composableComponentThemes, type IThemeProps } from './composables/componentThemes.ts';
 export { default as composableComponentVariants, type IVariantsSettings } from './composables/componentVariants.ts';
 export { default as composableThemeGenerator, type IThemeGlobal } from './composables/themeGenerator.ts';

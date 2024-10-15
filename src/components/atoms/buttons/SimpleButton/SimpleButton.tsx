@@ -1,20 +1,10 @@
 import './SimpleButton.scss'
 import { defineComponent, computed } from 'vue'
 
-
-// TODO qualcosa non va con i theme?
-import useComponentGenerics from '../../../../composables/componentGenerics.ts'
-import useComponentSizes from '../../../../composables/componentSizes.ts'
-import useComponentVariants from '../../../../composables/componentVariants.ts'
-// TODO e qualcosa non va qui
-// import {
-//     composableComponentGenerics as useComponentGenerics,
-//     composableComponentVariants as useComponentVariants,
-//     // composableComponentSizes as useComponentSizes,
-//     // composableComponentThemes as useComponentThemes, // TODO what is the problem??
-// } from '../../../../index.ts'
-
-export { EComponentSizes } from '../../../../composables/componentSizes.ts'
+import useComponentGenerics from '../../../../composables/componentGenerics.ts';
+import useComponentVariants from '../../../../composables/componentVariants.ts';
+import useComponentSizes from '../../../../composables/componentSizes.ts';
+import useComponentThemes from '../../../../composables/componentThemes.ts';
 
 export enum ESimpleButtonVariants {
     ROUNDED = 'rounded',
@@ -34,10 +24,13 @@ const {
 } = useComponentGenerics()
 const {
     props: sizeProps
-} = useComponentSizes('button-')
+} = useComponentSizes()
 const {
     props: variantsProps
-} = useComponentVariants<ESimpleButtonVariants>({}, 'button-')
+} = useComponentVariants<ESimpleButtonVariants>()
+const {
+    props: themeProps
+} = useComponentThemes();
 
 /**
  * Component
@@ -49,6 +42,7 @@ export default defineComponent({
         ...animationProps,
         ...sizeProps,
         ...variantsProps,
+        ...themeProps,
 
         /**
          * Display only the icon without text
@@ -105,6 +99,9 @@ export default defineComponent({
         const {
             classes: variantsClasses
         } = useComponentVariants<ESimpleButtonVariants>({ props }, 'button-')
+        const {
+            styles: themeStyles
+        } = useComponentThemes({ props }, "simple-button-");
 
         /**
          * Aggregator of all the classes of component
@@ -162,7 +159,7 @@ export default defineComponent({
         return () => (
             <button
                 class={classes.value}
-                {...attrs}
+                style={{ ...attrs.style || {}, ...themeStyles.value || {} }}
                 disabled={props.disabled || props.variant?.includes('disabled')}
             >
                 {

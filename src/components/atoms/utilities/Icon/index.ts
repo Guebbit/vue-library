@@ -1,1 +1,1 @@
-export { default as AspectRatio } from "./Icon.tsx";
+export { default as Icon } from "./Icon.tsx";

@@ -7,6 +7,7 @@
 ## Simple
 Custom CSS (or SCSS) variables to change style
 
+<!-- @include: ./SimpleCard-custom-fragment-simple.md -->
 
 <style lang="scss">
 @use "../../theme.scss" as theme;

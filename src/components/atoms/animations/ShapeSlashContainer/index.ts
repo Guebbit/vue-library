@@ -1,1 +1,1 @@
-export { default as ShapeSlashContainer } from "./ShapeSlashContainer.tsx";
+export { default as ShapeSlashContainer } from './ShapeSlashContainer.tsx';

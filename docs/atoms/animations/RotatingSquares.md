@@ -4,7 +4,7 @@
 ## Instructions
 
 ```ts
-import { AdvancingMoon } from "@guebbit/vue-library";
+import { RotatingSquares } from "@guebbit/vue-library";
 ```
 
 ## Default
@@ -36,5 +36,5 @@ TODO
 </style>
 
 <script setup>
-import { AdvancingMoon } from '../../../src/';
+import { RotatingSquares } from '../../../src/';
 </script>

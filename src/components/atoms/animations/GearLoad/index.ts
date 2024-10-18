@@ -1,1 +1,1 @@
-export { default as GearLoad } from "./GearLoad.tsx";
+export { default as GearLoad } from './GearLoad.tsx';

@@ -1,1 +1,1 @@
-export { default as PanelAskewDoors } from "./PanelAskewDoors.tsx";
+export { default as PanelAskewDoors } from './PanelAskewDoors.tsx';

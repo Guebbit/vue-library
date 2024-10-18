@@ -1,1 +1,1 @@
-export { default as MapPinPulse } from "./MapPinPulse.tsx";
+export { default as MapPinPulse } from './MapPinPulse.tsx';

@@ -1,1 +1,1 @@
-export { default as RotatingSquares } from "./RotatingSquares.tsx";
+export { default as RotatingSquares } from './RotatingSquares.tsx';

@@ -1,1 +1,1 @@
-export { default as SolarSystemLoad } from "./SolarSystemLoad.tsx";
+export { default as SolarSystemLoad } from './SolarSystemLoad.tsx';

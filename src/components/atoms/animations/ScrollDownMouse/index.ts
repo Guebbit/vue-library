@@ -1,1 +1,1 @@
-export { default as ScrollDownMouse } from "./ScrollDownMouse.tsx";
+export { default as ScrollDownMouse } from './ScrollDownMouse.tsx';

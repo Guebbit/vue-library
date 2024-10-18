@@ -1,1 +1,1 @@
-export { default as EffectMirrorReflection } from "./EffectMirrorReflection.tsx";
+export { default as EffectMirrorReflection } from './EffectMirrorReflection.tsx';

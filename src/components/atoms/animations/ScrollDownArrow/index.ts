@@ -1,1 +1,1 @@
-export { default as ScrollDownArrow } from "./ScrollDownArrow.tsx";
+export { default as ScrollDownArrow } from './ScrollDownArrow.tsx';

@@ -1,9 +1,9 @@
-import './RaindropConcentric.scss';
+import './EffectColorPopup.scss';
 import { defineComponent } from "vue";
 import type { PropType } from "vue";
 
 export default defineComponent({
-    name: "RaindropConcentric",
+    name: "EffectColorPopup",
 
     props: {
         
@@ -11,7 +11,7 @@ export default defineComponent({
 
     setup(props, { slots }) {
         return () => (
-            <h1>RaindropConcentric</h1>
+            <h1>EffectColorPopup</h1>
         );
     },
 });

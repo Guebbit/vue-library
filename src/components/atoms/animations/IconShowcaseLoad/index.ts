@@ -1,1 +1,1 @@
-export { default as IconShowcaseLoad } from "./IconShowcaseLoad.tsx";
+export { default as IconShowcaseLoad } from './IconShowcaseLoad.tsx';

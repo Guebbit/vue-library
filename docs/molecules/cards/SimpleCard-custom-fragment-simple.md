@@ -1,5 +1,5 @@
 ## Simple
-Custom CSS (or SCSS) variables to change style
+Just custom CSS variables to change style
 
 ::: raw
 <div class="dev-section">
@@ -63,7 +63,7 @@ Custom CSS (or SCSS) variables to change style
             <div class="card-overlay"></div>
             <SimpleCardMedia
                 media="https://placedog.net/700/700"
-                background
+                class="card-background"
             />
             <SimpleCardContent :text="exampleText" />
         </div>
@@ -71,12 +71,13 @@ Custom CSS (or SCSS) variables to change style
             media="http://assets.guebbit.com/guebbit/video/normal.mp4"
             video
             type="video/mp4"
+            class="card-media"
         />
         <div class="card-container card-has-overlay">
             <div class="card-overlay"></div>
             <SimpleCardMedia
                 media="https://placedog.net/800/400"
-                background
+                class="card-background"
             />
             <SimpleCardHeader>
                 <SimpleCardActions>
@@ -168,7 +169,7 @@ Custom CSS (or SCSS) variables to change style
         <div class="card-overlay"></div>
         <SimpleCardMedia
             media="https://placedog.net/700/700"
-            background
+            class="card-background"
         />
         <SimpleCardContent :text="exampleText" />
     </div>
@@ -176,12 +177,13 @@ Custom CSS (or SCSS) variables to change style
         media="http://assets.guebbit.com/guebbit/video/normal.mp4"
         video
         type="video/mp4"
+        class="card-media"
     />
     <div class="card-container card-has-overlay">
         <div class="card-overlay"></div>
         <SimpleCardMedia
             media="https://placedog.net/800/400"
-            background
+            class="card-background"
         />
         <SimpleCardHeader>
             <SimpleCardActions>

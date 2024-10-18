@@ -29,8 +29,7 @@
     title="Title of Lorem Ipsum"
     subtitle="Subtitle of Lorem Ipsum"
     :text="exampleText"
-    border-right
-    border-left
+    border-position="right left"
   />
 </div>
 :::
@@ -43,6 +42,15 @@
     subtitle="Subtitle of Lorem Ipsum"
     :text="exampleText"
     border-right
+/>
+```
+
+```html [Right (alt)]
+<SimpleCard
+    title="Title of Lorem Ipsum"
+    subtitle="Subtitle of Lorem Ipsum"
+    :text="exampleText"
+    border-position="right"
   />
 ```
 
@@ -52,6 +60,15 @@
     subtitle="Subtitle of Lorem Ipsum"
     :text="exampleText"
     border-full
+/>
+```
+
+```html [Full (alt)]
+<SimpleCard
+    title="Title of Lorem Ipsum"
+    subtitle="Subtitle of Lorem Ipsum"
+    :text="exampleText"
+    border-position="full"
   />
 ```
 
@@ -62,6 +79,15 @@
     :text="exampleText"
     border-top
     border-bottom
+/>
+```
+
+```html [Top & Bottom (alt)]
+<SimpleCard
+    title="Title of Lorem Ipsum"
+    subtitle="Subtitle of Lorem Ipsum"
+    :text="exampleText"
+    border-position="top bottom"
   />
 ```
 
@@ -72,6 +98,14 @@
     :text="exampleText"
     border-right
     border-left
+/>
+```
+```html [Right & Left (alt)]
+<SimpleCard
+    title="Title of Lorem Ipsum"
+    subtitle="Subtitle of Lorem Ipsum"
+    :text="exampleText"
+    border-position="right left"
   />
 ```
 :::

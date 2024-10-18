@@ -1,6 +1,7 @@
 import './Icon.scss';
 import { defineComponent } from 'vue';
 import useComponentSizes from '../../../../composables/componentSizes.ts'
+import editSlotItems from '../../../../utils/editSlotItems.ts'
 
 /**
  * Outside setup only composable
@@ -28,22 +29,10 @@ export default defineComponent({
         } = useComponentSizes('simple-icon-', props);
 
         /**
-         * TODO function?
+         * Template
          */
-        return () =>
-            slots.default
-            && (() => {
-                if(!sizeClass.value)
-                    return slots.default()
-                const iconVNode = slots.default?.()[0]
-                if (iconVNode) {
-                    iconVNode.props = {
-                        ...iconVNode.props,
-                        class: `${iconVNode.props?.class || ''} ${sizeClass.value}`
-                    }
-                    return iconVNode
-                }
-                return slots.default()
-            })();
+        return () => editSlotItems(slots.default, {
+            className: sizeClass.value
+        });
     },
 });

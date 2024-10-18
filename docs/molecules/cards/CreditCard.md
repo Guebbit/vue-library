@@ -7,30 +7,37 @@
 import { CreditCard } from "@guebbit/vue-library";
 ```
 
+<div class="dev-section">
+    <CreditCard
+        name = "Owner's name"
+        cardNumber = "5200828282828210"
+        expire = "10/25"
+        :back="flippedCreditCard"
+        @click="flippedCreditCard = !flippedCreditCard"
+    >
+        <template #logo>
+            <img src="http://localhost:8080/logo.svg" />
+        </template>
+    </CreditCard>
+</div>
+
+
+```html
+import { ref } from 'vue'
+const flippedCreditCard = ref(false)
 
 <CreditCard
-    name = "owner's name"
-    logo = "http://localhost:8080/logo.svg"
-    background = "#ffff33"
-    color = "#000000"
+    name = "Owner's name"
     cardNumber = "5200828282828210"
-    cardExpire = "10/25"
-    :flipped="flippedCreditCard"
+    expire = "10/25"
+    :back="flippedCreditCard"
     @click="flippedCreditCard = !flippedCreditCard"
-/>
-<CreditCard
-    name = "owner's name"
-    logo = "http://localhost:8080/logo.svg"
-    background = "#231F20"
-    color = "#f0f0f0"
-    cardEmail = "credit-card@gmail.com"
-    cardExpire = "10/25"
-    :flipped="flippedCreditCard2"
-    @click="flippedCreditCard2 = !flippedCreditCard2"
-/>
-
-
-
+>
+    <template #logo>
+        <img src="http://localhost:8080/logo.svg" />
+    </template>
+</CreditCard>
+```
 
 ## Props
 TODO
@@ -46,9 +53,8 @@ TODO
 </style>
 
 <script setup>
-import { ref } from "vue";
-import { CreditCard } from '../../../src/';
+import { ref } from 'vue'
+import { CreditCard } from '../../../src/'
 
-const flippedCreditCard = ref(false);
-const flippedCreditCard2 = ref(false);
+const flippedCreditCard = ref(false)
 </script>

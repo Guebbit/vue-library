@@ -136,8 +136,8 @@ Full example of a theme.scss for your repo.
  - Nightwatch firefox and firefoxHeadless NOT working
  - SimpleButton social rollup
  - Icon.tsx todo?
- - theme tests
- - simplebutton theme test
+ - Create tests
+ - Take @guebbit/css-ui component styles and put them as basic props in this repo components
 
 Vue3
 https://blog.vuejs.org/posts/vue-3-2

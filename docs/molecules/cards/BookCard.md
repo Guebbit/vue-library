@@ -7,41 +7,32 @@
 import { BookCard } from "@guebbit/vue-library";
 ```
 
-<!--
-<BookCard 
-    title="Lorem Ipsum Sit Dolor"
-    author="Lorem Ipsum Author"
-    media="https://placedog.net/400/600"
-    background="https://placedog.net/100/600"
-/>
--->
-
-<div class="book-card animate-on-hover">
-    <div>
-        <div class="book-cover">
-            <div class="card-content">
-                <h1>Lorem Ipsum Sit Dolor</h1>
-            </div>
-            <img class="book-cover-image" alt="" src="https://placedog.net/400/600">
-            <div class="card-bottom">
-                <img alt="" src="https://placedog.net/100/100">
-            </div>
-        </div>
-        <div class="book-spine">
-            <div class="card-content">
-                <h1>Lorem Ipsum Sit Dolor</h1>
-            </div>
-            <img class="card-background" alt="" src="https://placedog.net/100/600">
-            <div class="card-bottom">
-                <svg class="card-icon" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10" />
-                </svg>
-            </div>
-        </div>
-    </div>
+<div class="dev-section">
+    <BookCard 
+        title="Lorem Ipsum Sit Dolor"
+        author="Lorem Ipsum Author"
+    >
+        <template #cover>
+            <img class="card-media" alt="" src="https://placedog.net/400/600" />
+        </template>
+        <template #spine>
+            <img class="card-media" alt="" src="https://placedog.net/100/600" />
+        </template>
+        <template #spineFooter>
+            <svg class="card-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+            </svg>
+        </template>
+    </BookCard>
+    <BookCard 
+        title="Lorem Ipsum Sit Dolor VIDEO"
+        author="Lorem Ipsum Author VIDEO"
+        cover="http://assets.guebbit.com/guebbit/video/normal.mp4"
+        spine="https://placedog.net/100/600"
+        video
+        type="video/mp4"
+    />
 </div>
-
-
 
 
 ## Props

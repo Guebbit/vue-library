@@ -16,6 +16,11 @@ export {
     SimpleButton as Button,
     ESimpleButtonVariants,
 } from './components/atoms/buttons/SimpleButton/'
+export {
+    SimplePanel,
+    SimplePanel as Panel,
+    SimplePanelMedia
+} from './components/atoms/panels/SimplePanel/'
 
 /**
  * Molecules
@@ -44,19 +49,20 @@ export {
     ESimpleCardActionsVariants,
     SimpleCardFooter as CardMedia,
     SimpleCardMedia,
+    SimpleCardTitle,
+    SimpleCardSubtitle,
 } from './components/molecules/cards/SimpleCard/'
 export {
-    ActionPanel
+    ActionPanel,
+    ActionPanelActions
 } from './components/molecules/panels/ActionPanel/'
-export {
-    SimplePanel,
-    SimplePanel as Panel
-} from './components/molecules/panels/SimplePanel/'
 
 /**
  * Organisms
  */
-export { StatsTeamCard } from './components/organisms/cards/StatsTeamCard/'
+export {
+    StatsTeamCard
+} from './components/organisms/cards/StatsTeamCard/'
 
 /**
  * composables

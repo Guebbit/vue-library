@@ -55,6 +55,16 @@ export default defineConfig({
                         ]
                     },
                     {
+                        text: 'Panels',
+                        collapsed: false,
+                        items: [
+                            {
+                                text: 'Panel (basic)',
+                                link: '/atoms/panels/SimplePanel.md'
+                            },
+                        ]
+                    },
+                    {
                         text: 'Utilities',
                         collapsed: false,
                         items: [
@@ -104,10 +114,6 @@ export default defineConfig({
                         text: 'Panels',
                         collapsed: false,
                         items: [
-                            {
-                                text: 'Panel (basic)',
-                                link: '/molecules/panels/SimplePanel.md'
-                            },
                             {
                                 text: 'Action Panel',
                                 link: '/molecules/panels/ActionPanel.md'

@@ -5,7 +5,7 @@ WORK IN PROGRESS
 Don't know if I'll really make this component
 :::
 
-## Component Import
+## Instructions
 
 ```html
 import { Icon } from "@guebbit/vue-library";

@@ -1,4 +1,6 @@
-import { defineComponent } from 'vue'
+import { defineComponent, h } from 'vue'
+import CardTitle from './SimpleCardTitle.tsx'
+import CardSubtitle from './SimpleCardSubtitle.tsx'
 import CardActions, { ESimpleCardActionsVariants } from './SimpleCardActions.tsx'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
 
@@ -46,34 +48,38 @@ export default defineComponent({
         } = useComponentVariants<ESimpleCardActionsVariants>({ props }, 'card-section-');
 
         /**
-         * TODO make component
+         *
          */
-        const cardSub = (
-            slots.sub || props.sub ?
-                <component
-                    is={props.subTag}
-                    class="card-subtitle"
-                >
-                    {slots.sub ? slots.sub() : props.sub}
-                </component>
-                : null
+        const cardSub =
+            <CardSubtitle
+                text={props.sub}
+                tag={props.subTag}
+                v-slot={{
+                    default: slots.sub
+                }}
+            />
+
+        /**
+         * CardTitle
+         */
+        const cardTitle = (
+            <CardTitle
+                text={props.title}
+                tag={props.titleTag}
+                v-slots={{
+                    default: () => (
+                        <>
+                            {slots.title ? slots.title() : props.title}
+                            {cardSub} {/* Insert cardSub here */}
+                        </>
+                    )
+                }}
+            />
         );
 
         /**
-         * TODO make component
-         * WARNING: If there is no title, there is no subtitle
+         * Template
          */
-        const cardTitle =
-            slots.title || props.title || cardSub ?
-                <component
-                    is={props.titleTag}
-                    class="card-title"
-                >
-                    {slots.title ? slots.title() : props.title}
-                    {cardSub}
-                </component>
-                : null
-
         return () =>
             slots.default || slots.actions || cardTitle ?
                 <div class={["card-header", variantsClasses.value]}>

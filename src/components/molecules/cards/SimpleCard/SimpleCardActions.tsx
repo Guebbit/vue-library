@@ -1,5 +1,6 @@
 import { defineComponent, type VNode } from 'vue'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
+import editSlotItems from '../../../../utils/editSlotItems.ts'
 
 export enum ESimpleCardActionsVariants {
     START = 'start',
@@ -36,25 +37,13 @@ export default defineComponent({
         } = useComponentVariants<ESimpleCardActionsVariants>({ props }, 'card-section-');
 
         /**
-         * Template
+         *
          */
-        const translatedSlot = (() => {
-            if(!slots.default)
-                return null;
-            const transformedVNodesArray: VNode[] = [];
-            const foundVNodesArray = slots.default() || [];
-            for (let i = 0, len = foundVNodesArray.length; i < len; i++)
-                if(foundVNodesArray[i]){
-                    foundVNodesArray[i].props = {
-                        ...foundVNodesArray[i].props,
-                        class: `${foundVNodesArray[i].props?.class || ''} card-icon`
-                    }
-                    transformedVNodesArray.push(foundVNodesArray[i])
-                }
-            if(transformedVNodesArray.length > 0)
-                return transformedVNodesArray;
-            return slots.default()
-        })()
+        const translatedSlot = editSlotItems(slots.default, {
+            className: 'card-icon'
+        }, {
+            tags: ['img', 'svg']
+        });
 
         /**
          * Template

@@ -57,6 +57,7 @@
     <SimpleCardMedia 
         media="http://placedog.net/500/500"
         ratio="16/9"
+        class="card-media"
     />
   </SimpleCard>
 </div>
@@ -143,6 +144,7 @@
     <SimpleCardMedia
         media="http://placedog.net/500/500"
         ratio="16/9"
+        class="card-media"
     />
 </SimpleCard>
 ```

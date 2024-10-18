@@ -1,31 +1,25 @@
 import './BookCard.scss';
 import { defineComponent, computed } from 'vue';
-import type { PropType } from 'vue'
+import SimpleCard, { ESimpleCardVariants } from '../SimpleCard/SimpleCard.tsx'
+import CardFooter from '../SimpleCard/SimpleCardFooter.tsx'
+import CardActions from '../SimpleCard/SimpleCardActions.tsx'
+import CardContent from '../SimpleCard/SimpleCardContent.tsx'
+import CardHeader from '../SimpleCard/SimpleCardHeader.tsx'
 import useComponentGenerics from '../../../../composables/componentGenerics.ts'
-
-/**
- * Outside setup only composable
- */
-const {
-    animationProps
-} = useComponentGenerics()
+import useComponentVariants from '../../../../composables/componentVariants.ts'
+import useComponentThemes from '../../../../composables/componentThemes.ts'
+import editSlotItems from '../../../../utils/editSlotItems.ts'
+import CardMedia from '../SimpleCard/SimpleCardMedia.tsx'
 
 export default defineComponent({
     name: 'BookCard',
 
+    extends: SimpleCard,
+
     props: {
-        ...animationProps,
 
         /**
-         *
-         */
-        title: {
-            type: String,
-            required: false,
-        },
-
-        /**
-         *
+         * TODO
          */
         author: {
             type: String,
@@ -33,15 +27,7 @@ export default defineComponent({
         },
 
         /**
-         *
-         */
-        color: {
-            type: String,
-            default: () => '#FFFFFF',
-        },
-
-        /**
-         *
+         * TODO
          */
         rotation: {
             type: Number,
@@ -49,41 +35,32 @@ export default defineComponent({
             validator: (value: number) => value < 7.5,
         },
 
-
         /**
          *
          */
-        height: {
-            type: Number,
+        cover: {
+            type: String,
             required: false,
         },
 
         /**
-         *
-         */
-        width: {
-            type: Number,
-            required: false,
-        },
-
-        /**
-         *
+         * Cover media ratio
          */
         ratio: {
-            type: String,
-            required: false,
+            type: [Number, String],
+            required: false
         },
 
         /**
-         *
+         * on props.video only, determine video type of cover
          */
-        image: {
+        type: {
             type: String,
-            required: false,
+            default: () => ''
         },
 
         /**
-         *
+         * Doesn't have ratio or video, would be useless
          */
         spine: {
             type: String,
@@ -93,100 +70,156 @@ export default defineComponent({
         /**
          *
          */
-        spineWidth: {
+        spineTitle: {
             type: String,
-            default: () => '50px',
+            required: false,
         },
 
         /**
          *
          */
-        logo: {
+        spineTitleTag: {
             type: String,
-            required: false,
+            default: () => "span"
+        },
+
+        /**
+         * TODO
+         */
+        spineWidth: {
+            type: String,
+            default: () => '50px',
         },
     },
 
-    setup(props, { slots }) {
-        const trueRatio = computed(() => {
-            if (!props.ratio) return 1;
-            const ratio = props.ratio.split('/');
-            return parseFloat((parseFloat(ratio[1]) / parseFloat(ratio[0])).toFixed(2));
+    setup(props, { slots, attrs }) {
+        /**
+         * Setup only composable
+         */
+        const {
+            animationClasses
+        } = useComponentGenerics({ props });
+        const {
+            styles: themeStyles
+        } = useComponentThemes({ props }, "simple-card-");
+        const {
+            classes: variantsClasses
+        } = useComponentVariants<ESimpleCardVariants>({
+            props,
+            enumItem: ESimpleCardVariants
+        }, "card-");
+
+        /**
+         * Aggregator of all the classes of component
+         */
+        const classes = computed(() => [
+            'book-card',
+            animationClasses.value,
+            variantsClasses.value,
+            props.disabled ? 'card-disabled' : '',
+        ]);
+
+        /**
+         *
+         */
+        const slotCover = editSlotItems(slots.cover, {
+            className: "card-media"
         });
 
-        const trueHeight = computed(() => {
-            return props.height ? props.height : props.width ? props.width * trueRatio.value : null;
+        /**
+         *
+         */
+        const slotSpine = editSlotItems(slots.spine, {
+            className: "card-background"
         });
 
-        const trueWidth = computed(() => {
-            return props.width ? props.width : props.height ? props.height * trueRatio.value : null;
-        });
-
-        const classes = computed(() => ({
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            'book-card': true,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            'book-custom-size': props.width || props.height,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            'book-custom-aspect-ratio': props.ratio,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            'is-hoverable': props.hover,
-        }));
-
-        const styles = computed(() => ({
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            '--book-card-height': props.height ? `${trueHeight.value}px` : null,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            '--book-card-width': props.width ? `${trueWidth.value}px` : null,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            '--book-card-ratio': `${trueRatio.value * 100}%`,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            '--book-card-color': props.color,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            '--book-card-rotation': props.rotation,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            '--book-card-spine-width': props.spineWidth,
-        }));
 
         return () => (
             <div
-                class={classes.value}
-                style={styles.value}
+                class={[attrs.class, classes.value]}
+                style={{ ...attrs.style || {}, ...themeStyles.value || {} }}
+                {...attrs}
             >
                 <div>
                     <div class="book-cover">
-                        <div class="content-cover">
-                            {slots.default && slots.default()}
-                        </div>
-                        <img class="book-cover-image" src={props.image} alt={props.title} title={props.title} />
-                        {props.title && <p class="card-top">{props.title}</p>}
-                        {props.logo ? (
-                            <div class="card-bottom">
-                                <img src={props.logo} />
-                            </div>
-                        ) : props.author ? (
-                            <p class="card-bottom">{props.author}</p>
-                        ) : null}
+                        <CardHeader
+                            title={props.title}
+                            titleTag={props.titleTag}
+                            sub={props.subtitle}
+                            subTag={props.subtitleTag}
+                            v-slots={{
+                                actions: slots.headerActions,
+                                default: slots.header,
+                                sub: slots.subtitle,
+                                title: slots.title,
+                            }}
+                        />
+                        {slots.default ? slots.default() : null}
+                        <CardContent
+                            text={props.text}
+                            tag={props.textTag}
+                            v-slots={{
+                                default: slots.content,
+                                actions: slots.contentActions,
+                            }}
+                        />
+                        {
+                            slotCover.length > 0 ?
+                                slotCover :
+                                props.cover ?
+                                    <CardMedia
+                                        media={props.cover}
+                                        ratio={props.ratio}
+                                        class="card-media"
+                                        type={
+                                            props.video ?
+                                                (props.type ?
+                                                        props.type :
+                                                        props.cover.split('.').pop()
+                                                ) : undefined
+                                        }
+                                    />
+                                    : null
+                        }
+                        <CardActions
+                            variant="absolute"
+                            v-slots={{
+                                default: slots.actions,
+                            }}
+                        />
+                        <CardFooter
+                            v-slots={{
+                                default: slots.footer,
+                                actions: slots.footerActions,
+                            }}
+                        />
                     </div>
                     <div class="book-spine">
-                        <div class="content-spine">{slots.spine && slots.spine()}</div>
-                        <img
-                            class="book-spine-image"
-                            src={props.spine ? props.spine : props.image}
-                            alt={props.author}
-                            title={props.author}
+                        <CardHeader
+                            title={props.spineTitle}
+                            titleTag={props.spineTitleTag}
+                            v-slots={{
+                                default: slots.spineHeader,
+                            }}
                         />
-                        {props.title && <p class="card-top">{props.title}</p>}
-                        {props.logo ? (
-                            <div class="card-bottom">
-                                <img src={props.logo} />
-                            </div>
-                        ) : props.author ? (
-                            <p class="card-bottom">{props.author}</p>
-                        ) : null}
+                        {
+                            slotSpine.length > 0 ?
+                                slotSpine :
+                                props.spine ?
+                                    <CardMedia
+                                        media={props.spine}
+                                        class="card-background"
+                                    />
+                                    : null
+                        }
+                        <CardFooter
+                            v-slots={{
+                                default: slots.spineFooter,
+                            }}
+                        />
                     </div>
                 </div>
             </div>
-        );
-    },
+        )
+    }
 });

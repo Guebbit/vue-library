@@ -1,7 +1,7 @@
 # Aspect Ratio
 <Badge type="tip">Atom</Badge> <Badge type="tip">Basic</Badge>
 
-## Component Import
+## Instructions
 
 ```html
 import { AspectRatio } from "@guebbit/vue-library";

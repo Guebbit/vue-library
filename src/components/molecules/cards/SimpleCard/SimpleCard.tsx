@@ -5,6 +5,7 @@ import type { VNode, PropType } from 'vue'
 import useComponentGenerics from '../../../../composables/componentGenerics.ts';
 import useComponentVariants from '../../../../composables/componentVariants.ts';
 import useComponentThemes from '../../../../composables/componentThemes.ts';
+import editSlotItems from '../../../../utils/editSlotItems.ts'
 import CardHeader from './SimpleCardHeader.tsx';
 import CardContent from './SimpleCardContent.tsx';
 import CardFooter from './SimpleCardFooter.tsx';
@@ -24,13 +25,13 @@ export enum ESimpleCardMediaAlignment {
     RIGHT = 'right'
 }
 
-// TODO borders
-// export enum ESimpleCardBorders {
-//     TOP = 'top',
-//     BOTTOM = 'bottom',
-//     LEFT = 'left',
-//     RIGHT = 'right',
-// }
+export enum ESimpleCardBorders {
+    TOP = 'top',
+    BOTTOM = 'bottom',
+    LEFT = 'left',
+    RIGHT = 'right',
+    FULL = 'full'
+}
 
 /**
  * Outside setup only composable
@@ -39,12 +40,13 @@ const {
     animationProps
 } = useComponentGenerics();
 const {
-    props: variantsProps
-} = useComponentVariants<ESimpleCardVariants>();
-const {
     props: themeProps
 } = useComponentThemes();
-
+const {
+    props: variantsProps
+} = useComponentVariants<ESimpleCardVariants>({
+    enumItem: ESimpleCardVariants
+});
 
 /**
  * Component
@@ -53,8 +55,8 @@ export default defineComponent({
     name: 'SimpleCard',
 
     props: {
-        ...animationProps,
         ...variantsProps,
+        ...animationProps,
         ...themeProps,
 
         /**
@@ -179,7 +181,7 @@ export default defineComponent({
             required: false,
             validator: (value?: string) => {
                 if(!value)
-                    return true;
+                    return false;
                 return Object.values(ESimpleCardMediaAlignment).includes(value as ESimpleCardMediaAlignment);
             }
         },
@@ -258,6 +260,19 @@ export default defineComponent({
         },
 
         /**
+         * Card border position
+         */
+        borderPosition: {
+            type: Array as PropType<ESimpleCardBorders[]>,
+            default: () => [],
+            validator: (values?: string[]) => {
+                if(!values || values.length === 0)
+                    return false;
+                return values.every(val => Object.values(ESimpleCardBorders).includes(val as ESimpleCardBorders));
+            }
+        },
+
+        /**
          *
          */
         borderTop: {
@@ -298,36 +313,41 @@ export default defineComponent({
         }
     },
 
-    setup(props, { slots, attrs, emit }) {
+    setup(props, { slots, attrs }) {
         /**
          * Setup only composable
          */
         const {
             animationClasses
-        } = useComponentGenerics({ props })
-        const {
-            classes: variantsClasses
-        } = useComponentVariants<ESimpleCardVariants>({ props }, "card-");
+        } = useComponentGenerics({ props });
         const {
             styles: themeStyles
         } = useComponentThemes({ props }, "simple-card-");
+        const {
+            classes: variantsClasses
+        } = useComponentVariants<ESimpleCardVariants>({
+            props,
+            enumItem: ESimpleCardVariants
+        }, "card-");
 
         /**
          * Aggregator of all the classes of component
          */
         const classes = computed(() => [
-            ...animationClasses.value,
-            'simple-card',
-            variantsClasses.value,
-            props.mediaAlignment ? `card-media-${props.mediaAlignment}` : '',
-            props.mediaLeft ? 'card-media-left' : '',
-            props.mediaRight ? 'card-media-right' : '',
-            props.borderTop ? 'card-border-top' : '',
-            props.borderBottom ? 'card-border-bottom-active' : '',
-            props.borderRight ? 'card-border-right-active' : '',
-            props.borderLeft ? 'card-border-left-active' : '',
-            props.borderFull ? 'card-border-active' : '',
-            props.disabled ? 'card-disabled' : '',
+            ...new Set([
+                'simple-card',
+                animationClasses.value,
+                variantsClasses.value,
+                props.mediaAlignment ? `card-media-${props.mediaAlignment}` : '',
+                props.mediaLeft ? 'card-media-left' : '',
+                props.mediaRight ? 'card-media-right' : '',
+                props.borderTop || props.borderPosition.includes(ESimpleCardBorders.TOP) ? 'card-border-top-active' : '',
+                props.borderBottom || props.borderPosition.includes(ESimpleCardBorders.BOTTOM) ? 'card-border-bottom-active' : '',
+                props.borderRight || props.borderPosition.includes(ESimpleCardBorders.RIGHT) ? 'card-border-right-active' : '',
+                props.borderLeft || props.borderPosition.includes(ESimpleCardBorders.LEFT) ? 'card-border-left-active' : '',
+                props.borderFull || props.borderPosition.includes(ESimpleCardBorders.FULL) ? 'card-border-active' : '',
+                props.disabled ? 'card-disabled' : '',
+            ])
         ]);
 
         const cardMediaArray: VNode[] = [];
@@ -397,45 +417,25 @@ export default defineComponent({
             )
 
         /**
-         * TODO function?
+         *
          */
-        const slotMedia =
-            slots.media
-            && (() => {
-                const iconVNode = slots.media?.()[0]
-                if (iconVNode) {
-                    iconVNode.props = {
-                        ...iconVNode.props,
-                        class: `${iconVNode.props?.class || ''} card-media`
-                    }
-                    return iconVNode
-                }
-                return slots.media()
-            })();
+        const slotMedia = editSlotItems(slots.media, {
+            className: "card-media"
+        });
 
         /**
-         * TODO function?
+         *
          */
-        const slotBackground =
-            slots.background
-            && (() => {
-                const iconVNode = slots.background?.()[0]
-                if (iconVNode) {
-                    iconVNode.props = {
-                        ...iconVNode.props,
-                        class: `${iconVNode.props?.class || ''} card-background`
-                    }
-                    return iconVNode
-                }
-                return slots.background()
-            })();
+        const slotBackground = editSlotItems(slots.background, {
+            className: "card-background"
+        });
 
         /**
          *
          */
         return () => (
             <div
-                class={classes.value}
+                class={[attrs.class, classes.value]}
                 style={{ ...attrs.style || {}, ...themeStyles.value || {} }}
                 {...attrs}
             >

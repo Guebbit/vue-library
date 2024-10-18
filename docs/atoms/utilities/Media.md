@@ -1,8 +1,7 @@
 # Media
 <Badge type="tip">Atom</Badge> <Badge type="tip">Basic</Badge>
 
-// TODO ovunque
-## Component Import
+## Instructions
 
 ```html
 import { Media } from "@guebbit/vue-library";

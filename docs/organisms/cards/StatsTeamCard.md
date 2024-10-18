@@ -1,5 +1,5 @@
-# Simple Card
-<Badge type="tip">Molecules</Badge> <Badge type="info">Card</Badge>
+# ChosenName
+<Badge type="tip">Atoms</Badge> <Badge type="info">Animations</Badge> <Badge type="info">XXXXXXXX</Badge>
 
 ## Instructions
 
@@ -7,10 +7,19 @@
 import { StatsTeamCard } from "@guebbit/vue-library";
 ```
 
+## Default
 
+::: raw
+<div class="dev-section">
+    AAAAAAAAAAAAAAAAAAAA
+</div>
+:::
 
-
-
+::: code-group
+```html
+AAAAAAAAAAAAAAAAAA
+```
+:::
 
 
 ## Props

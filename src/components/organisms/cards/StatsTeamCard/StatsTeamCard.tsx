@@ -5,10 +5,13 @@ import type { PropType } from "vue";
 export default defineComponent({
     name: "StatsTeamCard",
 
+    props: {
+        
+    },
 
     setup(props, { slots }) {
         return () => (
-            <h1>TEST</h1>
+            <h1>StatsTeamCard</h1>
         );
     },
 });

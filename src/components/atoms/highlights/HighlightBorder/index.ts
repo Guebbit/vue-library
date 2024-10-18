@@ -1,1 +1,1 @@
-export { default as HighlightBorder } from "./HighlightBorder.tsx";
+export { default as HighlightBorder } from './HighlightBorder.tsx';

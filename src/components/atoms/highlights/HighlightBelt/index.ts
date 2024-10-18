@@ -1,1 +1,1 @@
-export { default as HighlightBelt } from "./HighlightBelt.tsx";
+export { default as HighlightBelt } from './HighlightBelt.tsx';

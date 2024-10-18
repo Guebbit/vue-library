@@ -1,1 +1,1 @@
-export { default as CornerRibbon } from "./CornerRibbon.tsx";
+export { default as CornerRibbon } from './CornerRibbon.tsx';

@@ -137,6 +137,7 @@ Full example of a theme.scss for your repo.
  - SimpleButton social rollup
  - Icon.tsx todo?
  - Create tests
+ - todo molecules/animations/*
  - Take @guebbit/css-ui component styles and put them as basic props in this repo components
 
 Vue3

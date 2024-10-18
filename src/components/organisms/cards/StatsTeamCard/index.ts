@@ -1,1 +1,1 @@
-export { default as StatsTeamCard } from "./StatsTeamCard.tsx";
+export { default as StatsTeamCard } from './StatsTeamCard.tsx';

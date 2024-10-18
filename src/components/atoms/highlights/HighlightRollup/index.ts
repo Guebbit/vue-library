@@ -1,1 +1,1 @@
-export { default as HighlightRollup } from "./HighlightRollup.tsx";
+export { default as HighlightRollup } from './HighlightRollup.tsx';

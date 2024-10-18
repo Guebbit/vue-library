@@ -1,5 +1,5 @@
 # Simple Panel
-<Badge type="tip">Molecules</Badge> <Badge type="info">Panel</Badge>
+<Badge type="tip">Atoms</Badge> <Badge type="info">Panel</Badge>
 
 ## Instructions
 

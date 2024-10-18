@@ -3,20 +3,18 @@ import { describe, it, expect } from 'vitest';
 import { AspectRatio } from '../../src/';
 
 describe('AspectRatio Component UNIT Tests', () => {
-  it('Renders the component', () => {
-    const mountedComponent = mount(AspectRatio);
-    expect(mountedComponent.exists()).toBe(true);
-    expect(mountedComponent.classes()).toContain('aspect-ratio-container');
-  });
+  it('Renders the component (it can be empty)', () =>
+    expect(mount(AspectRatio).exists()).toBe(true)
+  );
 
   it('Applies the ratio prop as a style', () => {
-    expect(
-      mount(AspectRatio, {
-        props: {
-          ratio: 75
-        }
-      }).attributes('style')
-    ).toContain(`--aspect-ratio: ${75}%`)
+    const mountedComponent = mount(AspectRatio, {
+      props: {
+        ratio: 75
+      }
+    });
+    expect(mountedComponent.attributes('style')).toContain(`--aspect-ratio: ${75}%`);
+    expect(mountedComponent.classes()).toContain('aspect-ratio-container');
   });
 
   it('Renders slot content', () => {

@@ -10,7 +10,7 @@ import { CreditCard } from "@guebbit/vue-library";
 <div class="dev-section">
     <CreditCard
         name = "Owner's name"
-        cardNumber = "5200828282828210"
+        number = "5200828282828210"
         expire = "10/25"
         :back="flippedCreditCard"
         @click="flippedCreditCard = !flippedCreditCard"
@@ -28,7 +28,7 @@ const flippedCreditCard = ref(false)
 
 <CreditCard
     name = "Owner's name"
-    cardNumber = "5200828282828210"
+    number = "5200828282828210"
     expire = "10/25"
     :back="flippedCreditCard"
     @click="flippedCreditCard = !flippedCreditCard"

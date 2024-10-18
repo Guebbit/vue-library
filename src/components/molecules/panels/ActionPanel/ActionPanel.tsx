@@ -47,6 +47,7 @@ export default defineComponent({
                 class={[attrs.class, "action-panel"]}
                 {...props}
                 {...attrs}
+                v-slots={slots}
             >
                 {props.title && h(props.titleTag, { class: 'panel-title' }, slots.title ? slots.title() : props.title)}
                 {props.text && h(props.textTag, {},slots.text ? slots.text() : props.text)}

@@ -15,12 +15,13 @@ export default defineComponent({
         },
     },
 
-    setup(props, { attrs }) {
+    setup(props, { attrs, slots }) {
         return () =>
             <Media
                 {...props}
                 {...attrs}
                 class={attrs.class ? attrs.class : (props.background ? 'card-background' : 'card-media')}
+                v-slots={slots}
             />
     },
 })

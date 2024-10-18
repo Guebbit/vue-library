@@ -15,12 +15,13 @@ export default defineComponent({
         },
     },
 
-    setup(props, { attrs }) {
+    setup(props, { attrs, slots }) {
         if(!props.ratio)
             return () =>
                 <Media
                     {...props}
                     {...attrs}
+                    v-slots={slots}
                 />
         return () =>
             <AspectRatio
@@ -31,7 +32,10 @@ export default defineComponent({
                     "--image-aspect-ratio": "var(--aspect-ratio)",
                 }}
             >
-                <Media {...props} />
+                <Media
+                    {...props}
+                    v-slots={slots}
+                />
             </AspectRatio>
     },
 })

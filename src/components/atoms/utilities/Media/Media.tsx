@@ -154,11 +154,11 @@ export default defineComponent({
          * WARNING: EMediaTypes.COLOR doesn't have a lazyload
          */
         onMounted(() => {
-            if(!props.lazy || mediaRef.value)
+            if(!props.lazy || !mediaRef.value)
                 return;
             switch (props.type) {
                 case EMediaTypes.IMAGE:
-                    return _observerHelper<HTMLImageElement>(mediaRef.value, (target) => {
+                    return _observerHelper<HTMLImageElement>(mediaRef.value as HTMLImageElement, (target) => {
                         target.src = props.media
                         target.classList.add(props.loadedClass)
                     })
@@ -168,7 +168,7 @@ export default defineComponent({
                         target.classList.add(props.loadedClass)
                     })
                 case EMediaTypes.IFRAME:
-                    return _observerHelper<HTMLIFrameElement>(mediaRef.value, (target) => {
+                    return _observerHelper<HTMLIFrameElement>(mediaRef.value as HTMLIFrameElement, (target) => {
                         target.src = props.media
                         target.classList.add(props.loadedClass)
                     })
@@ -176,7 +176,7 @@ export default defineComponent({
                     return;
                 default:
                     // generic string can only be video
-                    return _observerHelper<HTMLVideoElement>(mediaRef.value, (video) => {
+                    return _observerHelper<HTMLVideoElement>(mediaRef.value as HTMLVideoElement, (video) => {
                         const source = video.firstElementChild as HTMLSourceElement | null
                         if (!source || (video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2))
                             return

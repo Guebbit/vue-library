@@ -19,7 +19,7 @@ const {
         }
     }
 });
-console.log("AAAAAAAAAAAAAAAAA", animationProps.animatedHover)
+
 const {
     props: themeProps
 } = useComponentThemes()
@@ -58,7 +58,7 @@ export default defineComponent({
         /**
          * Credit card number
          */
-        cardNumber: {
+        number: {
             type: String,
             required: false
         },
@@ -218,7 +218,7 @@ export default defineComponent({
                               d="M750,431V193.2c-217.6-57.5-556.4-13.5-750,24.9V431c0,22.1,17.9,40,40,40h670C732.1,471,750,453.1,750,431z"></path>
                       </g>
                         <text transform="matrix(1 0 0 1 60.106 295.0121)"
-                            class="svg-label-identification st2 st3 st4">{props.cardNumber}</text>
+                            class="svg-label-identification st2 st3 st4">{(props.number || "").replace(/(.{4})/g, '$1 ')}</text>
                         <text transform="matrix(1 0 0 1 54.1064 428.1723)"
                             class="svg-label-name st2 st5 st6">{props.name}</text>
                         <text transform="matrix(1 0 0 1 54.1074 389.8793)"

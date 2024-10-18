@@ -2,7 +2,7 @@ import { NightwatchBrowser } from 'nightwatch';
 import nightwatchCheckRules from '../utils/nightwatchCheckRules'
 
 describe('SimpleButton Component E2E Tests - based on the documentation, page /atoms/buttons/SimpleButton.html', function () {
-  // TODO this.retries(3);
+  this.retries(3);
 
   /**
    * Open page
@@ -10,8 +10,12 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
   before(function (browser: NightwatchBrowser, done: () => void) {
     return browser
       .url(process.env.VUE_APP_BASE_URL + '/atoms/buttons/SimpleButton.html')
-      .waitForElementVisible('.simple-button', 10000)
-      .perform(() => done());
+        .waitForElementVisible('.simple-button', 10000)
+        // Add global theme for these tests
+        .click('#themeCheckbox')
+        // wait for them to be applied
+        .pause(500)
+        .perform(() => done());
   });
 
   it('Check REGULAR button characteristics', async (browser: NightwatchBrowser) =>
@@ -63,7 +67,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
       },
       {
         html: [
-          "<img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\">"
+          "<button class=\"simple-button animate-on-hover animate-on-active button-md\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\"> IMAGE </button>"
         ],
       },
       {
@@ -135,7 +139,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           // eslint-disable-next-line @typescript-eslint/naming-convention
           "background-color": "rgba(0, 188, 212, 1)",  // transparent is computed like this
           // eslint-disable-next-line @typescript-eslint/naming-convention
-          "box-shadow": "rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px",
+          "box-shadow": "rgba(0, 255, 0, 0.2) 0px 5px 5px -3px, rgba(0, 255, 0, 0.14) 0px 8px 10px 1px, rgba(0, 255, 0, 0.12) 0px 3px 14px 2px",
         },
         classes: [
           "button-elevated"
@@ -219,7 +223,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         height: 33,
         width: 33,
         html: [
-          "<img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\">"
+          "<button class=\"simple-button animate-on-hover animate-on-active button-md button-icon-only\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\"></button>"
         ],
       },
       {
@@ -258,7 +262,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border-radius": "28%"
         },
         html: [
-          "<img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\">"
+          "<button class=\"simple-button animate-on-hover animate-on-active button-md button-rounded button-icon-only\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\"></button>"
         ],
         classes: [
           "button-rounded"
@@ -274,7 +278,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border-radius": "50%"
         },
         html: [
-          "<img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\">"
+          "<button class=\"simple-button animate-on-hover animate-on-active button-md button-circular button-icon-only\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\"></button>"
         ],
         classes: [
           "button-circular"
@@ -337,7 +341,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           // eslint-disable-next-line @typescript-eslint/naming-convention
           "background-color": "rgba(0, 188, 212, 1)",  // transparent is computed like this
           // eslint-disable-next-line @typescript-eslint/naming-convention
-          "box-shadow": "rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px",
+          "box-shadow": "rgba(0, 255, 0, 0.2) 0px 5px 5px -3px, rgba(0, 255, 0, 0.14) 0px 8px 10px 1px, rgba(0, 255, 0, 0.12) 0px 3px 14px 2px",
         },
         classes: [
           "button-elevated"

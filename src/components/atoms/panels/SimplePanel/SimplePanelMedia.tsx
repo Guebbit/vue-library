@@ -5,7 +5,7 @@ export default defineComponent({
     name: 'SimplePanelMedia',
     extends: Media,
 
-    setup(props, { attrs }) {
+    setup(props, { attrs, slots }) {
         return () =>
             <Media
                 {...props}
@@ -14,6 +14,7 @@ export default defineComponent({
                     ...attrs.style || {}
                 }}
                 class={[attrs.class, "panel-background"]}
+                v-slots={slots}
             />
     },
 })

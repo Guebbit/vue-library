@@ -144,8 +144,9 @@ export default defineComponent({
                 disabled={props.disabled || (props as any).variant?.includes('disabled')}
             >
                 {
-                    slotIcon ?
-                        slotIcon : props.image && (
+                    slotIcon && slotIcon.length > 0 ?
+                        slotIcon :
+                        props.image && (
                             <img
                                 src={props.image}
                                 alt={props.imageAlt}

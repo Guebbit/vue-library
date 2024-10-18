@@ -2,23 +2,21 @@ import { mount } from '@vue/test-utils';
 import { describe, it, beforeAll, expect, vi } from 'vitest';
 import { Media, EMediaTypes } from '../../src/'
 
-describe('Media Component', () => {
-  beforeAll(() => {
-    /**
-     * Mock the intersection observer (that shouldn't be here)
-     */
-    // @ts-expect-error takeRecords is wrong
-    global.IntersectionObserver = vi.fn(() => ({
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      rootMargin: 0,
-      thresholds: 0,
-      disconnect: vi.fn(),
-      root: null,
-      takeRecords: [],
-    }));
-  });
+/**
+ * Mock the intersection observer (that shouldn't be here)
+ */
+// @ts-expect-error takeRecords is wrong
+global.IntersectionObserver = vi.fn(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  rootMargin: 0,
+  thresholds: 0,
+  disconnect: vi.fn(),
+  root: null,
+  takeRecords: [],
+}));
 
+describe('Media Component', () => {
   /**
    *
    */

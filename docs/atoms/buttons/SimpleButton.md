@@ -53,7 +53,7 @@ import { SimpleButton } from "@guebbit/vue-library";
         </svg>
         DISABLED
     </SimpleButton>
-    <SimpleButton :color="pageTheme" media="https://placedog.net/100/100">
+    <SimpleButton :color="pageTheme" image="https://placedog.net/100/100">
         IMAGE
     </SimpleButton>
     <SimpleButton :color="pageTheme" variant="rounded">
@@ -132,7 +132,7 @@ import { SimpleButton } from "@guebbit/vue-library";
 ```
 
 ```html [image]
-<SimpleButton media="https://placedog.net/100/100">
+<SimpleButton image="https://placedog.net/100/100">
   IMAGE
 </SimpleButton>
 ```
@@ -380,7 +380,7 @@ import { SimpleButton } from "@guebbit/vue-library";
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton :color="pageTheme" icon :media="'https://placedog.net/100/100'"></SimpleButton>
+    <SimpleButton :color="pageTheme" icon :image="'https://placedog.net/100/100'"></SimpleButton>
     <SimpleButton :color="pageTheme" icon variant="rounded">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
@@ -391,8 +391,8 @@ import { SimpleButton } from "@guebbit/vue-library";
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleButton>
-    <SimpleButton :color="pageTheme" icon variant="rounded" :media="'https://placedog.net/100/100'"></SimpleButton>
-    <SimpleButton :color="pageTheme" icon variant="circular" :media="'https://placedog.net/100/100'"></SimpleButton>
+    <SimpleButton :color="pageTheme" icon variant="rounded" :image="'https://placedog.net/100/100'"></SimpleButton>
+    <SimpleButton :color="pageTheme" icon variant="circular" :image="'https://placedog.net/100/100'"></SimpleButton>
     <SimpleButton :color="pageTheme" icon variant="pill">
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
@@ -445,7 +445,7 @@ import { SimpleButton } from "@guebbit/vue-library";
 ```
 
 ```html [image]
-<SimpleButton icon :media="'https://placedog.net/100/100'"></SimpleButton>
+<SimpleButton icon :image="'https://placedog.net/100/100'"></SimpleButton>
 ```
 
 ```html [rounded]
@@ -465,11 +465,11 @@ import { SimpleButton } from "@guebbit/vue-library";
 ```
 
 ```html [image-rounded]
-<SimpleButton icon variant="rounded" :media="'https://placedog.net/100/100'"></SimpleButton>
+<SimpleButton icon variant="rounded" :image="'https://placedog.net/100/100'"></SimpleButton>
 ```
 
 ```html [image-circular]
-<SimpleButton icon variant="circular" :media="'https://placedog.net/100/100'"></SimpleButton>
+<SimpleButton icon variant="circular" :image="'https://placedog.net/100/100'"></SimpleButton>
 ```
 
 ```html [pill]

@@ -1,9 +1,9 @@
-import './ShapeSlashContainer.scss';
+import './EffectShapeSlash.scss';
 import { defineComponent } from "vue";
 import type { PropType } from "vue";
 
 export default defineComponent({
-    name: "ShapeSlashContainer",
+    name: "EffectShapeSlash",
 
     props: {
         
@@ -11,7 +11,7 @@ export default defineComponent({
 
     setup(props, { slots }) {
         return () => (
-            <h1>ShapeSlashContainer</h1>
+            <h1>EffectShapeSlash</h1>
         );
     },
 });

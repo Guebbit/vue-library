@@ -4,7 +4,7 @@
 ## Instructions
 
 ```ts
-import { SimpleTypography } from "@guebbit/vue-library";
+import { BlogPostCard } from "@guebbit/vue-library";
 ```
 
 ## Default
@@ -36,5 +36,5 @@ TODO
 </style>
 
 <script setup>
-import { SimpleTypography } from '../../../src/';
+import { BlogPostCard } from '../../../src/';
 </script>

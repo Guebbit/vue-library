@@ -1,4 +1,3 @@
-import './SocialButton.scss';
 import { defineComponent } from "vue";
 import type { PropType } from "vue";
 

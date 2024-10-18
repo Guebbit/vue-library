@@ -1,9 +1,9 @@
-import './SimpleTypography.scss';
+import './BlogPostCard.scss';
 import { defineComponent } from "vue";
 import type { PropType } from "vue";
 
 export default defineComponent({
-    name: "SimpleTypography",
+    name: "BlogPostCard",
 
     props: {
         
@@ -11,7 +11,7 @@ export default defineComponent({
 
     setup(props, { slots }) {
         return () => (
-            <h1>SimpleTypography</h1>
+            <h1>BlogPostCard</h1>
         );
     },
 });

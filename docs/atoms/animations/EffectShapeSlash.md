@@ -1,10 +1,10 @@
-# ChosenName
+# Effect Shape Slash
 <Badge type="tip">Atoms</Badge> <Badge type="info">Animations</Badge> <Badge type="info">XXXXXXXX</Badge>
 
 ## Instructions
 
 ```ts
-import { ShapeSlashContainer } from "@guebbit/vue-library";
+import { EffectShapeSlash } from "@guebbit/vue-library";
 ```
 
 ## Default
@@ -36,5 +36,5 @@ TODO
 </style>
 
 <script setup>
-import { ShapeSlashContainer } from '../../../src/';
+import { EffectShapeSlash } from '../../../src/';
 </script>

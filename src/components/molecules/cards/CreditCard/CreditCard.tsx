@@ -151,12 +151,12 @@ export default defineComponent({
          *
          */
         const slotLogo = editSlotItems(slots.logo, {
-            className: 'credit-card-logo'
+            classes: "credit-card-logo"
         })
 
         const slotChip = slots.chip ?
             editSlotItems(slots.chip, {
-                className: 'credit-card-chip'
+                classes: ["credit-card-chip"]
             }) :
             <g class="credit-card-chip">
                 <g>

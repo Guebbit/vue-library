@@ -2,8 +2,8 @@
  * Atoms - animations
  */
 export {
-    AdvancingMoon
-} from './components/atoms/animations/AdvancingMoon/'
+    AdvancingMoonReveal
+} from './components/atoms/animations/AdvancingMoonReveal/'
 export {
     BookFrontLoad
 } from './components/atoms/animations/BookFrontLoad/'

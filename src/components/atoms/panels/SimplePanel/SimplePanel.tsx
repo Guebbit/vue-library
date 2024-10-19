@@ -156,18 +156,20 @@ export default defineComponent({
          * Aggregator of all the classes of component
          */
         const classes = computed(() => [
-            'simple-panel',
-            animationClasses.value,
-            variantsClasses.value,
-            props.highlight ? 'panel-text-shadow' : '',
-            props.ratio ? 'panel-size-as-content' : '',
-        ]);
+            ...new Set([
+                'simple-panel',
+                ...animationClasses.value,
+                ...variantsClasses.value,
+                props.highlight ? 'panel-text-shadow' : undefined,
+                props.ratio ? 'panel-size-as-content' : undefined,
+            ])
+        ].filter(Boolean));
 
         /**
          *
          */
         const slotBackground = editSlotItems(slots.background, {
-            className: "panel-background"
+            classes: ["panel-background"]
         });
 
         /**

@@ -80,7 +80,7 @@
   },
   "overrides": [
     {
-      "files": ["*.d.ts", "*.spec.ts", "*.config.ts", "*.conf.ts", "*.test.ts"],
+      "files": ["*.d.ts", "*.spec.ts", "*.config.ts", "*.conf.ts", "*.test.ts", "src/components/**/*.ts"],
       "rules": {
         "filenames/match-regex": "off"
       }

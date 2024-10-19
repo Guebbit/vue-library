@@ -1,5 +1,5 @@
 import { defineComponent, h } from 'vue'
-import CardTitle from './SimpleCardTitle.tsx'
+import CardTitle from './SimpleCardTitle.ts'
 import CardSubtitle from './SimpleCardSubtitle.tsx'
 import CardActions, { ESimpleCardActionsVariants } from './SimpleCardActions.tsx'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
@@ -62,7 +62,7 @@ export default defineComponent({
         /**
          * CardTitle
          */
-        const cardTitle = (
+        const cardTitle =
             <CardTitle
                 text={props.title}
                 tag={props.titleTag}
@@ -70,12 +70,11 @@ export default defineComponent({
                     default: () => (
                         <>
                             {slots.title ? slots.title() : props.title}
-                            {cardSub} {/* Insert cardSub here */}
+                            {cardSub}
                         </>
                     )
                 }}
             />
-        );
 
         /**
          * Template

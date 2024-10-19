@@ -1,5 +1,6 @@
 import { computed } from 'vue'
 import type { ExtractPropTypes } from 'vue'
+import { kebabCase } from 'change-case';
 
 export interface IVariantsSettings {
     props?: Readonly<ExtractPropTypes<{
@@ -19,13 +20,6 @@ export interface IVariantsSettings {
  * @param prefix
  */
 export default <T>({ props, settings, enumItem }: IVariantsSettings = {}, prefix = '') => {
-    /**
-     *
-     * @param str
-     */
-    function toKebabCase(str: string): string {
-        return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-    }
 
     /**
      * Can be multiple, strings separated by space
@@ -51,16 +45,18 @@ export default <T>({ props, settings, enumItem }: IVariantsSettings = {}, prefix
      * Variants transformed into an array
      */
     const data = computed(() => [
-        ...(props?.variant ? ((props.variant || '') as string).split(' ') : [])
-            .map((variant: string) => `${prefix}${variant}`) as T[],
-        ...Object.entries(props || {})
-            .filter(([key, value]) => value === true)
-            .map(([key]) => {
-                const className = toKebabCase(key);
-                if(Object.values(enumItem || {}).includes(className))
-                    return prefix + className;
-            })
-    ])
+        ...new Set([
+            ...(props?.variant ? ((props.variant || '') as string).split(' ') : [])
+                .map((variant: string) => `${prefix}${variant}`) as T[],
+            ...Object.entries(props || {})
+                .filter(([key, value]) => value === true)
+                .map(([key]) => {
+                    const className = kebabCase(key);
+                    if(Object.values(enumItem || {}).includes(className))
+                        return prefix + className;
+                })
+        ])
+    ].filter(Boolean))
 
     /**
      * Translated variants in the css classes that contains the logic

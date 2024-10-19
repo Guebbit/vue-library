@@ -62,10 +62,10 @@ export default ({ props, settings }: IGenericProps = {}) => {
    *
    */
   const animationClasses = computed(() => [
-    (props?.animated || props?.animatedHover) ? 'animate-on-hover' : '',
-    (props?.animated || props?.animatedActive) ? 'animate-on-active' : '',
-    props?.active ? 'animate-active' : '',
-  ]);
+    (props?.animated || props?.animatedHover) ? 'animate-on-hover' : undefined,
+    (props?.animated || props?.animatedActive) ? 'animate-on-active' : undefined,
+    props?.active ? 'animate-active' : undefined,
+  ].filter(Boolean));
 
   return {
     animationProps,

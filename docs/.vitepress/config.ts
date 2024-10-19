@@ -63,8 +63,8 @@ export default defineConfig({
                                 collapsed: true,
                                 items: [
                                     {
-                                        text: 'Advancing Moon',
-                                        link: '/atoms/animations/AdvancingMoon.md',
+                                        text: 'Advancing Moon Reveal',
+                                        link: '/atoms/animations/AdvancingMoonReveal.md',
                                     },
                                 ]
                             },
@@ -317,10 +317,6 @@ export default defineConfig({
                             {
                                 text: 'Simple Cards (theme)',
                                 link: '/molecules/cards/SimpleCard.md',
-                            },
-                            {
-                                text: 'Simple Cards (without theme)',
-                                link: '/molecules/cards/SimpleCard-no-theme.md',
                             },
                             {
                                 text: 'Simple Cards (variants)',

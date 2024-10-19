@@ -113,24 +113,26 @@ export default defineComponent({
          * Aggregator of all the classes of component
          */
         const classes = computed(() => [
-            'book-card',
-            animationClasses.value,
-            variantsClasses.value,
-            props.disabled ? 'card-disabled' : '',
-        ]);
+            ...new Set([
+                'book-card',
+                ...animationClasses.value,
+                ...variantsClasses.value,
+                props.disabled ? 'card-disabled' : undefined,
+            ])
+        ].filter(Boolean));
 
         /**
          *
          */
         const slotCover = editSlotItems(slots.cover, {
-            className: "card-media"
+            classes: ["card-media"]
         });
 
         /**
          *
          */
         const slotSpine = editSlotItems(slots.spine, {
-            className: "card-background"
+            classes: ["card-background"]
         });
 
 

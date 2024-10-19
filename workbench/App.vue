@@ -8,8 +8,6 @@
 
 <script lang="ts" setup>
 import { SimpleCard } from '../src/';
-
-const exampleText = 'Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor Lorem Ipsum sit dolor'
 </script>
 
 <style>

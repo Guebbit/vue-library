@@ -1,7 +1,8 @@
-import type { VNode } from "vue";
+import type { VNode, CSSProperties } from "vue";
 
 export interface IEditableAttributes{
-    className?: string
+    classes?: string[] | Record<string, boolean>
+    styles?: CSSProperties
 }
 
 export interface ILimitAttributes{
@@ -23,7 +24,8 @@ export default (slot: (() => VNode[] | undefined) | undefined, attributes: IEdit
     const foundVNodesArray = slot() || [];
     for (let i = 0, len = foundVNodesArray.length; i < len; i++){
         const {
-            className = ""
+            classes = [],
+            styles = {}
         } = attributes;
         const {
             tags: limitedTags = [],
@@ -38,7 +40,15 @@ export default (slot: (() => VNode[] | undefined) | undefined, attributes: IEdit
         )
             foundVNodesArray[i].props = {
                 ...foundVNodesArray[i].props,
-                class: `${foundVNodesArray[i].props?.class || ''} ${className}`
+                // class: `${foundVNodesArray[i].props?.class || ''} ${classes[0]}`
+                class: [
+                    foundVNodesArray[i].props?.class,
+                    classes
+                ],
+                styles: {
+                    ...foundVNodesArray[i].props?.style || {},
+                    styles
+                }
             }
         // either way, if a node exists, add it
         if(foundVNodesArray[i])

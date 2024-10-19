@@ -336,8 +336,8 @@ export default defineComponent({
         const classes = computed(() => [
             ...new Set([
                 'simple-card',
-                animationClasses.value,
-                variantsClasses.value,
+                ...animationClasses.value,
+                ...variantsClasses.value,
                 props.mediaAlignment ? `card-media-${props.mediaAlignment}` : '',
                 props.mediaLeft ? 'card-media-left' : '',
                 props.mediaRight ? 'card-media-right' : '',
@@ -348,7 +348,7 @@ export default defineComponent({
                 props.borderFull || props.borderPosition.includes(ESimpleCardBorders.FULL) ? 'card-border-active' : '',
                 props.disabled ? 'card-disabled' : '',
             ])
-        ]);
+        ].filter(Boolean));
 
         const cardMediaArray: VNode[] = [];
 
@@ -420,14 +420,14 @@ export default defineComponent({
          *
          */
         const slotMedia = editSlotItems(slots.media, {
-            className: "card-media"
+            classes: ["card-media"]
         });
 
         /**
          *
          */
         const slotBackground = editSlotItems(slots.background, {
-            className: "card-background"
+            classes: ["card-background"]
         });
 
         /**

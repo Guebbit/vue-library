@@ -110,26 +110,26 @@ export default defineComponent({
         const classes = computed(() => [
             ...new Set([
                 'simple-button',
-                animationClasses.value,
-                sizeClass.value,
-                variantsClasses.value,
+                ...animationClasses.value,
+                ...sizeClass.value,
+                ...variantsClasses.value,
                 props.icon ? 'button-icon-only' : '',
                 props.disabled ? 'button-disabled' : ''
             ])
-        ]);
+        ].filter(Boolean));
 
         /**
          *
          */
         const slotIcon = editSlotItems(slots.icon, {
-            className: "button-icon"
+            classes: ["button-icon"]
         });
 
         /**
          *
          */
         const slotContent = classes.value.includes("button-icon-only") ? editSlotItems(slots.default, {
-            className: "button-icon"
+            classes: ["button-icon"]
         }) : slots.default?.();
 
         /**

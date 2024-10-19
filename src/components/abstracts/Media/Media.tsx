@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
-import { AspectRatio, Media } from '../../../index.ts';
+import Media from '../../atoms/utilities/Media/Media.tsx'
+import AspectRatio from '../../atoms/utilities/AspectRatio/AspectRatio.tsx'
 
 export default defineComponent({
     name: 'AbstractMedia',

@@ -4,5 +4,5 @@ export { default as SimpleCardContent } from "./SimpleCardContent.tsx";
 export { default as SimpleCardFooter, ESimpleCardFooterVariants } from "./SimpleCardFooter.tsx";
 export { default as SimpleCardActions, ESimpleCardActionsVariants } from "./SimpleCardActions.tsx";
 export { default as SimpleCardMedia } from "./SimpleCardMedia.tsx";
-export { default as SimpleCardTitle } from "./SimpleCardTitle.tsx";
+export { default as SimpleCardTitle } from "./SimpleCardTitle.ts";
 export { default as SimpleCardSubtitle } from "./SimpleCardSubtitle.tsx";

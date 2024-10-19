@@ -40,9 +40,9 @@ export default defineComponent({
          *
          */
         const translatedSlot = editSlotItems(slots.default, {
-            className: 'card-icon'
+            classes: ["card-icon"]
         }, {
-            tags: ['img', 'svg']
+            tags: ["img", "svg"]
         });
 
         /**

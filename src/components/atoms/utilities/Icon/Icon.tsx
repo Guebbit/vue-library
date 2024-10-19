@@ -32,7 +32,7 @@ export default defineComponent({
          * Template
          */
         return () => editSlotItems(slots.default, {
-            className: sizeClass.value
+            classes: sizeClass.value
         });
     },
 });

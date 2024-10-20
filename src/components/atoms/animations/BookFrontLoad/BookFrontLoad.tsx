@@ -5,9 +5,7 @@ import type { PropType } from "vue";
 export default defineComponent({
     name: "BookFrontLoad",
 
-    props: {
-        
-    },
+    props: {},
 
     setup(props, { slots }) {
         return () => (
@@ -15,3 +13,4 @@ export default defineComponent({
         );
     },
 });
+

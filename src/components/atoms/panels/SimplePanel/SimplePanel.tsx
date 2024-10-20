@@ -1,6 +1,7 @@
 import './SimplePanel.scss'
 import { computed, defineComponent } from 'vue'
 
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
 import useComponentGenerics from '../../../../composables/componentGenerics.ts';
 import useComponentVariants from '../../../../composables/componentVariants.ts';
 import useComponentThemes from '../../../../composables/componentThemes.ts';
@@ -144,24 +145,24 @@ export default defineComponent({
         } = useComponentGenerics({ props });
         const {
             styles: themeStyles
-        } = useComponentThemes({ props }, "simple-panel-");
+        } = useComponentThemes({ props }, THEME_VAR_PREFIX + "simple-panel-");
         const {
             classes: variantsClasses
         } = useComponentVariants<ESimplePanelVariants>({
             props,
             enumItem: ESimplePanelVariants
-        }, "panel-");
+        }, THEME_CLASS_PREFIX + "panel-");
 
         /**
          * Aggregator of all the classes of component
          */
         const classes = computed(() => [
             ...new Set([
-                'simple-panel',
+                THEME_CLASS_PREFIX + 'simple-panel',
                 ...animationClasses.value,
                 ...variantsClasses.value,
-                props.highlight ? 'panel-text-shadow' : undefined,
-                props.ratio ? 'panel-size-as-content' : undefined,
+                props.highlight ? THEME_CLASS_PREFIX + 'panel-text-shadow' : undefined,
+                props.ratio ? THEME_CLASS_PREFIX + 'panel-size-as-content' : undefined,
             ])
         ].filter(Boolean));
 
@@ -169,7 +170,7 @@ export default defineComponent({
          *
          */
         const slotBackground = editSlotItems(slots.background, {
-            classes: ["panel-background"]
+            classes: [THEME_CLASS_PREFIX + "panel-background"]
         });
 
         /**
@@ -177,18 +178,18 @@ export default defineComponent({
          */
         return () => (
             <div
+                {...attrs}
                 class={[attrs.class, classes.value]}
                 style={{
                     ...attrs.style || {},
                     ...themeStyles.value || {},
                     height: props.height
                 }}
-                {...attrs}
             >
                 {
                     props.overlay ?
                         <div
-                            class="panel-overlay"
+                            class={THEME_CLASS_PREFIX + 'panel-overlay'}
                             style={{
                                 "background": props.overlayColor,
                                 "opacity": props.overlayOpacity,
@@ -214,7 +215,7 @@ export default defineComponent({
                                 : null
                         )
                 }
-                <div class="panel-content">
+                <div class={THEME_CLASS_PREFIX + 'panel-content'}>
                     {slots.default ? slots.default() : null}
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import './SimpleButton.scss'
 import { defineComponent, computed } from 'vue'
 
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
 import useComponentGenerics from '../../../../composables/componentGenerics.ts';
 import useComponentVariants from '../../../../composables/componentVariants.ts';
 import useComponentSizes from '../../../../composables/componentSizes.ts';
@@ -96,25 +97,25 @@ export default defineComponent({
         } = useComponentGenerics({ props })
         const {
             classes: sizeClass
-        } = useComponentSizes('button-', props)
+        } = useComponentSizes(THEME_CLASS_PREFIX + 'button-', props)
         const {
             classes: variantsClasses
-        } = useComponentVariants<ESimpleButtonVariants>({ props }, 'button-')
+        } = useComponentVariants<ESimpleButtonVariants>({ props }, THEME_CLASS_PREFIX + 'button-')
         const {
             styles: themeStyles
-        } = useComponentThemes({ props }, "simple-button-");
+        } = useComponentThemes({ props }, THEME_VAR_PREFIX + "simple-button-");
 
         /**
          * Aggregator of all the classes of component
          */
         const classes = computed(() => [
             ...new Set([
-                'simple-button',
+                THEME_CLASS_PREFIX + 'simple-button',
                 ...animationClasses.value,
-                ...sizeClass.value,
                 ...variantsClasses.value,
-                props.icon ? 'button-icon-only' : '',
-                props.disabled ? 'button-disabled' : ''
+                sizeClass.value,
+                props.icon ? THEME_CLASS_PREFIX + 'button-icon-only' : undefined,
+                props.disabled ? THEME_CLASS_PREFIX + 'button-disabled' : undefined
             ])
         ].filter(Boolean));
 
@@ -122,15 +123,17 @@ export default defineComponent({
          *
          */
         const slotIcon = editSlotItems(slots.icon, {
-            classes: ["button-icon"]
+            classes: [THEME_CLASS_PREFIX + "button-icon"]
         });
 
         /**
          *
          */
-        const slotContent = classes.value.includes("button-icon-only") ? editSlotItems(slots.default, {
-            classes: ["button-icon"]
-        }) : slots.default?.();
+        const slotContent = editSlotItems(slots.default, {
+            classes: [THEME_CLASS_PREFIX + "button-icon"]
+        }, {
+            tags: ["svg"]
+        });
 
         /**
          * Template
@@ -150,11 +153,11 @@ export default defineComponent({
                             <img
                                 src={props.image}
                                 alt={props.imageAlt}
-                                class="button-image"
+                                class={THEME_CLASS_PREFIX + 'button-image'}
                             />
                         )
                 }
-                { slotContent ? slotContent : !props.icon ? props.text : '' }
+                { slotContent && slotContent.length > 0 ? slotContent : props.text }
             </button>
         )
     }

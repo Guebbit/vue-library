@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue'
+import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
 import CardActions, { ESimpleCardActionsVariants } from './SimpleCardActions.tsx'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
 
@@ -26,14 +27,14 @@ export default defineComponent({
          */
         const {
             classes: variantsClasses
-        } = useComponentVariants<ESimpleCardActionsVariants>({ props }, 'card-section-');
+        } = useComponentVariants<ESimpleCardActionsVariants>({ props }, THEME_CLASS_PREFIX + 'card-section-');
 
         /**
          * Template
          */
         return () =>
             slots.default || slots.actions ?
-                <div class={["card-footer", variantsClasses.value]}>
+                <div class={[THEME_CLASS_PREFIX + "card-footer", variantsClasses.value]}>
                     {slots.default ? slots.default() : null}
                     {slots.actions ? <CardActions>{slots.actions()}</CardActions> : null}
                 </div>

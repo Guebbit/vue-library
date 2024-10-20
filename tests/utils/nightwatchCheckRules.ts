@@ -150,7 +150,7 @@ export default async function(
               .getAttribute('class')
               .then((value) => {
                 for(let k = ruleArray[i].classes!.length; k--; )
-                  if(value?.includes(ruleArray[i].classes![k] || ""))
+                  if(value && value.includes(ruleArray[i].classes![k] || ""))
                     browser.assert.ok(true, i + ": Correct class " + k);
                   else
                     browser.assert.fail((ruleArray[i].classes![k] || "") + " => class is not in => " + (value ?? ""));
@@ -166,7 +166,7 @@ export default async function(
               .getAttribute('style')
               .then((value) => {
                 for(let k = ruleArray[i].styles!.length; k--; )
-                  if(value?.includes(ruleArray[i].styles![k] || ""))
+                  if(value && value.includes(ruleArray[i].styles![k] || ""))
                     browser.assert.ok(true, i + ": Correct style " + k);
                   else
                     browser.assert.fail((ruleArray[i].styles![k] || "") + " => style is not in => " + (value ?? ""));
@@ -194,10 +194,10 @@ export default async function(
               .getAttribute('outerHTML')
               .then((value) => {
                 for(let k = ruleArray[i].html!.length; k--; )
-                  if(value?.includes(ruleArray[i].html![k] || ""))
+                  if(value && value.includes(ruleArray[i].html![k] || ""))
                     browser.assert.ok(true, i + ": Correct outerHTML " + k);
                   else
-                    browser.assert.fail((ruleArray[i].html![k] || "") + " => is not in => " + (value ?? ""));
+                    browser.assert.fail((ruleArray[i].html![k] || "") + " => HTML is not in => " + (value ?? ""));
               })
           )
       }

@@ -7,7 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-import { SimpleCard } from '../src/';
+import { SimpleCard } from '../src/index';
+// import SimpleCard from "../src/components/molecules/cards/SimpleCard/SimpleCard"
 </script>
 
 <style>

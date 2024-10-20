@@ -1,3 +1,7 @@
+---
+search: false
+---
+
 ## Basics
 
 ::: raw
@@ -32,7 +36,7 @@
   </SimpleCard>
   <SimpleCard :color="pageTheme">
     <SimpleCardActions variant="absolute">
-        <svg class="card-icon" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleCardActions>
@@ -46,10 +50,10 @@
     <template v-slot:content>
         <p>{{ exampleText }}</p>
         <SimpleCardActions variant="end">
-          <svg class="card-icon" viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
           </svg>
-          <svg class="card-icon" viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
           </svg>
         </SimpleCardActions>
@@ -57,7 +61,6 @@
     <SimpleCardMedia 
         media="http://placedog.net/500/500"
         ratio="16/9"
-        class="card-media"
     />
   </SimpleCard>
 </div>
@@ -91,10 +94,10 @@
 ```html [Slots]
 <SimpleCard>
     <template v-slot:actions>
-        <svg class="card-icon" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
-        <svg class="card-icon" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </template>
@@ -116,10 +119,10 @@
 ```html [Components]
   <SimpleCard>
     <SimpleCardActions variant="absolute">
-        <svg class="card-icon" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
-        <svg class="card-icon" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </SimpleCardActions>
@@ -133,10 +136,10 @@
     <template v-slot:content>
         <p>{{ exampleText }}</p>
         <SimpleCardActions variant="end">
-            <svg class="card-icon" viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
             </svg>
-            <svg class="card-icon" viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
             </svg>
         </SimpleCardActions>
@@ -144,7 +147,6 @@
     <SimpleCardMedia
         media="http://placedog.net/500/500"
         ratio="16/9"
-        class="card-media"
     />
 </SimpleCard>
 ```

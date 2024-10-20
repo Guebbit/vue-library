@@ -1,3 +1,7 @@
+---
+search: false
+---
+
 ## Simple
 Just custom CSS variables to change style
 
@@ -71,7 +75,6 @@ Just custom CSS variables to change style
             media="http://assets.guebbit.com/guebbit/video/normal.mp4"
             video
             type="video/mp4"
-            class="card-media"
         />
         <div class="card-container card-has-overlay">
             <div class="card-overlay"></div>
@@ -177,7 +180,6 @@ Just custom CSS variables to change style
         media="http://assets.guebbit.com/guebbit/video/normal.mp4"
         video
         type="video/mp4"
-        class="card-media"
     />
     <div class="card-container card-has-overlay">
         <div class="card-overlay"></div>

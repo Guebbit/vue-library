@@ -1,5 +1,6 @@
 import { defineComponent, h } from 'vue'
 import CardActions from './SimpleCardActions.tsx'
+import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
 
 export default defineComponent({
     name: 'SimpleCardContent',
@@ -26,7 +27,7 @@ export default defineComponent({
          */
         return () =>
             slots.default || slots.actions || props.text ?
-                <div class="card-content">
+                <div class={THEME_CLASS_PREFIX + 'card-content'}>
                     {
                         slots.default ?
                             slots.default() :

@@ -1,8 +1,9 @@
-import { defineComponent, h } from 'vue'
+import { defineComponent } from 'vue'
+import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
+import useComponentVariants from '../../../../composables/componentVariants.ts'
 import CardTitle from './SimpleCardTitle.ts'
 import CardSubtitle from './SimpleCardSubtitle.tsx'
 import CardActions, { ESimpleCardActionsVariants } from './SimpleCardActions.tsx'
-import useComponentVariants from '../../../../composables/componentVariants.ts'
 
 export enum ESimpleCardHeaderVariants {
     START = 'start',
@@ -24,20 +25,20 @@ export default defineComponent({
 
         title: {
             type: String,
-            required: false,
+            required: false
         },
         titleTag: {
             type: String,
-            default: () => 'h3',
+            default: () => 'h3'
         },
         sub: {
             type: String,
-            required: false,
+            required: false
         },
         subTag: {
             type: String,
-            default: () => 'span',
-        },
+            default: () => 'span'
+        }
     },
     setup(props, { slots }) {
         /**
@@ -45,12 +46,13 @@ export default defineComponent({
          */
         const {
             classes: variantsClasses
-        } = useComponentVariants<ESimpleCardActionsVariants>({ props }, 'card-section-');
+        } = useComponentVariants<ESimpleCardActionsVariants>({ props }, THEME_CLASS_PREFIX + 'card-section-')
 
         /**
          *
          */
         const cardSub =
+            (props.sub || slots.sub) &&
             <CardSubtitle
                 text={props.sub}
                 tag={props.subTag}
@@ -63,6 +65,7 @@ export default defineComponent({
          * CardTitle
          */
         const cardTitle =
+            (props.title || slots.title || cardSub) &&
             <CardTitle
                 text={props.title}
                 tag={props.titleTag}
@@ -81,16 +84,16 @@ export default defineComponent({
          */
         return () =>
             slots.default || slots.actions || cardTitle ?
-                <div class={["card-header", variantsClasses.value]}>
+                <div class={[THEME_CLASS_PREFIX + 'card-header', variantsClasses.value]}>
                     {slots.default ? slots.default() : null}
                     <CardActions
                         v-slots={{
-                            default: slots.actions,
+                            default: slots.actions
                         }}
                     />
                     {cardTitle}
                 </div>
                 : null
 
-    },
+    }
 })

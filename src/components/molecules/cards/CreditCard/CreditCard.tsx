@@ -1,10 +1,9 @@
 import './CreditCard.scss'
 import { defineComponent } from 'vue'
-import type { PropType } from 'vue'
+
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
 import useComponentGenerics from '../../../../composables/componentGenerics.ts'
 import useComponentThemes from '../../../../composables/componentThemes.ts'
-import useComponentVariants from '../../../../composables/componentVariants.ts'
-import { ESimpleCardVariants } from '../SimpleCard'
 import editSlotItems from '../../../../utils/editSlotItems.ts'
 
 /**
@@ -145,13 +144,13 @@ export default defineComponent({
         } = useComponentGenerics({ props })
         const {
             styles: themeStyles
-        } = useComponentThemes({ props }, 'credit-card-')
+        } = useComponentThemes({ props }, THEME_VAR_PREFIX + 'credit-card-')
 
         /**
          *
          */
         const slotLogo = editSlotItems(slots.logo, {
-            classes: "credit-card-logo"
+            classes: ["credit-card-logo"]
         })
 
         const slotChip = slots.chip ?
@@ -195,8 +194,8 @@ export default defineComponent({
         return () =>
             <div
                 class={[
+                    THEME_CLASS_PREFIX + 'credit-card',
                     animationClasses.value,
-                    'credit-card',
                     props.back ? "animate-active" : ""
                 ]}
                 style={{ ...attrs.style || {}, ...themeStyles.value || {} }}

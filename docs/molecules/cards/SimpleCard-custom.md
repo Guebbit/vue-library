@@ -1,4 +1,4 @@
-# Simple Card
+# Simple Card Customs
 <Badge type="tip">Molecules</Badge> <Badge type="info">Card</Badge>
 ::: info Original:
 [SimpleCard](/molecules/cards/SimpleCard)

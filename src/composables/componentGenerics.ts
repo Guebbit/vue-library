@@ -1,4 +1,5 @@
 import { computed } from 'vue'
+import { THEME_CLASS_PREFIX } from '../_vars.ts'
 
 export interface IGenericProps {
   props?: {
@@ -62,9 +63,9 @@ export default ({ props, settings }: IGenericProps = {}) => {
    *
    */
   const animationClasses = computed(() => [
-    (props?.animated || props?.animatedHover) ? 'animate-on-hover' : undefined,
-    (props?.animated || props?.animatedActive) ? 'animate-on-active' : undefined,
-    props?.active ? 'animate-active' : undefined,
+    (props?.animated || props?.animatedHover) ? THEME_CLASS_PREFIX + 'animate-on-hover' : undefined,
+    (props?.animated || props?.animatedActive) ? THEME_CLASS_PREFIX + 'animate-on-active' : undefined,
+    props?.active ? THEME_CLASS_PREFIX + 'animate-active' : undefined,
   ].filter(Boolean));
 
   return {

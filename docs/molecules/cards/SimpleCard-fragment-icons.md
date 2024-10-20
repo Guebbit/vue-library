@@ -1,3 +1,7 @@
+---
+search: false
+---
+
 ## Icons
 
 ::: tip Included in the example:
@@ -13,7 +17,7 @@
         :text="exampleText"
     >
         <template v-slot:headerActions>
-            <svg class="card-icon" viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
             </svg>
         </template>
@@ -29,8 +33,8 @@
             <SimpleCardActions variant="end">
                 <SimpleButton>lorem</SimpleButton>
                 <SimpleButton>ipsum</SimpleButton>
-                <img alt="" class="card-icon" src="https://placedog.net/400/400" />
-                <svg class="card-icon" viewBox="0 0 24 24">
+                <img alt="" src="https://placedog.net/400/400" />
+                <svg viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="10" />
                 </svg>
             </SimpleCardActions>
@@ -44,7 +48,7 @@
             Title of Lorem Ipsum
         </template>
         <template v-slot:headerActions>
-            <svg class="card-icon" viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
             </svg>
         </template>
@@ -52,10 +56,10 @@
             Subtitle of Lorem Ipsum
         </template>
         <template v-slot:actions>
-            <svg class="card-icon" viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
             </svg>
-            <svg class="card-icon" viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
             </svg>
         </template>
@@ -66,19 +70,19 @@
             <SimpleCardActions variant="center">
                 <SimpleButton>lorem</SimpleButton>
                 <SimpleButton>ipsum</SimpleButton>
-                <img alt="" class="card-icon" src="https://placedog.net/400/400" />
-                <svg class="card-icon" viewBox="0 0 24 24">
+                <img alt="" src="https://placedog.net/400/400" />
+                <svg viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="10" />
                 </svg>
             </SimpleCardActions>
         </template>
         <template v-slot:footerActions>
             <SimpleButton>ipsum</SimpleButton>
-            <svg class="card-icon" viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
             </svg>
-            <img alt="" class="card-icon" src="https://placedog.net/400/400" />
-            <svg class="card-icon" viewBox="0 0 24 24">
+            <img alt="" src="https://placedog.net/400/400" />
+            <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
             </svg>
         </template>
@@ -94,7 +98,7 @@
     :text="exampleText"
 >
     <template v-slot:headerActions>
-        <svg class="card-icon" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </template>
@@ -111,8 +115,8 @@
         <SimpleCardActions variant="end">
             <SimpleButton>lorem</SimpleButton>
             <SimpleButton>ipsum</SimpleButton>
-            <img alt="" class="card-icon" src="https://placedog.net/400/400" />
-            <svg class="card-icon" viewBox="0 0 24 24">
+            <img alt="" src="https://placedog.net/400/400" />
+            <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
             </svg>
         </SimpleCardActions>
@@ -126,7 +130,7 @@
         Title of Lorem Ipsum
     </template>
     <template v-slot:headerActions>
-        <svg class="card-icon" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </template>
@@ -134,10 +138,10 @@
         Subtitle of Lorem Ipsum
     </template>
     <template v-slot:actions>
-        <svg class="card-icon" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
-        <svg class="card-icon" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </template>
@@ -148,19 +152,19 @@
         <SimpleCardActions variant="center">
             <SimpleButton>lorem</SimpleButton>
             <SimpleButton>ipsum</SimpleButton>
-            <img alt="" class="card-icon" src="https://placedog.net/400/400" />
-            <svg class="card-icon" viewBox="0 0 24 24">
+            <img alt="" src="https://placedog.net/400/400" />
+            <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" />
             </svg>
         </SimpleCardActions>
     </template>
     <template v-slot:footerActions>
         <SimpleButton>ipsum</SimpleButton>
-        <svg class="card-icon" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
-        <img alt="" class="card-icon" src="https://placedog.net/400/400" />
-        <svg class="card-icon" viewBox="0 0 24 24">
+        <img alt="" src="https://placedog.net/400/400" />
+        <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
         </svg>
     </template>

@@ -1,3 +1,7 @@
+---
+search: false
+---
+
 ## Borders
 
 ::: raw
@@ -8,9 +12,11 @@
     subtitle="Subtitle of Lorem Ipsum"
     :text="exampleText"
     border-right
+    transparent
   />
   <SimpleCard
     :color="pageTheme"
+    variant="transparent"
     title="Title of Lorem Ipsum"
     subtitle="Subtitle of Lorem Ipsum"
     :text="exampleText"
@@ -18,6 +24,7 @@
   />
   <SimpleCard
     :color="pageTheme"
+    variant="transparent"
     title="Title of Lorem Ipsum"
     subtitle="Subtitle of Lorem Ipsum"
     :text="exampleText"
@@ -26,6 +33,7 @@
   />
   <SimpleCard
     :color="pageTheme"
+    variant="transparent"
     title="Title of Lorem Ipsum"
     subtitle="Subtitle of Lorem Ipsum"
     :text="exampleText"

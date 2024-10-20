@@ -13,6 +13,7 @@
     "types": ["nightwatch"]
   },
   "include": [
+    "../src/_vars.ts",
     "../node_modules/@nightwatch/**/*",
     "../tests/utils/*",
     "../tests/e2e/**/*"

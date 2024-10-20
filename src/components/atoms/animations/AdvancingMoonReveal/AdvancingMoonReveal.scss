@@ -1,5 +1,6 @@
 @use "../../../../vars" as vars;
 @use "../../../../../node_modules/@guebbit/css-ui/src/atoms/animations/AdvancingMoonReveal" with (
     $css-ui-var-prefix: vars.$css-ui-var-prefix,
+    $css-ui-class-prefix: vars.$css-ui-class-prefix,
     $css-ui-root-prefix: vars.$css-ui-root-prefix
 );

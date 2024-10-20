@@ -1,15 +1,18 @@
 import './BookCard.scss';
 import { defineComponent, computed } from 'vue';
+
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
 import SimpleCard, { ESimpleCardVariants } from '../SimpleCard/SimpleCard.tsx'
 import CardFooter from '../SimpleCard/SimpleCardFooter.tsx'
 import CardActions from '../SimpleCard/SimpleCardActions.tsx'
 import CardContent from '../SimpleCard/SimpleCardContent.tsx'
 import CardHeader from '../SimpleCard/SimpleCardHeader.tsx'
+import CardMedia from '../SimpleCard/SimpleCardMedia.tsx'
+
 import useComponentGenerics from '../../../../composables/componentGenerics.ts'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
 import useComponentThemes from '../../../../composables/componentThemes.ts'
 import editSlotItems from '../../../../utils/editSlotItems.ts'
-import CardMedia from '../SimpleCard/SimpleCardMedia.tsx'
 
 export default defineComponent({
     name: 'BookCard',
@@ -17,15 +20,6 @@ export default defineComponent({
     extends: SimpleCard,
 
     props: {
-
-        /**
-         * TODO
-         */
-        author: {
-            type: String,
-            required: false,
-        },
-
         /**
          * TODO
          */
@@ -101,23 +95,23 @@ export default defineComponent({
         } = useComponentGenerics({ props });
         const {
             styles: themeStyles
-        } = useComponentThemes({ props }, "simple-card-");
+        } = useComponentThemes({ props }, THEME_VAR_PREFIX + "simple-card-");
         const {
             classes: variantsClasses
         } = useComponentVariants<ESimpleCardVariants>({
             props,
             enumItem: ESimpleCardVariants
-        }, "card-");
+        }, THEME_CLASS_PREFIX + "card-");
 
         /**
          * Aggregator of all the classes of component
          */
         const classes = computed(() => [
             ...new Set([
-                'book-card',
+                THEME_CLASS_PREFIX + 'book-card',
                 ...animationClasses.value,
                 ...variantsClasses.value,
-                props.disabled ? 'card-disabled' : undefined,
+                props.disabled ? THEME_CLASS_PREFIX + 'card-disabled' : undefined,
             ])
         ].filter(Boolean));
 
@@ -125,17 +119,17 @@ export default defineComponent({
          *
          */
         const slotCover = editSlotItems(slots.cover, {
-            classes: ["card-media"]
+            classes: [THEME_CLASS_PREFIX + "card-media"]
         });
 
         /**
          *
          */
         const slotSpine = editSlotItems(slots.spine, {
-            classes: ["card-background"]
+            classes: [THEME_CLASS_PREFIX + "card-background"]
         });
 
-
+        // TODO put in spine footer img\svg via prop and slot
         return () => (
             <div
                 class={[attrs.class, classes.value]}
@@ -143,7 +137,7 @@ export default defineComponent({
                 {...attrs}
             >
                 <div>
-                    <div class="book-cover">
+                    <div class={THEME_CLASS_PREFIX + 'book-cover'}>
                         <CardHeader
                             title={props.title}
                             titleTag={props.titleTag}
@@ -172,7 +166,7 @@ export default defineComponent({
                                     <CardMedia
                                         media={props.cover}
                                         ratio={props.ratio}
-                                        class="card-media"
+                                        class={THEME_CLASS_PREFIX + 'card-media'}
                                         type={
                                             props.video ?
                                                 (props.type ?
@@ -196,9 +190,9 @@ export default defineComponent({
                             }}
                         />
                     </div>
-                    <div class="book-spine">
+                    <div class={THEME_CLASS_PREFIX + 'book-spine'}>
                         <CardHeader
-                            title={props.spineTitle}
+                            title={props.spineTitle || props.title}
                             titleTag={props.spineTitleTag}
                             v-slots={{
                                 default: slots.spineHeader,
@@ -210,7 +204,7 @@ export default defineComponent({
                                 props.spine ?
                                     <CardMedia
                                         media={props.spine}
-                                        class="card-background"
+                                        class={THEME_CLASS_PREFIX + 'card-background'}
                                     />
                                     : null
                         }

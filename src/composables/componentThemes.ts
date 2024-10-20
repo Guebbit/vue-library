@@ -1,5 +1,6 @@
 import { computed } from 'vue'
 import type { PropType, CSSProperties } from 'vue'
+import { THEME_ROOT_PREFIX } from '../_vars.ts'
 import useThemeGenerator from './themeGenerator.ts'
 
 export interface IThemeProps {
@@ -18,7 +19,7 @@ export interface IThemeProps {
  * @param prefix
  * @param globalPrefix
  */
-export default ({ props, settings }: IThemeProps = {}, prefix = '', globalPrefix = 'g-theme-') => {
+export default ({ props, settings }: IThemeProps = {}, prefix = '', globalPrefix = THEME_ROOT_PREFIX) => {
     const {
         themes: themeGlobal,
         currentName

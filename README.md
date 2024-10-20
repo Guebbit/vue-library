@@ -143,10 +143,10 @@ Full example of a theme.scss for your repo.
 Vue3
 https://blog.vuejs.org/posts/vue-3-2
 https://blog.vuejs.org/posts/vue-3-3
-https://blog.vuejs.org/posts/vue-3-4
+[https://blog.vuejs.org/posts/vue-3-4
 https://blog.stackademic.com/learn-these-new-features-in-vue-3-5-now-2909e24aa58d
 https://vuejs.org/guide/components/v-model.html
-
+]()
 Typescript
 https://vuejs.org/guide/typescript/overview.html
 https://vuejs.org/guide/typescript/composition-api.html

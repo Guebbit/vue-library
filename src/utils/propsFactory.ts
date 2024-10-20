@@ -43,9 +43,14 @@ import type { ComponentObjectPropsOptions, Prop, PropType } from 'vue'
  * }
  */
 
+/**
+ *
+ * @param props
+ * @param source
+ */
 export function propsFactory<
     PropsOptions extends ComponentObjectPropsOptions
-> (props: PropsOptions, source: string) {
+> (props: PropsOptions, source = "") {
     // eslint-disable-next-line @typescript-eslint/ban-types
     return <Defaults extends PartialKeys<PropsOptions> = {}>(
         defaults?: Defaults

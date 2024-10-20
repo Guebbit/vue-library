@@ -1,5 +1,6 @@
 import { NightwatchBrowser } from 'nightwatch';
 import nightwatchCheckRules from '../utils/nightwatchCheckRules'
+import { THEME_CLASS_PREFIX } from '../../src/_vars';
 
 describe('SimpleButton Component E2E Tests - based on the documentation, page /atoms/buttons/SimpleButton.html', function () {
   this.retries(3);
@@ -10,7 +11,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
   before(function (browser: NightwatchBrowser, done: () => void) {
     return browser
       .url(process.env.VUE_APP_BASE_URL + '/atoms/buttons/SimpleButton.html')
-        .waitForElementVisible('.simple-button', 10000)
+        .waitForElementVisible('.'+THEME_CLASS_PREFIX+'simple-button', 10000)
         // Add global theme for these tests
         .click('#themeCheckbox')
         // wait for them to be applied
@@ -18,8 +19,8 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         .perform(() => done());
   });
 
-  it('Check REGULAR button characteristics', async (browser: NightwatchBrowser) =>
-      nightwatchCheckRules(browser, '#test-basics .simple-button', [
+  it('Check BASICS button characteristics', async (browser: NightwatchBrowser) =>
+      nightwatchCheckRules(browser, '#test-basics .'+THEME_CLASS_PREFIX+'simple-button', [
         {
           css: {
             // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -35,7 +36,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
             "background-color": "rgba(0, 188, 212, 1)",
           },
           html: [
-            "<svg class=\"button-icon\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg> ",
+            "<svg viewBox=\"0 0 24 24\" class=\""+THEME_CLASS_PREFIX+"button-icon\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg> ",
             "DEFAULT"
           ],
         },
@@ -45,15 +46,15 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
             "background-color": "rgba(0, 188, 212, 1)",
           },
           html: [
-            "<svg class=\"button-icon\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg> ",
-            "DEFAULT"
+            "<svg viewBox=\"0 0 24 24\" class=\""+THEME_CLASS_PREFIX+"button-icon\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg> ",
+            "SLOT"
           ],
         },
       ])
   );
 
   it('Check REGULAR button characteristics', async (browser: NightwatchBrowser) =>
-    nightwatchCheckRules(browser, '#test-regulars .simple-button', [
+    nightwatchCheckRules(browser, '#test-regulars .'+THEME_CLASS_PREFIX+'simple-button', [
       {
         attributes: [
           "disabled"
@@ -67,7 +68,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
       },
       {
         html: [
-          "<button class=\"simple-button animate-on-hover animate-on-active button-md\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\"> IMAGE </button>"
+          "<button class=\""+THEME_CLASS_PREFIX+"simple-button "+THEME_CLASS_PREFIX+"animate-on-hover "+THEME_CLASS_PREFIX+"animate-on-active "+THEME_CLASS_PREFIX+"button-md\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\""+THEME_CLASS_PREFIX+"button-image\"> IMAGE </button>"
         ],
       },
       {
@@ -78,7 +79,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border-radius": "28%"
         },
         classes: [
-          "button-rounded"
+          THEME_CLASS_PREFIX + "button-rounded"
         ],
       },
       {
@@ -89,7 +90,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border-radius": "50%"
         },
         classes: [
-          "button-circular"
+          THEME_CLASS_PREFIX + "button-circular"
         ],
       },
       {
@@ -99,7 +100,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           // "border-radius": "5em" // can't use EM on computed values
         },
         classes: [
-          "button-pill"
+          THEME_CLASS_PREFIX + "button-pill"
         ],
       },
       {
@@ -110,7 +111,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "box-shadow": "none",
         },
         classes: [
-          "button-flat"
+          THEME_CLASS_PREFIX + "button-flat"
         ],
       },
       {
@@ -119,7 +120,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "background-color": "rgba(0, 0, 0, 0)",  // transparent is computed like this
         },
         classes: [
-          "button-plain"
+          THEME_CLASS_PREFIX + "button-plain"
         ],
       },
       {
@@ -130,8 +131,8 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "box-shadow": "none",
         },
         classes: [
-          "button-plain",
-          "button-flat"
+          THEME_CLASS_PREFIX + "button-plain",
+          THEME_CLASS_PREFIX + "button-flat"
         ],
       },
       {
@@ -142,7 +143,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "box-shadow": "rgba(0, 255, 0, 0.2) 0px 5px 5px -3px, rgba(0, 255, 0, 0.14) 0px 8px 10px 1px, rgba(0, 255, 0, 0.12) 0px 3px 14px 2px",
         },
         classes: [
-          "button-elevated"
+          THEME_CLASS_PREFIX + "button-elevated"
         ],
       },
       {
@@ -152,14 +153,14 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border": "2px solid rgb(0, 188, 212)",
         },
         classes: [
-          "button-outlined"
+          THEME_CLASS_PREFIX + "button-outlined"
         ],
       },
     ])
   );
 
   it('Check SIZES button characteristics', async (browser: NightwatchBrowser) => {
-    await nightwatchCheckRules(browser, '#test-sizes .simple-button', {
+    await nightwatchCheckRules(browser, '#test-sizes .'+THEME_CLASS_PREFIX+'simple-button', {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       0: {
         height: 24,
@@ -177,7 +178,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         ],
       },
     })
-    await nightwatchCheckRules(browser, '#test-size-icons .simple-button', {
+    await nightwatchCheckRules(browser, '#test-size-icons .'+THEME_CLASS_PREFIX+'simple-button', {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       0: {
         height: 20,
@@ -192,7 +193,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
   });
 
   it('Check ICONS button characteristics', async (browser: NightwatchBrowser) =>
-    nightwatchCheckRules(browser, '#test-icons .simple-button', [
+    nightwatchCheckRules(browser, '#test-icons .'+THEME_CLASS_PREFIX+'simple-button', [
       {
         height: 33,
         width: 33,
@@ -223,7 +224,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         height: 33,
         width: 33,
         html: [
-          "<button class=\"simple-button animate-on-hover animate-on-active button-md button-icon-only\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\"></button>"
+          "<button class=\""+THEME_CLASS_PREFIX+"simple-button "+THEME_CLASS_PREFIX+"animate-on-hover "+THEME_CLASS_PREFIX+"animate-on-active "+THEME_CLASS_PREFIX+"button-md "+THEME_CLASS_PREFIX+"button-icon-only\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\""+THEME_CLASS_PREFIX+"button-image\"></button>"
         ],
       },
       {
@@ -236,7 +237,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border-radius": "28%"
         },
         classes: [
-          "button-rounded"
+          THEME_CLASS_PREFIX + "button-rounded"
         ],
       },
       {
@@ -249,7 +250,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border-radius": "50%"
         },
         classes: [
-          "button-circular"
+          THEME_CLASS_PREFIX + "button-circular"
         ],
       },
       {
@@ -262,10 +263,10 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border-radius": "28%"
         },
         html: [
-          "<button class=\"simple-button animate-on-hover animate-on-active button-md button-rounded button-icon-only\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\"></button>"
+          "<button class=\""+THEME_CLASS_PREFIX+"simple-button "+THEME_CLASS_PREFIX+"animate-on-hover "+THEME_CLASS_PREFIX+"animate-on-active "+THEME_CLASS_PREFIX+"button-rounded "+THEME_CLASS_PREFIX+"button-md "+THEME_CLASS_PREFIX+"button-icon-only\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\""+THEME_CLASS_PREFIX+"button-image\"></button>"
         ],
         classes: [
-          "button-rounded"
+          THEME_CLASS_PREFIX + "button-rounded"
         ],
       },
       {
@@ -278,10 +279,10 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border-radius": "50%"
         },
         html: [
-          "<button class=\"simple-button animate-on-hover animate-on-active button-md button-circular button-icon-only\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\"button-image\"></button>"
+          "<button class=\""+THEME_CLASS_PREFIX+"simple-button "+THEME_CLASS_PREFIX+"animate-on-hover "+THEME_CLASS_PREFIX+"animate-on-active "+THEME_CLASS_PREFIX+"button-circular "+THEME_CLASS_PREFIX+"button-md "+THEME_CLASS_PREFIX+"button-icon-only\"><img src=\"https://placedog.net/100/100\" alt=\"\" class=\""+THEME_CLASS_PREFIX+"button-image\"></button>"
         ],
         classes: [
-          "button-circular"
+          THEME_CLASS_PREFIX + "button-circular"
         ],
       },
       {
@@ -293,7 +294,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           // "border-radius": "5em" // can't use EM on computed values
         },
         classes: [
-          "button-pill"
+          THEME_CLASS_PREFIX + "button-pill"
         ],
       },
       {
@@ -306,7 +307,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "box-shadow": "none",
         },
         classes: [
-          "button-flat"
+          THEME_CLASS_PREFIX + "button-flat"
         ],
       },
       {
@@ -317,7 +318,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "background-color": "rgba(0, 0, 0, 0)",  // transparent is computed like this
         },
         classes: [
-          "button-plain"
+          THEME_CLASS_PREFIX + "button-plain"
         ],
       },
       {
@@ -330,8 +331,8 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "box-shadow": "none",
         },
         classes: [
-          "button-plain",
-          "button-flat"
+          THEME_CLASS_PREFIX + "button-plain",
+          THEME_CLASS_PREFIX + "button-flat"
         ],
       },
       {
@@ -344,7 +345,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "box-shadow": "rgba(0, 255, 0, 0.2) 0px 5px 5px -3px, rgba(0, 255, 0, 0.14) 0px 8px 10px 1px, rgba(0, 255, 0, 0.12) 0px 3px 14px 2px",
         },
         classes: [
-          "button-elevated"
+          THEME_CLASS_PREFIX + "button-elevated"
         ],
       },
       {
@@ -356,14 +357,14 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border": "2px solid rgb(0, 188, 212)",
         },
         classes: [
-          "button-outlined"
+          THEME_CLASS_PREFIX + "button-outlined"
         ],
       },
     ])
   );
 
   it('Check MULTIPLE button characteristics', async (browser: NightwatchBrowser) =>
-    nightwatchCheckRules(browser, '#test-multiples .simple-button', [
+    nightwatchCheckRules(browser, '#test-multiples .'+THEME_CLASS_PREFIX+'simple-button', [
       {
         css: {
           // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -372,8 +373,8 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border-color": "rgb(0, 188, 212)",
         },
         classes: [
-          "button-outlined",
-          "button-pill",
+          THEME_CLASS_PREFIX + "button-outlined",
+          THEME_CLASS_PREFIX + "button-pill",
         ],
       },
       {
@@ -388,8 +389,8 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "disabled"
         ],
         classes: [
-          "button-flat",
-          "button-circular",
+          THEME_CLASS_PREFIX + "button-flat",
+          THEME_CLASS_PREFIX + "button-circular",
         ],
       },
       {
@@ -398,8 +399,8 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "background-color": "rgba(0, 188, 212, 1)",
         },
         classes: [
-          "button-icon-only",
-          "button-pill",
+          THEME_CLASS_PREFIX + "button-icon-only",
+          THEME_CLASS_PREFIX + "button-pill",
         ],
       },
       {
@@ -410,15 +411,15 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border-color": "rgb(0, 188, 212)",
         },
         classes: [
-          "button-icon-only",
-          "button-outlined",
+          THEME_CLASS_PREFIX + "button-icon-only",
+          THEME_CLASS_PREFIX + "button-outlined",
         ],
       },
     ])
   );
 
   it('Check SOCIALS button characteristics', async (browser: NightwatchBrowser) =>
-    nightwatchCheckRules(browser, '#test-socials .simple-button', [
+    nightwatchCheckRules(browser, '#test-socials .'+THEME_CLASS_PREFIX+'simple-button', [
       {
         css: {
           // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -451,7 +452,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
         },
         classes: [
           "brand-facebook-text",
-          "button-plain"
+          THEME_CLASS_PREFIX + "button-plain"
         ],
       },
       {
@@ -461,7 +462,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border": "2px solid rgb(59, 89, 152)" // #3b5998 is computed like this
         },
         classes: [
-          "button-outlined",
+          THEME_CLASS_PREFIX + "button-outlined",
           "brand-facebook-text",
           "brand-facebook-border",
         ],
@@ -483,7 +484,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border": "2px solid rgb(59, 89, 152)" // #3b5998 is computed like this
         },
         classes: [
-          "button-outlined",
+          THEME_CLASS_PREFIX + "button-outlined",
           "brand-facebook-text",
           "brand-facebook-border",
         ],
@@ -495,7 +496,7 @@ describe('SimpleButton Component E2E Tests - based on the documentation, page /a
           "border": "2px solid rgb(59, 89, 152)" // #3b5998 is computed like this
         },
         classes: [
-          "button-outlined",
+          THEME_CLASS_PREFIX + "button-outlined",
           "facebook-pseudo-bg",
           "brand-facebook-border",
           "highlight-rollup-horizontal",

@@ -1,3 +1,7 @@
+---
+search: false
+---
+
 ## Media
 
 ::: warning
@@ -155,7 +159,6 @@ The type of the video should be declared too for the same reason (but it's not n
     <SimpleCardMedia
         media="http://placedog.net/500/500"
         ratio="4/1"
-        class="card-media"
     />
 </SimpleCard>
 ```

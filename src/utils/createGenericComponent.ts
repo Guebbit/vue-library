@@ -1,16 +1,15 @@
-import { defineComponent, h } from 'vue'
-import { pascalCase } from 'change-case'
-import { propsFactory } from './propsFactory.ts'
+import { defineComponent, h } from 'vue';
+import { pascalCase } from 'change-case';
 
 /**
  *
- * @param name
+ * @param classes
  * @param props
  * @param tag
  */
-export default (name: string, props: unknown, tag = "div") => {
+export default (classes: string[], props: Record<string, unknown> = {}, tag = "div") => {
     return defineComponent({
-        name: pascalCase(name),
+        name: pascalCase(classes[0]),
 
         props: {
             /**
@@ -21,17 +20,7 @@ export default (name: string, props: unknown, tag = "div") => {
                 default: tag
             },
 
-            /**
-             *
-             */
-            ...propsFactory({
-                class: [String, Array, Object] as PropType<ClassValue>,
-                style: {
-                    type: [String, Array, Object] as PropType<StyleValue>,
-                    default: null,
-                },
-                ...props,
-            })
+            ...props,
         },
 
         setup(props, { attrs, slots }) {
@@ -46,12 +35,11 @@ export default (name: string, props: unknown, tag = "div") => {
                     props.tag,
                     {
                         class: [
-                            props.class,
+                            classes,
                             attrs.class
                         ],
                         style: {
-                            ...props.style,
-                            ...attrs.style
+                            ...attrs?.style || {}
                         }
                     },
                     slots.default?.()

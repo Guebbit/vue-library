@@ -44,7 +44,7 @@ export default <T>({ props, settings, enumItem }: IVariantsSettings = {}, prefix
     /**
      * Variants transformed into an array
      */
-    const data = computed(() => [
+    const classes = computed(() => [
         ...new Set([
             ...(props?.variant ? ((props.variant || '') as string).split(' ') : [])
                 .map((variant: string) => `${prefix}${variant}`) as T[],
@@ -61,11 +61,11 @@ export default <T>({ props, settings, enumItem }: IVariantsSettings = {}, prefix
     /**
      * Translated variants in the css classes that contains the logic
      */
-    const classes = computed(() => data.value.join(' '))
+    const classString = computed(() => classes.value.join(' '))
 
     return {
         props: variantsProps,
-        data,
-        classes
+        classes,
+        classString
     }
 }

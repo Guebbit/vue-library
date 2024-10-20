@@ -1,7 +1,7 @@
 import type { VNode, CSSProperties } from "vue";
 
 export interface IEditableAttributes{
-    classes?: string[] | Record<string, boolean>
+    classes?: string[]
     styles?: CSSProperties
 }
 
@@ -31,6 +31,25 @@ export default (slot: (() => VNode[] | undefined) | undefined, attributes: IEdit
             tags: limitedTags = [],
             classNames: limitedClassNames = []
         } = limitations;
+
+        if(
+            foundVNodesArray[i] &&
+            typeof foundVNodesArray[i].type === 'string' &&
+            (limitedTags.length === 0 || limitedTags.includes(foundVNodesArray[i].type as string)) &&
+            (limitedClassNames.length === 0 || limitedClassNames.includes(foundVNodesArray[i].props?.class || ""))
+        )
+            console.log("CHECK", {
+                ...foundVNodesArray[i].props,
+                class: [
+                    foundVNodesArray[i].props?.class,
+                    ...classes
+                ].filter(Boolean),
+                style: {
+                    ...foundVNodesArray[i].props?.style || {},
+                    ...styles
+                }
+            })
+
         // if it's editable, change it
         if(
             foundVNodesArray[i] &&
@@ -40,14 +59,13 @@ export default (slot: (() => VNode[] | undefined) | undefined, attributes: IEdit
         )
             foundVNodesArray[i].props = {
                 ...foundVNodesArray[i].props,
-                // class: `${foundVNodesArray[i].props?.class || ''} ${classes[0]}`
                 class: [
                     foundVNodesArray[i].props?.class,
-                    classes
-                ],
-                styles: {
+                    ...classes
+                ].filter(Boolean).join(" "),
+                style: {
                     ...foundVNodesArray[i].props?.style || {},
-                    styles
+                    ...styles
                 }
             }
         // either way, if a node exists, add it

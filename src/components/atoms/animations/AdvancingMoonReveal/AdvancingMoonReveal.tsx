@@ -1,5 +1,6 @@
 import './AdvancingMoonReveal.scss';
 import { defineComponent } from "vue";
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
 import editSlotItems from '../../../../utils/editSlotItems.ts'
 import useComponentGenerics from '../../../../composables/componentGenerics.ts'
 
@@ -59,7 +60,7 @@ export default defineComponent({
          */
         return () => editSlotItems(slots.default, {
             classes: [
-                "advancing-moon-reveal",
+                THEME_CLASS_PREFIX  + "advancing-moon-reveal",
                 animationClasses.value
             ]
         });

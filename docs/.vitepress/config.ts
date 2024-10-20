@@ -18,7 +18,7 @@ export default defineConfig({
         logo: '/logotype.svg',
         siteTitle: 'VUE Library',
         search: {
-            provider: 'local'
+            provider: 'local',
         },
         nav: [
             {
@@ -315,7 +315,7 @@ export default defineConfig({
                                 link: '/molecules/cards/PopupCard.md',
                             },
                             {
-                                text: 'Simple Cards (theme)',
+                                text: 'Simple Cards',
                                 link: '/molecules/cards/SimpleCard.md',
                             },
                             {

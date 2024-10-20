@@ -1,13 +1,30 @@
-import './ActionPanel.scss';
-import { defineComponent, h } from "vue";
-import ActionPanelActions from './ActionPanelActions.tsx';
+import './ActionPanel.scss'
+import { defineComponent, h } from 'vue'
+
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
+import useComponentGenerics from '../../../../composables/componentGenerics.ts';
+import useComponentThemes from '../../../../composables/componentThemes.ts';
+import ActionPanelActions from './ActionPanelActions.tsx'
 import SimplePanel from '../../../atoms/panels/SimplePanel/SimplePanel.tsx'
 
+/**
+ * Outside setup only composable
+ */
+const {
+    animationProps
+} = useComponentGenerics();
+const {
+    props: themeProps
+} = useComponentThemes();
+
 export default defineComponent({
-    name: "ActionPanel",
+    name: 'ActionPanel',
     extends: SimplePanel,
 
     props: {
+        ...animationProps,
+        ...themeProps,
+
         /**
          * Content title (if not slot)
          */
@@ -21,7 +38,7 @@ export default defineComponent({
          */
         titleTag: {
             type: String,
-            default: () => "h3"
+            default: () => 'h3'
         },
 
         /**
@@ -38,25 +55,40 @@ export default defineComponent({
         textTag: {
             type: String,
             default: () => 'p'
-        },
+        }
     },
 
     setup(props, { slots, attrs }) {
+        /**
+         * Setup only composable
+         */
+        const {
+            animationClasses
+        } = useComponentGenerics({ props });
+        const {
+            styles: themeStyles
+        } = useComponentThemes({ props }, THEME_VAR_PREFIX + "simple-panel-");
+
         return () =>
             <SimplePanel
-                class={[attrs.class, "action-panel"]}
                 {...props}
                 {...attrs}
                 v-slots={slots}
+                class={[
+                    THEME_CLASS_PREFIX + 'action-panel',
+                    animationClasses.value,
+                    attrs.class
+                ]}
+                style={{ ...attrs.style || {}, ...themeStyles.value || {} }}
             >
-                {props.title && h(props.titleTag, { class: 'panel-title' }, slots.title ? slots.title() : props.title)}
-                {props.text && h(props.textTag, {},slots.text ? slots.text() : props.text)}
+                {props.title && h(props.titleTag, { class: THEME_CLASS_PREFIX + 'panel-title' }, slots.title ? slots.title() : props.title)}
+                {props.text && h(props.textTag, {}, slots.text ? slots.text() : props.text)}
                 <ActionPanelActions
                     v-slots={{
-                        default: slots.actions,
+                        default: slots.actions
                     }}
                 />
                 {slots.default?.()}
             </SimplePanel>
-    },
-});
+    }
+})

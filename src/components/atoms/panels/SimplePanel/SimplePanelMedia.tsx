@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue'
+import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
 import Media from '../../../abstracts/Media/Media.tsx';
 
 export default defineComponent({
@@ -13,7 +14,7 @@ export default defineComponent({
                 style={{
                     ...attrs.style || {}
                 }}
-                class={[attrs.class, "panel-background"]}
+                class={[attrs.class, THEME_CLASS_PREFIX + "panel-background"]}
                 v-slots={slots}
             />
     },

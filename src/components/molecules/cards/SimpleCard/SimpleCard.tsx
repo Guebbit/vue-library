@@ -2,6 +2,7 @@ import './SimpleCard.scss'
 import { computed, defineComponent } from 'vue'
 import type { VNode, PropType } from 'vue'
 
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
 import useComponentGenerics from '../../../../composables/componentGenerics.ts';
 import useComponentVariants from '../../../../composables/componentVariants.ts';
 import useComponentThemes from '../../../../composables/componentThemes.ts';
@@ -18,6 +19,7 @@ export enum ESimpleCardVariants {
     OUTLINED = 'outlined',
     FLAT = 'flat',
     OVERLAY = 'overlay',
+    TRANSPARENT = 'transparent',
 }
 
 export enum ESimpleCardMediaAlignment {
@@ -322,31 +324,33 @@ export default defineComponent({
         } = useComponentGenerics({ props });
         const {
             styles: themeStyles
-        } = useComponentThemes({ props }, "simple-card-");
+        } = useComponentThemes({ props }, THEME_VAR_PREFIX + "simple-card-");
         const {
             classes: variantsClasses
         } = useComponentVariants<ESimpleCardVariants>({
             props,
             enumItem: ESimpleCardVariants
-        }, "card-");
+        }, THEME_CLASS_PREFIX + "card-");
+
+        console.log("AYOOO", {...props}, [...variantsClasses.value])
 
         /**
          * Aggregator of all the classes of component
          */
         const classes = computed(() => [
             ...new Set([
-                'simple-card',
+                THEME_CLASS_PREFIX + 'simple-card',
                 ...animationClasses.value,
                 ...variantsClasses.value,
-                props.mediaAlignment ? `card-media-${props.mediaAlignment}` : '',
-                props.mediaLeft ? 'card-media-left' : '',
-                props.mediaRight ? 'card-media-right' : '',
-                props.borderTop || props.borderPosition.includes(ESimpleCardBorders.TOP) ? 'card-border-top-active' : '',
-                props.borderBottom || props.borderPosition.includes(ESimpleCardBorders.BOTTOM) ? 'card-border-bottom-active' : '',
-                props.borderRight || props.borderPosition.includes(ESimpleCardBorders.RIGHT) ? 'card-border-right-active' : '',
-                props.borderLeft || props.borderPosition.includes(ESimpleCardBorders.LEFT) ? 'card-border-left-active' : '',
-                props.borderFull || props.borderPosition.includes(ESimpleCardBorders.FULL) ? 'card-border-active' : '',
-                props.disabled ? 'card-disabled' : '',
+                props.mediaAlignment ? `${THEME_CLASS_PREFIX}card-media-${props.mediaAlignment}` : undefined,
+                props.mediaLeft ? THEME_CLASS_PREFIX + 'card-media-left' : undefined,
+                props.mediaRight ? THEME_CLASS_PREFIX + 'card-media-right' : undefined,
+                props.borderTop || props.borderPosition.includes(ESimpleCardBorders.TOP) ? THEME_CLASS_PREFIX + 'card-border-top-active' : undefined,
+                props.borderBottom || props.borderPosition.includes(ESimpleCardBorders.BOTTOM) ? THEME_CLASS_PREFIX + 'card-border-bottom-active' : undefined,
+                props.borderRight || props.borderPosition.includes(ESimpleCardBorders.RIGHT) ? THEME_CLASS_PREFIX + 'card-border-right-active' : undefined,
+                props.borderLeft || props.borderPosition.includes(ESimpleCardBorders.LEFT) ? THEME_CLASS_PREFIX + 'card-border-left-active' : undefined,
+                props.borderFull || props.borderPosition.includes(ESimpleCardBorders.FULL) ? THEME_CLASS_PREFIX + 'card-border-active' : undefined,
+                props.disabled ? THEME_CLASS_PREFIX + 'card-disabled' : undefined,
             ])
         ].filter(Boolean));
 
@@ -354,7 +358,7 @@ export default defineComponent({
 
         if(props.media && props.mediaHover)
             cardMediaArray.push(
-                <div class="card-media">
+                <div class={THEME_CLASS_PREFIX + 'card-media'}>
                     <CardMedia
                         class=" "
                         media={props.media}
@@ -369,7 +373,7 @@ export default defineComponent({
                         }
                     />
                     <CardMedia
-                        class="show-on-active"
+                        class={THEME_CLASS_PREFIX + 'show-on-active'}
                         media={props.mediaHover}
                         ratio={props.mediaHoverRatio}
                         alt={props.mediaHoverAlt}
@@ -409,7 +413,7 @@ export default defineComponent({
         if(props.backgroundHover)
             cardMediaArray.push(
                 <CardMedia
-                    class="card-background show-on-active"
+                    class={`${THEME_CLASS_PREFIX}card-background ${THEME_CLASS_PREFIX}show-on-active`}
                     media={props.backgroundHover}
                     ratio={props.backgroundHoverRatio}
                     background
@@ -420,14 +424,14 @@ export default defineComponent({
          *
          */
         const slotMedia = editSlotItems(slots.media, {
-            classes: ["card-media"]
+            classes: [THEME_CLASS_PREFIX + "card-media"]
         });
 
         /**
          *
          */
         const slotBackground = editSlotItems(slots.background, {
-            classes: ["card-background"]
+            classes: [THEME_CLASS_PREFIX + "card-background"]
         });
 
         /**

@@ -1,4 +1,6 @@
-import { defineComponent, type VNode } from 'vue'
+import { defineComponent } from 'vue'
+
+import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
 import useComponentVariants from '../../../../composables/componentVariants.ts'
 import editSlotItems from '../../../../utils/editSlotItems.ts'
 
@@ -34,13 +36,13 @@ export default defineComponent({
          */
         const {
             classes: variantsClasses
-        } = useComponentVariants<ESimpleCardActionsVariants>({ props }, 'card-section-');
+        } = useComponentVariants<ESimpleCardActionsVariants>({ props }, THEME_CLASS_PREFIX + 'card-section-');
 
         /**
          *
          */
-        const translatedSlot = editSlotItems(slots.default, {
-            classes: ["card-icon"]
+        const defaultSlot = editSlotItems(slots.default, {
+            classes: [THEME_CLASS_PREFIX + "card-icon"]
         }, {
             tags: ["img", "svg"]
         });
@@ -49,6 +51,6 @@ export default defineComponent({
          * Template
          */
         return () =>
-            slots.default && <div class={['card-actions', variantsClasses.value]}>{translatedSlot}</div>
+            slots.default && slots.default.length > 0 && <div class={[THEME_CLASS_PREFIX + 'card-actions', variantsClasses.value]}>{defaultSlot}</div>
     },
 })

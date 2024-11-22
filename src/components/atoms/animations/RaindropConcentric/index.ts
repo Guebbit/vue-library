@@ -1,1 +1,1 @@
-export { default as RaindropConcentric } from './RaindropConcentric.tsx';
+export { default as RaindropConcentric } from './RaindropConcentric';

@@ -1,1 +1,1 @@
-export { default as BlogPostCard } from './BlogPostCard.tsx';
+export { default as BlogPostCard } from './BlogPostCard';

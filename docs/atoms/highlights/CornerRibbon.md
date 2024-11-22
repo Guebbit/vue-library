@@ -1,4 +1,4 @@
-# ChosenName
+# Corner Ribbon
 <Badge type="tip">Atoms</Badge> <Badge type="info">Animations</Badge> <Badge type="info">XXXXXXXX</Badge>
 
 ## Instructions

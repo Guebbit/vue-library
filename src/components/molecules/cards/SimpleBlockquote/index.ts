@@ -1,1 +1,1 @@
-export { default as SimpleBlockquote } from './SimpleBlockquote.tsx';
+export { default as SimpleBlockquote } from './SimpleBlockquote';

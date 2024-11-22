@@ -1,10 +1,10 @@
 import './CreditCard.scss'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 
-import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
-import useComponentGenerics from '../../../../composables/componentGenerics.ts'
-import useComponentThemes from '../../../../composables/componentThemes.ts'
-import editSlotItems from '../../../../utils/editSlotItems.ts'
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars'
+import useComponentGenerics from '../../../../composables/componentGenerics'
+import useComponentThemes from '../../../../composables/componentThemes'
+import editSlotItems from '../../../../utils/editSlotItems'
 
 /**
  * Outside setup only composable
@@ -149,11 +149,11 @@ export default defineComponent({
         /**
          *
          */
-        const slotLogo = editSlotItems(slots.logo, {
+        const slotLogo = computed(() => editSlotItems(slots.logo, {
             classes: ["credit-card-logo"]
-        })
+        }));
 
-        const slotChip = slots.chip ?
+        const slotChip = computed(() => slots.chip ?
             editSlotItems(slots.chip, {
                 classes: ["credit-card-chip"]
             }) :
@@ -187,6 +187,7 @@ export default defineComponent({
                     </g>
                 </g>
             </g>
+        );
 
         /**
          * Template
@@ -196,14 +197,14 @@ export default defineComponent({
                 class={[
                     THEME_CLASS_PREFIX + 'credit-card',
                     animationClasses.value,
-                    props.back ? "animate-active" : ""
+                    props.back ? THEME_CLASS_PREFIX + "animate-active" : ""
                 ]}
                 style={{ ...attrs.style || {}, ...themeStyles.value || {} }}
                 {...attrs}
             >
                 <div class="credit-card-true">
                     <div class="front">
-                        {slotLogo}
+                        {slotLogo.value}
                         <svg version="1.1" class="credit-card-front" x="0px" y="0px" viewBox="0 0 750 471">
                     <g>
                       <g>
@@ -236,7 +237,7 @@ export default defineComponent({
                             <polygon class="svg-label-expiration st2"
                                 points="554.5,421 540.4,414.2 540.4,427.9"></polygon>
                       </g>
-                        {slotChip}
+                        {slotChip.value}
                     </g>
                             <g></g>
                   </svg>

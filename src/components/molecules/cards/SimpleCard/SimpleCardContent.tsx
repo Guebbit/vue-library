@@ -1,6 +1,7 @@
-import { defineComponent, h } from 'vue'
-import CardActions from './SimpleCardActions.tsx'
-import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
+import { computed, defineComponent, h } from 'vue'
+import CardActions from './SimpleCardActions'
+import { THEME_CLASS_PREFIX } from '../../../../_vars'
+import editSlotItems from '../../../../utils/editSlotItems'
 
 export default defineComponent({
     name: 'SimpleCardContent',
@@ -22,21 +23,37 @@ export default defineComponent({
         },
     },
     setup(props, { slots }) {
+
         /**
-         * Template
+         *
          */
-        return () =>
-            slots.default || slots.actions || props.text ?
+        const actionsSlot = computed(() => editSlotItems(slots.actions, {
+            classes: [THEME_CLASS_PREFIX + "card-icon"]
+        }, {
+            tags: ["img", "svg"]
+        }));
+
+        /**
+         *
+         */
+        const defaultSlot = computed(() =>
+            slots.default || actionsSlot.value.length > 0 || props.text ?
                 <div class={THEME_CLASS_PREFIX + 'card-content'}>
                     {
                         slots.default ?
                             slots.default() :
                             props.text || slots.text ?
-                                h(props.tag, {},slots.text ? slots.text() : props.text)
+                                h(props.tag, {}, slots.text ? slots.text() : props.text)
                                 : null
                     }
-                    {slots.actions ? <CardActions>{slots.actions()}</CardActions> : null}
+                    {actionsSlot.value.length > 0 ? <CardActions>{actionsSlot.value}</CardActions> : null}
                 </div>
                 : null
+        )
+
+        /**
+         * Template
+         */
+        return () => defaultSlot.value
     }
 })

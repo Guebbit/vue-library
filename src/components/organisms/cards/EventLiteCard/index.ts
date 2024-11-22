@@ -1,1 +1,1 @@
-export { default as EventLiteCard } from './EventLiteCard.tsx';
+export { default as EventLiteCard } from './EventLiteCard';

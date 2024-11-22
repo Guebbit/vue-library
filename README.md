@@ -130,7 +130,7 @@ Full example of a theme.scss for your repo.
 --------------------------
 
 # TODO
-
+ - Example of very nice documentation: https://vuetifyjs.com/en/components/cards/
  - tests/utils/nightwatchCheckRules.ts: Why rules[i].styles needs !, typescript is not inferring correcly? (html, classes, etc have all the same problem)
  - sometimes nightwatch test fails for no reason (normal?).
  - Nightwatch firefox and firefoxHeadless NOT working
@@ -139,14 +139,19 @@ Full example of a theme.scss for your repo.
  - Create tests
  - todo molecules/animations/*
  - Take @guebbit/css-ui component styles and put them as basic props in this repo components
+ - App.vue component tester (vuetify)
+ - Overlay.tsx
+ - SimpleModal.tsx
+ - SimpleInput.tsx
+ - SimpleChip.tsx
 
 Vue3
 https://blog.vuejs.org/posts/vue-3-2
 https://blog.vuejs.org/posts/vue-3-3
-[https://blog.vuejs.org/posts/vue-3-4
+https://blog.vuejs.org/posts/vue-3-4
 https://blog.stackademic.com/learn-these-new-features-in-vue-3-5-now-2909e24aa58d
 https://vuejs.org/guide/components/v-model.html
-]()
+
 Typescript
 https://vuejs.org/guide/typescript/overview.html
 https://vuejs.org/guide/typescript/composition-api.html

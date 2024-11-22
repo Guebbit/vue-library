@@ -1,2 +1,2 @@
-export { default as ActionPanel } from "./ActionPanel.tsx";
-export { default as ActionPanelActions } from "./ActionPanelActions.tsx";
+export { default as ActionPanel } from "./ActionPanel";
+export { default as ActionPanelActions } from "./ActionPanelActions";

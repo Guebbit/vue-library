@@ -1,1 +1,1 @@
-export { default as PricingCard } from './PricingCard.tsx';
+export { default as PricingCard } from './PricingCard';

@@ -1,1 +1,1 @@
-export { default as IconFocusButton } from './IconFocusButton.tsx';
+export { default as IconFocusButton } from './IconFocusButton';

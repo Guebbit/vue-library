@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 import { kebabCase } from 'change-case';
 
 export interface IVariantsSettings {
@@ -19,7 +19,7 @@ export interface IVariantsSettings {
  * @param defaults
  * @param prefix
  */
-export default <T>({ props, settings, enumItem }: IVariantsSettings = {}, prefix = '') => {
+export default <T extends string>({ props, settings, enumItem }: IVariantsSettings = {}, prefix = '') => {
 
     /**
      * Can be multiple, strings separated by space
@@ -28,6 +28,10 @@ export default <T>({ props, settings, enumItem }: IVariantsSettings = {}, prefix
     const variantsProps: Record<string, any> = {
         variant: {
             type: String,
+            ...settings || {}
+        },
+        variants: {
+            type: Array as PropType<string[]>,
             ...settings || {}
         },
         ...Object.fromEntries(
@@ -39,14 +43,24 @@ export default <T>({ props, settings, enumItem }: IVariantsSettings = {}, prefix
                 }
             ])
         )
-    }
+    };
+
+    /**
+     *
+     */
+    const variantsArray = computed<T[]>(() => {
+        return [
+            ...props?.variant ? ((props.variant || '') as string).split(' ') : [],
+            ...props?.variants || []
+        ]
+    });
 
     /**
      * Variants transformed into an array
      */
     const classes = computed(() => [
         ...new Set([
-            ...(props?.variant ? ((props.variant || '') as string).split(' ') : [])
+            ...variantsArray.value
                 .map((variant: string) => `${prefix}${variant}`) as T[],
             ...Object.entries(props || {})
                 .filter(([key, value]) => value === true)
@@ -56,7 +70,7 @@ export default <T>({ props, settings, enumItem }: IVariantsSettings = {}, prefix
                         return prefix + className;
                 })
         ])
-    ].filter(Boolean))
+    ].filter(Boolean));
 
     /**
      * Translated variants in the css classes that contains the logic

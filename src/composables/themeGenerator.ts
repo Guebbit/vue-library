@@ -37,8 +37,8 @@ export interface IThemeGlobal {
  *
  * Ideas:
  * https://vuetifyjs.com/en/features/theme/#javascript
- * https://github.com/vuetifyjs/vuetify/blob/ae33530ac17226ca942849bea364ee441ae1dd9f/packages/vuetify/src/composables/theme.ts#L211
- * https://github.com/vuetifyjs/vuetify/blob/ae33530ac17226ca942849bea364ee441ae1dd9f/packages/vuetify/src/framework.ts#L43
+ * https://github.com/vuetifyjs/vuetify/blob/ae33530ac17226ca942849bea364ee441ae1dd9f/packages/vuetify/src/composables/theme#L211
+ * https://github.com/vuetifyjs/vuetify/blob/ae33530ac17226ca942849bea364ee441ae1dd9f/packages/vuetify/src/framework#L43
  */
 export default () => {
     /**

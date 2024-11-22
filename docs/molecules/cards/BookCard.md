@@ -23,7 +23,6 @@ import { BookCard } from "@guebbit/vue-library";
             </svg>
         </template>
     </BookCard>
-<!--
     <BookCard 
         title="Lorem Ipsum Sit Dolor VIDEO"
         spine-title="Spine title"
@@ -32,7 +31,6 @@ import { BookCard } from "@guebbit/vue-library";
         video
         type="video/mp4"
     />
--->
 </div>
 
 ::: code-group
@@ -64,6 +62,39 @@ import { BookCard } from "@guebbit/vue-library";
 />
 ```
 :::
+
+
+## Ratio
+
+<div class="dev-section">
+    <BookCard 
+        title="Lorem Ipsum Sit Dolor RATIO"
+        spine-title="Spine title"
+        cover="https://placedog.net/1000/1000"
+        spine="https://placedog.net/500/500"
+        ratio="4/6"
+    />
+</div>
+
+::: code-group
+```html [Regular]
+
+```
+:::
+
+
+## Variants
+
+<div class="dev-section">
+    TODO
+</div>
+
+::: code-group
+```html [Regular]
+
+```
+:::
+
 
 ## Props
 TODO

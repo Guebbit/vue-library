@@ -1,1 +1,1 @@
-export { default as SimpleList } from './SimpleList.tsx';
+export { default as SimpleList } from './SimpleList';

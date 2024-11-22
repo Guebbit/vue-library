@@ -2,24 +2,27 @@ import './SimpleCard.scss'
 import { computed, defineComponent } from 'vue'
 import type { VNode, PropType } from 'vue'
 
-import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
-import useComponentGenerics from '../../../../composables/componentGenerics.ts';
-import useComponentVariants from '../../../../composables/componentVariants.ts';
-import useComponentThemes from '../../../../composables/componentThemes.ts';
-import editSlotItems from '../../../../utils/editSlotItems.ts'
-import CardHeader from './SimpleCardHeader.tsx';
-import CardContent from './SimpleCardContent.tsx';
-import CardFooter from './SimpleCardFooter.tsx';
-import CardMedia from './SimpleCardMedia.tsx';
-import CardActions from './SimpleCardActions.tsx';
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars'
+import useComponentGenerics from '../../../../composables/componentGenerics';
+import useComponentVariants from '../../../../composables/componentVariants';
+import useComponentThemes from '../../../../composables/componentThemes';
+import editSlotItems from '../../../../utils/editSlotItems'
+import CardHeader from './SimpleCardHeader';
+import CardContent from './SimpleCardContent';
+import CardFooter from './SimpleCardFooter';
+import CardMedia from './SimpleCardMedia';
+import CardActions from './SimpleCardActions';
 
 export enum ESimpleCardVariants {
     ROUNDED = 'rounded',
-    CIRCULAR = 'circular',
     OUTLINED = 'outlined',
     FLAT = 'flat',
+    PLAIN = 'plain',
     OVERLAY = 'overlay',
     TRANSPARENT = 'transparent',
+    DISABLED = 'disabled',
+    BLURRED = 'blurred',
+    SIZE_AS_CONTENT = 'size-as-content',
 }
 
 export enum ESimpleCardMediaAlignment {
@@ -262,6 +265,7 @@ export default defineComponent({
         },
 
         /**
+         * TODO composable like variants
          * Card border position
          */
         borderPosition: {
@@ -332,8 +336,6 @@ export default defineComponent({
             enumItem: ESimpleCardVariants
         }, THEME_CLASS_PREFIX + "card-");
 
-        console.log("AYOOO", {...props}, [...variantsClasses.value])
-
         /**
          * Aggregator of all the classes of component
          */
@@ -354,13 +356,39 @@ export default defineComponent({
             ])
         ].filter(Boolean));
 
-        const cardMediaArray: VNode[] = [];
+        /**
+         *
+         */
+        const cardMediaArray = computed(() => {
+            const mediaArray: VNode[] = [];
 
-        if(props.media && props.mediaHover)
-            cardMediaArray.push(
-                <div class={THEME_CLASS_PREFIX + 'card-media'}>
+            if(props.media && props.mediaHover)
+                mediaArray.push(
+                    <div class={THEME_CLASS_PREFIX + 'card-media'}>
+                        <CardMedia
+                            class=" "
+                            media={props.media}
+                            ratio={props.mediaRatio}
+                            alt={props.mediaAlt}
+                            type={
+                                props.video ?
+                                    (props.type ?
+                                            props.type :
+                                            props.media.split('.').pop()
+                                    ) : undefined
+                            }
+                        />
+                        <CardMedia
+                            class={THEME_CLASS_PREFIX + 'show-on-active'}
+                            media={props.mediaHover}
+                            ratio={props.mediaHoverRatio}
+                            alt={props.mediaHoverAlt}
+                        />
+                    </div>
+                )
+            else if (props.media && !props.mediaHover)
+                mediaArray.push(
                     <CardMedia
-                        class=" "
                         media={props.media}
                         ratio={props.mediaRatio}
                         alt={props.mediaAlt}
@@ -372,67 +400,47 @@ export default defineComponent({
                                 ) : undefined
                         }
                     />
+                )
+            if(props.background)
+                mediaArray.push(
                     <CardMedia
-                        class={THEME_CLASS_PREFIX + 'show-on-active'}
-                        media={props.mediaHover}
-                        ratio={props.mediaHoverRatio}
-                        alt={props.mediaHoverAlt}
+                        media={props.background}
+                        ratio={props.backgroundRatio}
+                        background
+                        type={
+                            props.backgroundVideo ?
+                                (props.backgroundType ?
+                                        props.backgroundType :
+                                        props.background.split('.').pop()
+                                ) : undefined
+                        }
                     />
-                </div>
-            )
-        else if (props.media && !props.mediaHover)
-            cardMediaArray.push(
-                <CardMedia
-                    media={props.media}
-                    ratio={props.mediaRatio}
-                    alt={props.mediaAlt}
-                    type={
-                        props.video ?
-                            (props.type ?
-                                    props.type :
-                                    props.media.split('.').pop()
-                            ) : undefined
-                    }
-                />
-            )
-        if(props.background)
-            cardMediaArray.push(
-                <CardMedia
-                    media={props.background}
-                    ratio={props.backgroundRatio}
-                    background
-                    type={
-                        props.backgroundVideo ?
-                            (props.backgroundType ?
-                                    props.backgroundType :
-                                    props.background.split('.').pop()
-                            ) : undefined
-                    }
-                />
-            )
-        if(props.backgroundHover)
-            cardMediaArray.push(
-                <CardMedia
-                    class={`${THEME_CLASS_PREFIX}card-background ${THEME_CLASS_PREFIX}show-on-active`}
-                    media={props.backgroundHover}
-                    ratio={props.backgroundHoverRatio}
-                    background
-                />
-            )
+                )
+            if(props.backgroundHover)
+                mediaArray.push(
+                    <CardMedia
+                        class={`${THEME_CLASS_PREFIX}card-background ${THEME_CLASS_PREFIX}show-on-active`}
+                        media={props.backgroundHover}
+                        ratio={props.backgroundHoverRatio}
+                        background
+                    />
+                )
+            return mediaArray;
+        })
 
         /**
          *
          */
-        const slotMedia = editSlotItems(slots.media, {
+        const slotMedia = computed(() => editSlotItems(slots.media, {
             classes: [THEME_CLASS_PREFIX + "card-media"]
-        });
+        }));
 
         /**
          *
          */
-        const slotBackground = editSlotItems(slots.background, {
+        const slotBackground = computed(() => editSlotItems(slots.background, {
             classes: [THEME_CLASS_PREFIX + "card-background"]
-        });
+        }));
 
         /**
          *
@@ -443,9 +451,9 @@ export default defineComponent({
                 style={{ ...attrs.style || {}, ...themeStyles.value || {} }}
                 {...attrs}
             >
-                {slotBackground}
-                {slotMedia}
-                {cardMediaArray}
+                {slotBackground.value}
+                {slotMedia.value}
+                {cardMediaArray.value}
                 <div>
                     <CardHeader
                         title={props.title}

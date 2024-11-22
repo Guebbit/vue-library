@@ -1,1 +1,1 @@
-export { default as CountdownCard } from './CountdownCard.tsx';
+export { default as CountdownCard } from './CountdownCard';

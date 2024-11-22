@@ -24,12 +24,6 @@ export default (classes: string[], props: Record<string, unknown> = {}, tag = "d
         },
 
         setup(props, { attrs, slots }) {
-            console.log("CHECK props", {
-                ...props
-            })
-            console.log("CHECK attrs", {
-                ...attrs
-            })
             return () =>
                 h(
                     props.tag,

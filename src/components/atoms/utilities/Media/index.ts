@@ -1,1 +1,1 @@
-export { default as Media, EMediaTypes } from "./Media.tsx";
+export { default as Media, EMediaTypes } from "./Media";

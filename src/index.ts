@@ -3,7 +3,7 @@ export {
     THEME_VAR_PREFIX,
     THEME_CLASS_PREFIX,
     THEME_ROOT_PREFIX
-} from './_vars.ts'
+} from './_vars'
 
 /**
  * Atoms - animations
@@ -88,9 +88,6 @@ export {
 export {
     SimpleList
 } from './components/atoms/generics/SimpleList/'
-export {
-    SimpleTextIcon
-} from './components/atoms/generics/SimpleTextIcon/'
 export {
     SpecialTitle
 } from './components/atoms/generics/SpecialTitle/'
@@ -195,14 +192,40 @@ export {
     SimpleCardFooter as CardFooter,
     SimpleCardFooter,
     ESimpleCardFooterVariants,
-    SimpleCardFooter as CardActions,
+    SimpleCardActions as CardActions,
     SimpleCardActions,
     ESimpleCardActionsVariants,
-    SimpleCardFooter as CardMedia,
+    SimpleCardMedia as CardMedia,
     SimpleCardMedia,
     SimpleCardTitle,
     SimpleCardSubtitle,
 } from './components/molecules/cards/SimpleCard/'
+
+/**
+ * Molecules - dialogs
+ */
+export {
+    SimpleModal,
+    SimpleModal as Modal,
+    ESimpleModalMediaAlignment,
+    ESimpleModalVariants,
+    SimpleModalHeader as ModalHeader,
+    SimpleModalHeader,
+    SimpleModalContent as ModalContent,
+    SimpleModalContent,
+    ESimpleModalHeaderVariants,
+    SimpleModalFooter as ModalFooter,
+    SimpleModalFooter,
+    ESimpleModalFooterVariants,
+    SimpleModalActions as ModalActions,
+    SimpleModalActions,
+    ESimpleModalActionsVariants,
+    SimpleModalMedia as ModalMedia,
+    SimpleModalMedia,
+    SimpleModalTitle,
+    SimpleModalSubtitle,
+} from './components/molecules/dialogs/SimpleModal/'
+
 
 /**
  * Molecules - panels
@@ -260,8 +283,8 @@ export {
 /**
  * composables
  */
-export { default as composableComponentGenerics, type IGenericProps } from './composables/componentGenerics.ts';
-export { default as composableComponentSizes, type EComponentSizes } from './composables/componentSizes.ts';
-export { default as composableComponentThemes, type IThemeProps } from './composables/componentThemes.ts';
-export { default as composableComponentVariants, type IVariantsSettings } from './composables/componentVariants.ts';
-export { default as composableThemeGenerator, type IThemeGlobal } from './composables/themeGenerator.ts';
+export { default as composableComponentGenerics, type IGenericProps } from './composables/componentGenerics';
+export { default as composableComponentSizes, type EComponentSizes } from './composables/componentSizes';
+export { default as composableComponentThemes, type IThemeProps } from './composables/componentThemes';
+export { default as composableComponentVariants, type IVariantsSettings } from './composables/componentVariants';
+export { default as composableThemeGenerator, type IThemeGlobal } from './composables/themeGenerator';

@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitepress'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import { defineConfig } from 'vitepress';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 /**
  * This can be used as an example
@@ -229,10 +229,6 @@ export default defineConfig({
                             {
                                 text: 'Simple List',
                                 link: '/atoms/generics/SimpleList.md',
-                            },
-                            {
-                                text: 'Simple Icon Text',
-                                link: '/atoms/generics/SimpleTextIcon.md',
                             },
                             {
                                 text: 'Special Title',

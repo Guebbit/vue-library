@@ -1,9 +1,9 @@
-import { defineComponent } from 'vue'
-import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
-import useComponentVariants from '../../../../composables/componentVariants.ts'
-import CardTitle from './SimpleCardTitle.ts'
-import CardSubtitle from './SimpleCardSubtitle.tsx'
-import CardActions, { ESimpleCardActionsVariants } from './SimpleCardActions.tsx'
+import { computed, defineComponent } from 'vue'
+import { THEME_CLASS_PREFIX } from '../../../../_vars'
+import useComponentVariants from '../../../../composables/componentVariants'
+import CardTitle from './SimpleCardTitle'
+import CardSubtitle from './SimpleCardSubtitle'
+import CardActions, { ESimpleCardActionsVariants } from './SimpleCardActions'
 
 export enum ESimpleCardHeaderVariants {
     START = 'start',
@@ -51,7 +51,7 @@ export default defineComponent({
         /**
          *
          */
-        const cardSub =
+        const cardSub = computed(() =>
             (props.sub || slots.sub) &&
             <CardSubtitle
                 text={props.sub}
@@ -59,13 +59,13 @@ export default defineComponent({
                 v-slot={{
                     default: slots.sub
                 }}
-            />
+            />)
 
         /**
          * CardTitle
          */
-        const cardTitle =
-            (props.title || slots.title || cardSub) &&
+        const cardTitle = computed(() =>
+            (props.title || slots.title || cardSub.value) &&
             <CardTitle
                 text={props.title}
                 tag={props.titleTag}
@@ -73,17 +73,17 @@ export default defineComponent({
                     default: () => (
                         <>
                             {slots.title ? slots.title() : props.title}
-                            {cardSub}
+                            {cardSub.value}
                         </>
                     )
                 }}
-            />
+            />)
 
         /**
-         * Template
+         *
          */
-        return () =>
-            slots.default || slots.actions || cardTitle ?
+        const defaultSlot = computed(() =>
+            slots.default || slots.actions || cardTitle.value ?
                 <div class={[THEME_CLASS_PREFIX + 'card-header', variantsClasses.value]}>
                     {slots.default ? slots.default() : null}
                     <CardActions
@@ -91,9 +91,14 @@ export default defineComponent({
                             default: slots.actions
                         }}
                     />
-                    {cardTitle}
+                    {cardTitle.value}
                 </div>
                 : null
+        )
 
+        /**
+         * Template
+         */
+        return () => defaultSlot.value
     }
 })

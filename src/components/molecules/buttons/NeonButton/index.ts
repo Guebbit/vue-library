@@ -1,1 +1,1 @@
-export { default as NeonButton } from './NeonButton.tsx';
+export { default as NeonButton } from './NeonButton';

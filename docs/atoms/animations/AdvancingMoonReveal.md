@@ -1,5 +1,5 @@
-# ChosenName
-<Badge type="tip">Atoms</Badge> <Badge type="info">Animations</Badge> <Badge type="info">XXXXXXXX</Badge>
+# Advancing Moon Reveal
+<Badge type="tip">Atoms</Badge> <Badge type="info">Animations</Badge> <Badge type="info">Reveal</Badge>
 
 ## Instructions
 
@@ -9,6 +9,7 @@ import { AdvancingMoonReveal } from "@guebbit/vue-library";
 
 ## Basics
 
+
 ::: raw
 <div class="dev-section">
     <AdvancingMoonReveal>
@@ -17,21 +18,60 @@ import { AdvancingMoonReveal } from "@guebbit/vue-library";
 </div>
 :::
 
-::: code-group
 ```html
+<AdvancingMoonReveal>
+    <img src="https://placedog.net/400/400" />
+</AdvancingMoonReveal>
+```
+
+
+## Other
+
+::: raw
+<div class="dev-section">
+    <AdvancingMoonReveal>
+        <img src="https://placedog.net/400/400" />
+    </AdvancingMoonReveal>
+    <AdvancingMoonReveal
+        :opacity-start="1"
+        :scale-end="1.5"
+    >
+        <img src="https://placedog.net/400/400" />
+    </AdvancingMoonReveal>
+    <AdvancingMoonReveal
+        :slide-x-start="0"
+        slide-x-end="-60%"
+    >
+        <img src="https://placedog.net/400/400" />
+    </AdvancingMoonReveal>
+    <AdvancingMoonReveal
+        :slide-x-start="0"
+        slide-x-end="60%"
+    >
+        <img src="https://placedog.net/400/400" />
+    </AdvancingMoonReveal>
+    <AdvancingMoonReveal
+        :slide-x-start="0"
+    >
+        <img src="https://placedog.net/400/400" />
+    </AdvancingMoonReveal>
+</div>
+:::
+
+::: code-group
+```html [Default]
 <AdvancingMoonReveal>
     <img src="https://placedog.net/400/400" />
 </AdvancingMoonReveal>
 ```
 :::
 
-
-## Default
+## Inverted
 
 ::: raw
 <div class="dev-section">
     <AdvancingMoonReveal
-        style="--opacity-start: 1; --scale-end: 1.5"
+        inverted
     >
         <img src="https://placedog.net/400/400" />
     </AdvancingMoonReveal>
@@ -40,7 +80,11 @@ import { AdvancingMoonReveal } from "@guebbit/vue-library";
 
 ::: code-group
 ```html
-AAAAAAAAAAAAAAAAAA
+<AdvancingMoonReveal
+    inverted
+>
+    <img src="https://placedog.net/400/400" />
+</AdvancingMoonReveal>
 ```
 :::
 
@@ -59,5 +103,5 @@ TODO
 </style>
 
 <script setup>
-import { AdvancingMoonReveal } from '../../../src/';
+import { AdvancingMoonReveal } from '../../../src/'
 </script>

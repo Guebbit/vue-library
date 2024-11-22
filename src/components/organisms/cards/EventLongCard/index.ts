@@ -1,1 +1,1 @@
-export { default as EventLongCard } from './EventLongCard.tsx';
+export { default as EventLongCard } from './EventLongCard';

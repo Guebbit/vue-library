@@ -1,1 +1,1 @@
-export { default as ExpressiveButton } from './ExpressiveButton.tsx';
+export { default as ExpressiveButton } from './ExpressiveButton';

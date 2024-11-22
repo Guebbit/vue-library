@@ -38,17 +38,6 @@ export default (slot: (() => VNode[] | undefined) | undefined, attributes: IEdit
             (limitedTags.length === 0 || limitedTags.includes(foundVNodesArray[i].type as string)) &&
             (limitedClassNames.length === 0 || limitedClassNames.includes(foundVNodesArray[i].props?.class || ""))
         )
-            console.log("CHECK", {
-                ...foundVNodesArray[i].props,
-                class: [
-                    foundVNodesArray[i].props?.class,
-                    ...classes
-                ].filter(Boolean),
-                style: {
-                    ...foundVNodesArray[i].props?.style || {},
-                    ...styles
-                }
-            })
 
         // if it's editable, change it
         if(

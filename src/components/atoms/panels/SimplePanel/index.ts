@@ -1,2 +1,2 @@
-export { default as SimplePanel } from "./SimplePanel.tsx";
-export { default as SimplePanelMedia } from "./SimplePanelMedia.tsx";
+export { default as SimplePanel } from "./SimplePanel";
+export { default as SimplePanelMedia } from "./SimplePanelMedia";

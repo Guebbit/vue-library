@@ -1,11 +1,11 @@
 import './ActionPanel.scss'
 import { defineComponent, h } from 'vue'
 
-import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
-import useComponentGenerics from '../../../../composables/componentGenerics.ts';
-import useComponentThemes from '../../../../composables/componentThemes.ts';
-import ActionPanelActions from './ActionPanelActions.tsx'
-import SimplePanel from '../../../atoms/panels/SimplePanel/SimplePanel.tsx'
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars'
+import useComponentGenerics from '../../../../composables/componentGenerics';
+import useComponentThemes from '../../../../composables/componentThemes';
+import ActionPanelActions from './ActionPanelActions'
+import SimplePanel from '../../../atoms/panels/SimplePanel/SimplePanel'
 
 /**
  * Outside setup only composable

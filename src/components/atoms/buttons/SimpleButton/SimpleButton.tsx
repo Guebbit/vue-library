@@ -1,12 +1,12 @@
 import './SimpleButton.scss'
 import { defineComponent, computed } from 'vue'
 
-import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
-import useComponentGenerics from '../../../../composables/componentGenerics.ts';
-import useComponentVariants from '../../../../composables/componentVariants.ts';
-import useComponentSizes from '../../../../composables/componentSizes.ts';
-import useComponentThemes from '../../../../composables/componentThemes.ts';
-import editSlotItems from '../../../../utils/editSlotItems.ts'
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars'
+import useComponentGenerics from '../../../../composables/componentGenerics';
+import useComponentVariants from '../../../../composables/componentVariants';
+import useComponentSizes from '../../../../composables/componentSizes';
+import useComponentThemes from '../../../../composables/componentThemes';
+import editSlotItems from '../../../../utils/editSlotItems'
 
 export enum ESimpleButtonVariants {
     ROUNDED = 'rounded',
@@ -122,18 +122,18 @@ export default defineComponent({
         /**
          *
          */
-        const slotIcon = editSlotItems(slots.icon, {
+        const slotIcon = computed(() => editSlotItems(slots.icon, {
             classes: [THEME_CLASS_PREFIX + "button-icon"]
-        });
+        }));
 
         /**
          *
          */
-        const slotContent = editSlotItems(slots.default, {
+        const slotContent = computed(() => editSlotItems(slots.default, {
             classes: [THEME_CLASS_PREFIX + "button-icon"]
         }, {
             tags: ["svg"]
-        });
+        }));
 
         /**
          * Template
@@ -147,8 +147,8 @@ export default defineComponent({
                 disabled={props.disabled || (props as any).variant?.includes('disabled')}
             >
                 {
-                    slotIcon && slotIcon.length > 0 ?
-                        slotIcon :
+                    slotIcon.value.length > 0 ?
+                        slotIcon.value :
                         props.image && (
                             <img
                                 src={props.image}
@@ -157,7 +157,7 @@ export default defineComponent({
                             />
                         )
                 }
-                { slotContent && slotContent.length > 0 ? slotContent : props.text }
+                { slotContent.value.length > 0 ? slotContent.value : props.text }
             </button>
         )
     }

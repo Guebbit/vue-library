@@ -1,1 +1,1 @@
-export { default as AdvancingMoonReveal } from './AdvancingMoonReveal.tsx';
+export { default as AdvancingMoonReveal } from './AdvancingMoonReveal';

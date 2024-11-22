@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import type { PropType, CSSProperties } from 'vue'
-import { THEME_ROOT_PREFIX } from '../_vars.ts'
-import useThemeGenerator from './themeGenerator.ts'
+import { THEME_ROOT_PREFIX } from '../_vars'
+import useThemeGenerator from './themeGenerator'
 
 export interface IThemeProps {
     props?: {

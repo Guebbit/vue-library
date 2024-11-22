@@ -1,1 +1,1 @@
-export { default as PopupCard } from './PopupCard.tsx';
+export { default as PopupCard } from './PopupCard';

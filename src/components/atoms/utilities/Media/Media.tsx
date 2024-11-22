@@ -1,5 +1,5 @@
 import './Media.scss'
-import { defineComponent, onMounted, ref, computed } from 'vue'
+import { defineComponent, onMounted, ref, computed, watch } from 'vue'
 import type { PropType } from 'vue'
 
 export enum EMediaTypes {
@@ -104,16 +104,18 @@ export default defineComponent({
          * Allow numbers (pixels) and regula css strings
          */
         const computedWidth = computed(() => {
-            if (props.width)
-                return typeof props.width === 'number' ? `${props.width}px` : props.width
+            if (!props.width)
+                return;
+            return typeof props.width === 'number' ? `${props.width}px` : props.width;
         })
 
         /**
          * Allow numbers (pixels) and regula css strings
          */
         const computedHeight = computed(() => {
-            if (props.height)
-                return typeof props.height === 'number' ? `${props.height}px` : props.height
+            if (!props.height)
+                return
+            return typeof props.height === 'number' ? `${props.height}px` : props.height
         })
 
         /**
@@ -130,6 +132,13 @@ export default defineComponent({
          *
          */
         const mediaRef = ref<HTMLElement | null>(null)
+
+        watch(mediaRef, () => {
+            if (!mediaRef.value || mediaRef.value.tagName !== "VIDEO")
+                return;
+            (mediaRef.value as HTMLVideoElement).load();
+            (mediaRef.value as HTMLVideoElement).play();
+        });
 
         /**
          * Generic function to apply observer
@@ -188,10 +197,12 @@ export default defineComponent({
                         video.classList.add(props.loadedClass)
                     })
             };
-        })
+        });
 
-        // Render media based on type
-        return () => {
+        /**
+         * Render media based on type
+         */
+        const element = computed(() => {
             switch (props.type) {
                 case EMediaTypes.IMAGE:
                     return <img
@@ -258,6 +269,9 @@ export default defineComponent({
                         <source src={props.lazy ? undefined : props.media} type={props.type} />
                     </video>
             }
-        }
+        });
+
+        //
+        return () => element.value
     }
 })

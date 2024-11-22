@@ -1,1 +1,1 @@
-export { default as CreditCard } from "./CreditCard.tsx";
+export { default as CreditCard } from "./CreditCard";

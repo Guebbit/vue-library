@@ -80,9 +80,10 @@
   },
   "overrides": [
     {
-      "files": ["*.d.ts", "*.spec.ts", "*.config.ts", "*.conf.ts", "*.test.ts", "src/components/**/*.ts"],
+      "files": ["*.d.ts", "*.spec.ts", "*.cy.ts", "*.config.ts", "*.conf.ts", "*.test.ts", "src/components/**/*.ts"],
       "rules": {
-        "filenames/match-regex": "off"
+        "filenames/match-regex": "off",
+        "@typescript-eslint/naming-convention": "off"
       }
     },
     {

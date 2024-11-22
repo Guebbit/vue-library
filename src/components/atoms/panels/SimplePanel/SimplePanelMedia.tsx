@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
-import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
-import Media from '../../../abstracts/Media/Media.tsx';
+import { THEME_CLASS_PREFIX } from '../../../../_vars'
+import Media from '../../../abstracts/Media/Media';
 
 export default defineComponent({
     name: 'SimplePanelMedia',

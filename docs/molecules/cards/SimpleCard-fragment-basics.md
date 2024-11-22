@@ -69,7 +69,6 @@ search: false
 ::: code-group
 
 ```html [Empty]
-
 <SimpleCard>
     I'm empty
 </SimpleCard>

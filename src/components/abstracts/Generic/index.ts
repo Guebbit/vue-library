@@ -1,1 +1,1 @@
-export { default as Generic } from "./Generic.tsx"
+export { default as Generic } from "./Generic"

@@ -1,1 +1,1 @@
-export { default as EffectColorPopup } from './EffectColorPopup.tsx';
+export { default as EffectColorPopup } from './EffectColorPopup';

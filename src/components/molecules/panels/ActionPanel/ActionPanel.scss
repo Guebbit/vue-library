@@ -1,5 +1,5 @@
 @use "../../../../vars" as vars;
-@use "../../../../../node_modules/@guebbit/css-ui/src/molecules/panels/ActionPanel" with (
+@use "@guebbit/css-ui/src/molecules/panels/ActionPanel" with (
     $css-ui-dark-theme-class: vars.$css-ui-dark-theme-class,
     $css-ui-var-prefix: vars.$css-ui-var-prefix,
     $css-ui-class-prefix: vars.$css-ui-class-prefix,

@@ -1,9 +1,9 @@
 /**
  * TODO?
- * https://github.com/vuetifyjs/vuetify/blob/e3b9895b12b669bee7d39f9de8653222231f5330/packages/vuetify/src/composables/component.ts#L15
+ * https://github.com/vuetifyjs/vuetify/blob/e3b9895b12b669bee7d39f9de8653222231f5330/packages/vuetify/src/composables/component#L15
  *
  * example:
- * https://github.com/vuetifyjs/vuetify/blob/e3b9895b12b669bee7d39f9de8653222231f5330/packages/vuetify/src/composables/border.ts
+ * https://github.com/vuetifyjs/vuetify/blob/e3b9895b12b669bee7d39f9de8653222231f5330/packages/vuetify/src/composables/border
  */
 
 
@@ -12,7 +12,7 @@
  * https://github.com/vuetifyjs
  *
  * Original file
- * https://github.com/vuetifyjs/vuetify/blob/e3b9895b12b669bee7d39f9de8653222231f5330/packages/vuetify/src/util/propsFactory.ts#L31
+ * https://github.com/vuetifyjs/vuetify/blob/e3b9895b12b669bee7d39f9de8653222231f5330/packages/vuetify/src/util/propsFactory#L31
  */
 import type { IfAny } from '@vue/shared' // eslint-disable-line vue/prefer-import-from-vue
 import type { ComponentObjectPropsOptions, Prop, PropType } from 'vue'

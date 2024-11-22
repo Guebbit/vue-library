@@ -1,8 +1,8 @@
 import { defineComponent, h } from 'vue'
-import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
+import { THEME_CLASS_PREFIX } from '../../../../_vars'
 
 export default defineComponent({
-    name: 'SimpleCardTitle',
+    name: 'SimpleModalTitle',
     props:{
         text: {
             type: String,

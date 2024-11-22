@@ -1,1 +1,1 @@
-export { default as AspectRatio } from "./AspectRatio.tsx";
+export { default as AspectRatio } from "./AspectRatio";

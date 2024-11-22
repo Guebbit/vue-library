@@ -1,1 +1,1 @@
-export { default as CyberpunkButton } from "./CyberpunkButton.tsx";
+export { default as CyberpunkButton } from "./CyberpunkButton";

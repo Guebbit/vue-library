@@ -1,1 +1,1 @@
-export { default as CalendarCard } from "./CalendarCard.tsx";
+export { default as CalendarCard } from "./CalendarCard";

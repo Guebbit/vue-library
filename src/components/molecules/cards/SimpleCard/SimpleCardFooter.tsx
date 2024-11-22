@@ -1,7 +1,8 @@
-import { defineComponent } from 'vue'
-import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
-import CardActions, { ESimpleCardActionsVariants } from './SimpleCardActions.tsx'
-import useComponentVariants from '../../../../composables/componentVariants.ts'
+import { computed, defineComponent, h } from 'vue'
+import { THEME_CLASS_PREFIX } from '../../../../_vars'
+import CardActions, { ESimpleCardActionsVariants } from './SimpleCardActions'
+import useComponentVariants from '../../../../composables/componentVariants'
+import editSlotItems from '../../../../utils/editSlotItems'
 
 export enum ESimpleCardFooterVariants {
     START = 'start',
@@ -30,14 +31,29 @@ export default defineComponent({
         } = useComponentVariants<ESimpleCardActionsVariants>({ props }, THEME_CLASS_PREFIX + 'card-section-');
 
         /**
-         * Template
+         *
          */
-        return () =>
-            slots.default || slots.actions ?
+        const actionsSlot = computed(() => editSlotItems(slots.actions, {
+            classes: [THEME_CLASS_PREFIX + "card-icon"]
+        }, {
+            tags: ["img", "svg"]
+        }));
+
+        /**
+         *
+         */
+        const defaultSlot = computed(() =>
+            slots.default || actionsSlot.value.length > 0 ?
                 <div class={[THEME_CLASS_PREFIX + "card-footer", variantsClasses.value]}>
                     {slots.default ? slots.default() : null}
-                    {slots.actions ? <CardActions>{slots.actions()}</CardActions> : null}
+                    {actionsSlot.value.length > 0 ? <CardActions>{actionsSlot.value}</CardActions> : null}
                 </div>
                 : null
+        )
+
+        /**
+         * Template
+         */
+        return () => defaultSlot.value
     }
 })

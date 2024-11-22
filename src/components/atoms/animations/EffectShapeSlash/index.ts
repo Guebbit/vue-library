@@ -1,1 +1,1 @@
-export { default as EffectShapeSlash } from './EffectShapeSlash.tsx';
+export { default as EffectShapeSlash } from './EffectShapeSlash';

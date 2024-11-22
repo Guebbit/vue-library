@@ -1,1 +1,1 @@
-export { default as ChooseOptionCard } from './ChooseOptionCard.tsx';
+export { default as ChooseOptionCard } from './ChooseOptionCard';

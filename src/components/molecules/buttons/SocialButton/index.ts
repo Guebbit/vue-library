@@ -1,1 +1,1 @@
-export { default as SocialButton } from './SocialButton.tsx';
+export { default as SocialButton } from './SocialButton';

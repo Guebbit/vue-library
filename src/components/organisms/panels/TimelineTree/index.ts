@@ -1,1 +1,1 @@
-export { default as TimelineTree } from './TimelineTree.tsx';
+export { default as TimelineTree } from './TimelineTree';

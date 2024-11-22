@@ -1,18 +1,18 @@
 import './BookCard.scss';
 import { defineComponent, computed } from 'vue';
 
-import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
-import SimpleCard, { ESimpleCardVariants } from '../SimpleCard/SimpleCard.tsx'
-import CardFooter from '../SimpleCard/SimpleCardFooter.tsx'
-import CardActions from '../SimpleCard/SimpleCardActions.tsx'
-import CardContent from '../SimpleCard/SimpleCardContent.tsx'
-import CardHeader from '../SimpleCard/SimpleCardHeader.tsx'
-import CardMedia from '../SimpleCard/SimpleCardMedia.tsx'
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars'
+import SimpleCard, { ESimpleCardVariants } from '../SimpleCard/SimpleCard'
+import CardFooter from '../SimpleCard/SimpleCardFooter'
+import CardActions from '../SimpleCard/SimpleCardActions'
+import CardContent from '../SimpleCard/SimpleCardContent'
+import CardHeader from '../SimpleCard/SimpleCardHeader'
+import CardMedia from '../SimpleCard/SimpleCardMedia'
 
-import useComponentGenerics from '../../../../composables/componentGenerics.ts'
-import useComponentVariants from '../../../../composables/componentVariants.ts'
-import useComponentThemes from '../../../../composables/componentThemes.ts'
-import editSlotItems from '../../../../utils/editSlotItems.ts'
+import useComponentGenerics from '../../../../composables/componentGenerics'
+import useComponentVariants from '../../../../composables/componentVariants'
+import useComponentThemes from '../../../../composables/componentThemes'
+import editSlotItems from '../../../../utils/editSlotItems'
 
 export default defineComponent({
     name: 'BookCard',
@@ -111,6 +111,7 @@ export default defineComponent({
                 THEME_CLASS_PREFIX + 'book-card',
                 ...animationClasses.value,
                 ...variantsClasses.value,
+                props.ratio ? THEME_CLASS_PREFIX + 'card-aspect-ratio' : undefined,
                 props.disabled ? THEME_CLASS_PREFIX + 'card-disabled' : undefined,
             ])
         ].filter(Boolean));
@@ -118,16 +119,16 @@ export default defineComponent({
         /**
          *
          */
-        const slotCover = editSlotItems(slots.cover, {
+        const slotCover = computed(() => editSlotItems(slots.cover, {
             classes: [THEME_CLASS_PREFIX + "card-media"]
-        });
+        }));;
 
         /**
          *
          */
-        const slotSpine = editSlotItems(slots.spine, {
+        const slotSpine = computed(() => editSlotItems(slots.spine, {
             classes: [THEME_CLASS_PREFIX + "card-background"]
-        });
+        }));;
 
         // TODO put in spine footer img\svg via prop and slot
         return () => (
@@ -160,13 +161,12 @@ export default defineComponent({
                             }}
                         />
                         {
-                            slotCover.length > 0 ?
-                                slotCover :
+                            slotCover.value.length > 0 ?
+                                slotCover.value :
                                 props.cover ?
                                     <CardMedia
                                         media={props.cover}
                                         ratio={props.ratio}
-                                        class={THEME_CLASS_PREFIX + 'card-media'}
                                         type={
                                             props.video ?
                                                 (props.type ?
@@ -199,12 +199,12 @@ export default defineComponent({
                             }}
                         />
                         {
-                            slotSpine.length > 0 ?
-                                slotSpine :
+                            slotSpine.value.length > 0 ?
+                                slotSpine.value :
                                 props.spine ?
                                     <CardMedia
                                         media={props.spine}
-                                        class={THEME_CLASS_PREFIX + 'card-background'}
+                                        background
                                     />
                                     : null
                         }

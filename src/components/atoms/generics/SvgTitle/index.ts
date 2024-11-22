@@ -1,1 +1,1 @@
-export { default as SvgTitle } from './SvgTitle.tsx';
+export { default as SvgTitle } from './SvgTitle';

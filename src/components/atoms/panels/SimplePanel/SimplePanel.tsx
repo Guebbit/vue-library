@@ -1,12 +1,12 @@
 import './SimplePanel.scss'
 import { computed, defineComponent } from 'vue'
 
-import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars.ts'
-import useComponentGenerics from '../../../../composables/componentGenerics.ts';
-import useComponentVariants from '../../../../composables/componentVariants.ts';
-import useComponentThemes from '../../../../composables/componentThemes.ts';
-import editSlotItems from '../../../../utils/editSlotItems.ts'
-import SimplePanelMedia from './SimplePanelMedia.tsx'
+import { THEME_VAR_PREFIX, THEME_CLASS_PREFIX } from '../../../../_vars'
+import useComponentGenerics from '../../../../composables/componentGenerics';
+import useComponentVariants from '../../../../composables/componentVariants';
+import useComponentThemes from '../../../../composables/componentThemes';
+import editSlotItems from '../../../../utils/editSlotItems'
+import SimplePanelMedia from './SimplePanelMedia'
 
 export enum ESimplePanelVariants {
     CONTENT_CENTERED = 'content-centered',
@@ -169,9 +169,9 @@ export default defineComponent({
         /**
          *
          */
-        const slotBackground = editSlotItems(slots.background, {
+        const slotBackground = computed(() => editSlotItems(slots.background, {
             classes: [THEME_CLASS_PREFIX + "panel-background"]
-        });
+        }));
 
         /**
          *
@@ -198,8 +198,8 @@ export default defineComponent({
                         : null
                 }
                 {
-                    slotBackground && slotBackground.length > 0 ?
-                        slotBackground : (
+                    slotBackground.value.length > 0 ?
+                        slotBackground.value : (
                             props.background ?
                                 <SimplePanelMedia
                                     media={props.background}

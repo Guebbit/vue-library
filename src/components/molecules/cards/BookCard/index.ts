@@ -1,1 +1,1 @@
-export { default as BookCard } from "./BookCard.tsx";
+export { default as BookCard } from "./BookCard";

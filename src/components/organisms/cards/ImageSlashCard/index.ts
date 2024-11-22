@@ -1,1 +1,1 @@
-export { default as ImageSlashCard } from './ImageSlashCard.tsx';
+export { default as ImageSlashCard } from './ImageSlashCard';

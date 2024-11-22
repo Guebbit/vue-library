@@ -1,1 +1,1 @@
-export { default as EventMinimalCard } from './EventMinimalCard.tsx';
+export { default as EventMinimalCard } from './EventMinimalCard';

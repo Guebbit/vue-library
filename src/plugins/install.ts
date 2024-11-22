@@ -1,5 +1,5 @@
 import type { App, Plugin } from 'vue';
-import * as components from "../index.ts";
+import * as components from "../index";
 
 const plugin: Plugin = {
     install(app: App) {

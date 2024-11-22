@@ -1,4 +1,4 @@
-import themeGenerator from '../composables/themeGenerator.ts';
+import themeGenerator from '../composables/themeGenerator';
 import { ref } from 'vue';
 import type { App, Plugin } from 'vue'
 

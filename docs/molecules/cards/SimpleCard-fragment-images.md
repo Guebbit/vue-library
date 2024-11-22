@@ -97,7 +97,6 @@ The type of the video should be declared too for the same reason (but it's not n
 ```
 
 ```html [Default (Slots)]
-
 <SimpleCard>
     <template v-slot:media>
         <img src="https://placedog.net/1000/400" alt="Custom Image" />

@@ -1,8 +1,8 @@
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 
-import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
-import useComponentVariants from '../../../../composables/componentVariants.ts'
-import editSlotItems from '../../../../utils/editSlotItems.ts'
+import { THEME_CLASS_PREFIX } from '../../../../_vars'
+import useComponentVariants from '../../../../composables/componentVariants'
+import editSlotItems from '../../../../utils/editSlotItems'
 
 export enum ESimpleCardActionsVariants {
     START = 'start',
@@ -41,16 +41,16 @@ export default defineComponent({
         /**
          *
          */
-        const defaultSlot = editSlotItems(slots.default, {
+        const defaultSlot = computed(() => editSlotItems(slots.default, {
             classes: [THEME_CLASS_PREFIX + "card-icon"]
         }, {
             tags: ["img", "svg"]
-        });
+        }));
 
         /**
          * Template
          */
         return () =>
-            slots.default && slots.default.length > 0 && <div class={[THEME_CLASS_PREFIX + 'card-actions', variantsClasses.value]}>{defaultSlot}</div>
+            defaultSlot.value.length > 0 && <div class={[THEME_CLASS_PREFIX + 'card-actions', variantsClasses.value]}>{defaultSlot.value}</div>
     },
 })

@@ -1,8 +1,8 @@
 import './Icon.scss';
-import { defineComponent } from 'vue';
-import { THEME_CLASS_PREFIX } from '../../../../_vars.ts'
-import useComponentSizes from '../../../../composables/componentSizes.ts'
-import editSlotItems from '../../../../utils/editSlotItems.ts'
+import { computed, defineComponent } from 'vue'
+import { THEME_CLASS_PREFIX } from '../../../../_vars'
+import useComponentSizes from '../../../../composables/componentSizes'
+import editSlotItems from '../../../../utils/editSlotItems'
 
 /**
  * Outside setup only composable
@@ -29,11 +29,13 @@ export default defineComponent({
             classes: sizeClass
         } = useComponentSizes(THEME_CLASS_PREFIX + 'simple-icon-', props);
 
+        const slotDefault = computed(() => editSlotItems(slots.default, {
+            classes: [sizeClass.value]
+        }));
+
         /**
          * Template
          */
-        return () => editSlotItems(slots.default, {
-            classes: [sizeClass.value]
-        });
+        return () => slotDefault.value;
     },
 });

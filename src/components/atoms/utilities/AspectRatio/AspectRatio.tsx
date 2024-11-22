@@ -1,6 +1,7 @@
 import './AspectRatio.scss';
 import { defineComponent, computed } from 'vue';
-import translateAspectRatio from "../../../../utils/translateAspectRatio.ts";
+import translateAspectRatio from "../../../../utils/translateAspectRatio";
+import { THEME_VAR_PREFIX } from '../../../../_vars.ts'
 
 /**
  * Component
@@ -28,7 +29,7 @@ export default defineComponent({
           <div
               class="aspect-ratio-container"
               // eslint-disable-next-line @typescript-eslint/naming-convention
-              style={{ '--aspect-ratio': calculatedAspectRatio.value }}
+              style={{ ['--' + THEME_VAR_PREFIX + 'aspect-ratio']: calculatedAspectRatio.value }}
           >
               {slots.default?.()}
           </div>

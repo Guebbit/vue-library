@@ -10,6 +10,7 @@ import { BookCard } from "@guebbit/vue-library";
 <div class="dev-section">
     <BookCard 
         title="Title Lorem Ipsum"
+        size-as-content
     >
         <template #cover>
             <img alt="" src="https://placedog.net/400/600" />
@@ -30,6 +31,7 @@ import { BookCard } from "@guebbit/vue-library";
         spine="https://placedog.net/100/600"
         video
         type="video/mp4"
+        size-as-content
     />
 </div>
 
